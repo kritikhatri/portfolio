@@ -54,6 +54,8 @@ function App() {
           {/* High-performance connected particle space */}
           <ParticleBackground theme={theme} />
 
+
+
           {/* Ambient Aurora Light Spheres */}
           <div className="fixed top-[-10%] left-[-15%] w-[60vw] h-[60vw] bg-primary-violet/10 aurora-bg-sphere animate-aurora-1" />
           <div className="fixed bottom-[-15%] right-[-15%] w-[70vw] h-[70vw] bg-primary-cyan/10 aurora-bg-sphere animate-aurora-2" />

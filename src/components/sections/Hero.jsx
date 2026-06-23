@@ -185,18 +185,17 @@ export const Hero = () => {
             {/* Pulsing glow background */}
             <div className="absolute inset-0 bg-primary-violet/10 rounded-full blur-3xl animate-pulse-slow -z-10" />
 
-            {/* Rotating gradient ring */}
-            <div className="absolute inset-2 rounded-full border-2 border-dashed border-primary-cyan/40 animate-[spin_40s_linear_infinite]" />
-            <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary-violet border-b-primary-pink animate-[spin_15s_linear_infinite]" />
+            {/* Tilted frame outline */}
+            <div className="absolute inset-2 border border-primary-cyan/20 rounded-[2.2rem_5.2rem_2.2rem_5.2rem] rotate-3 group-hover:rotate-6 transition-transform duration-500" />
+            <div className="absolute inset-0 border border-dashed border-primary-pink/20 rounded-[2.4rem_5.4rem_2.4rem_5.4rem] -rotate-3 group-hover:-rotate-6 transition-transform duration-500" />
 
-            {/* Avatar Circle Container */}
-            <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full p-1 bg-gradient-to-tr from-primary-violet via-primary-pink to-primary-cyan relative z-10 shadow-[0_0_40px_rgba(124,58,237,0.4)] overflow-hidden">
-              <div className="w-full h-full rounded-full bg-background-cosmic flex items-center justify-center overflow-hidden">
-                {/* Mock recruiter-friendly illustration avatar */}
+            {/* Avatar Container in Leaf-Shield shape */}
+            <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-[2rem_5rem_2rem_5rem] p-1 bg-gradient-to-tr from-primary-violet via-primary-pink to-primary-cyan relative z-10 shadow-[0_0_35px_rgba(234,179,8,0.25)] overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(234,179,8,0.4)]">
+              <div className="w-full h-full rounded-[1.8rem_4.8rem_1.8rem_4.8rem] bg-background-cosmic flex items-center justify-center overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
-                  alt="Kritika Khatri Avatar"
-                  className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-500"
+                  src="/avatar.jpg"
+                  alt="Kritika Khatri Profile"
+                  className="w-full h-full object-cover scale-105 hover:scale-110 brightness-95 hover:brightness-100 transition-all duration-700"
                 />
               </div>
             </div>

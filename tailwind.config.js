@@ -9,7 +9,7 @@ export default {
     extend: {
       colors: {
         background: {
-          cosmic: "#110107", // Darkest wine bordeaux
+          cosmic: "#1c040c", // Lighter wine bordeaux
           midnight: "#020617",
           light: "#faf9f6",
         },
@@ -20,7 +20,7 @@ export default {
           pink: "#ffffff", // Pure white
         },
         cyber: {
-          bg: "#110107",
+          bg: "#1c040c",
           card: "rgba(0, 0, 0, 0.25)",
           border: "rgba(255, 255, 255, 0.08)",
           grid: "transparent",

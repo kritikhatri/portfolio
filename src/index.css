@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-primary: #1c020b; /* Deep Wine Burgundy */
+    --bg-primary: #2a0412; /* Lighter Wine Burgundy */
     --bg-secondary: rgba(0, 0, 0, 0.28); /* Dark glass layer to let the wine bleed through */
     --border-color: rgba(255, 255, 255, 0.08); /* Crisp white glass borders */
     --accent-1: #eab308; /* Champagne Gold */
@@ -49,8 +49,8 @@
   }
 
   body {
-    /* Radial gradient vignette simulating back-lit wine velvet */
-    background: radial-gradient(circle at 50% 50%, #300414 0%, #110107 100%);
+    /* Radial wine velvet gradient background */
+    background: radial-gradient(circle at 50% 50%, rgba(88, 12, 38, 0.88) 0%, rgba(28, 4, 12, 0.95) 100%);
     background-attachment: fixed;
     color: var(--text-main);
     overflow-x: hidden;
