@@ -10,10 +10,10 @@ export const Hero = () => {
   const name = "Kritika Khatri";
 
   const socialLinks = [
-    { icon: FaGithub, url: "https://github.com/kritika-khatri", color: "hover:text-slate-100 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]", label: "GitHub" },
+    { icon: FaGithub, url: "https://github.com/kritikhatri", color: "hover:text-slate-100 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]", label: "GitHub" },
     { icon: FaLinkedin, url: "https://linkedin.com/in/kritika-khatri", color: "hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]", label: "LinkedIn" },
     { icon: FaTwitter, url: "https://twitter.com/kritika-khatri", color: "hover:text-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]", label: "Twitter" },
-    { icon: FaCode, url: "https://leetcode.com/u/kritika-khatri/", color: "hover:text-amber-500 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]", label: "LeetCode" }
+    { icon: FaCode, url: "https://leetcode.com/u/kritikhatri/", color: "hover:text-amber-500 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]", label: "LeetCode" }
   ];
 
   // Orbiting Tech Icons config

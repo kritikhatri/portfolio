@@ -25,7 +25,7 @@ export const CommandPalette = ({ theme, onThemeChange }) => {
     { id: 'theme-midnight', name: 'Set Theme: Midnight Blue', category: 'Theme', action: () => onThemeChange('midnight-blue') },
     { id: 'theme-light', name: 'Set Theme: Light Mode', category: 'Theme', action: () => onThemeChange('light-mode') },
     
-    { id: 'act-github', name: 'Open GitHub Profile', category: 'External Link', action: () => window.open('https://github.com/kritika-khatri', '_blank') },
+    { id: 'act-github', name: 'Open GitHub Profile', category: 'External Link', action: () => window.open('https://github.com/kritikhatri', '_blank') },
     { id: 'act-linkedin', name: 'Open LinkedIn Profile', category: 'External Link', action: () => window.open('https://linkedin.com/in/kritika-khatri', '_blank') },
     { id: 'act-resume', name: 'Download PDF Resume', category: 'Action', action: () => window.open('/resume.pdf', '_blank') },
   ];

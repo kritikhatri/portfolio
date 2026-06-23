@@ -9,20 +9,20 @@ export default {
     extend: {
       colors: {
         background: {
-          cosmic: "#050508", // Dark slate black
-          midnight: "#020617", // Slate midnight
-          light: "#f8fafc",
+          cosmic: "#110107", // Darkest wine bordeaux
+          midnight: "#020617",
+          light: "#faf9f6",
         },
         primary: {
-          DEFAULT: "#6366f1", // Indigo
-          violet: "#6366f1",
-          cyan: "#14b8a6", // Teal
-          pink: "#a855f7", // Purple / Violet
+          DEFAULT: "#eab308", // Champagne gold
+          violet: "#d97706", // Amber gold
+          cyan: "#fde047", // Light yellow gold
+          pink: "#ffffff", // Pure white
         },
         cyber: {
-          bg: "#050508",
-          card: "rgba(255, 255, 255, 0.02)",
-          border: "rgba(255, 255, 255, 0.05)",
+          bg: "#110107",
+          card: "rgba(0, 0, 0, 0.25)",
+          border: "rgba(255, 255, 255, 0.08)",
           grid: "transparent",
         }
       },

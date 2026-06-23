@@ -8,8 +8,8 @@ import { staggerContainer, staggerItem, fadeInUp } from '../../utils/animations'
 import { FaCode, FaTrophy, FaFire, FaCheckCircle } from 'react-icons/fa';
 
 export const LeetCode = () => {
-  // Read username from env, default to 'kritika-khatri'
-  const username = import.meta.env.VITE_LEETCODE_USERNAME || 'kritika-khatri';
+  // Read username from env, default to 'kritikhatri'
+  const username = import.meta.env.VITE_LEETCODE_USERNAME || 'kritikhatri';
   const { data, loading, error } = useLeetCode(username);
 
   // Prepare chart data if analytics loaded

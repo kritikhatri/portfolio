@@ -4,18 +4,18 @@
 
 @layer base {
   :root {
-    --bg-primary: #050508;
-    --bg-secondary: rgba(255, 255, 255, 0.025);
-    --border-color: rgba(255, 255, 255, 0.06);
-    --accent-1: #6366f1; /* Indigo */
-    --accent-2: #14b8a6; /* Teal */
-    --accent-secondary: #a855f7; /* Purple */
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --grid-overlay: rgba(99, 102, 241, 0.02);
-    --glow-color: rgba(99, 102, 241, 0.25);
-    --glow-secondary: rgba(20, 184, 166, 0.25);
-    --shadow-rgb: 5, 5, 8;
+    --bg-primary: #1c020b; /* Deep Wine Burgundy */
+    --bg-secondary: rgba(0, 0, 0, 0.28); /* Dark glass layer to let the wine bleed through */
+    --border-color: rgba(255, 255, 255, 0.08); /* Crisp white glass borders */
+    --accent-1: #eab308; /* Champagne Gold */
+    --accent-2: #f8fafc; /* Silver White */
+    --accent-secondary: #fef08a; /* Light Gold */
+    --text-main: #ffffff; /* Crisp white headers (NOT red) */
+    --text-muted: #e2e8f0; /* Legible silver-grey body text */
+    --grid-overlay: rgba(255, 255, 255, 0.01);
+    --glow-color: rgba(234, 179, 8, 0.3); /* Warm gold halo */
+    --glow-secondary: rgba(255, 255, 255, 0.2);
+    --shadow-rgb: 28, 2, 11;
   }
 
   .theme-midnight {
@@ -34,25 +34,27 @@
   }
 
   .theme-light {
-    --bg-primary: #f8fafc;
+    --bg-primary: #faf9f6; /* Alabaster soft white */
     --bg-secondary: rgba(255, 255, 255, 0.75);
-    --border-color: rgba(15, 23, 42, 0.05);
-    --accent-1: #4f46e5; /* Indigo */
-    --accent-2: #0d9488; /* Teal */
-    --accent-secondary: #7c3aed; /* Violet */
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --grid-overlay: rgba(79, 70, 229, 0.01);
-    --glow-color: rgba(79, 70, 229, 0.1);
-    --glow-secondary: rgba(13, 148, 136, 0.1);
-    --shadow-rgb: 248, 250, 252;
+    --border-color: rgba(120, 10, 40, 0.05);
+    --accent-1: #be123c; /* Wine red */
+    --accent-2: #b45309; /* Deep Amber */
+    --accent-secondary: #db2777;
+    --text-main: #1c1917; /* Dark stone-900 */
+    --text-muted: #57534e; /* Muted stone-600 */
+    --grid-overlay: rgba(190, 18, 60, 0.01);
+    --glow-color: rgba(190, 18, 60, 0.1);
+    --glow-secondary: rgba(180, 83, 9, 0.1);
+    --shadow-rgb: 250, 249, 246;
   }
 
   body {
-    background-color: var(--bg-primary);
+    /* Radial gradient vignette simulating back-lit wine velvet */
+    background: radial-gradient(circle at 50% 50%, #300414 0%, #110107 100%);
+    background-attachment: fixed;
     color: var(--text-main);
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 }
 
@@ -62,7 +64,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #110107;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -72,7 +74,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-1);
-  opacity: 0.8;
 }
 
 /* Aurora Glassmorphism Panel */
@@ -81,7 +82,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .glass-panel-hover {
@@ -89,14 +90,14 @@
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   transform: translateY(-3px);
 }
 
 /* Soft Glow Text Effects */
 .text-glow {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 0 15px rgba(234, 179, 8, 0.25);
 }
 
 /* SVG Line Draw Animation */
@@ -117,7 +118,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.25;
+  opacity: 0.18; /* slightly reduced opacity for smooth blend on wine red */
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: -10;

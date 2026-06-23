@@ -3,10 +3,10 @@ import { FaGithub, FaLinkedin, FaTwitter, FaCode } from 'react-icons/fa';
 
 export const Footer = () => {
   const socialLinks = [
-    { icon: FaGithub, url: "https://github.com/kritika-khatri", label: "GitHub" },
+    { icon: FaGithub, url: "https://github.com/kritikhatri", label: "GitHub" },
     { icon: FaLinkedin, url: "https://linkedin.com/in/kritika-khatri", label: "LinkedIn" },
     { icon: FaTwitter, url: "https://twitter.com/kritika-khatri", label: "Twitter" },
-    { icon: FaCode, url: "https://leetcode.com/u/kritika-khatri/", label: "LeetCode" }
+    { icon: FaCode, url: "https://leetcode.com/u/kritikhatri/", label: "LeetCode" }
   ];
 
   const handleNavClick = (id) => {

@@ -8,8 +8,8 @@ import { staggerContainer, staggerItem, fadeInUp } from '../../utils/animations'
 import { FaGithub, FaStar, FaCodeBranch, FaUsers, FaBook, FaHistory } from 'react-icons/fa';
 
 export const GitHub = () => {
-  // Read username from env, default to 'kritika-khatri'
-  const username = import.meta.env.VITE_GITHUB_USERNAME || 'kritika-khatri';
+  // Read username from env, default to 'kritikhatri'
+  const username = import.meta.env.VITE_GITHUB_USERNAME || 'kritikhatri';
   const { profile, repos, loading, error } = useGitHub(username);
 
   // Programmatically generate a cyberpunk contribution heatmap (53 cols * 7 rows)
