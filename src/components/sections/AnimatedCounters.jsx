@@ -1,57 +1,51 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export const AnimatedCounter = ({ target, suffix = '', duration = 1.5 }) => {
+export const AnimatedCounter = ({ value, duration = 1500 }) => {
   const [count, setCount] = useState(0);
-  const elementRef = useRef(null);
-  const hasAnimated = useRef(false);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let startTime = null;
+    let observer;
+    let startTimestamp = null;
+    
+    // Extract numerical value
+    const match = String(value).match(/\d+/);
+    const end = match ? parseInt(match[0], 10) : 0;
+    const suffix = String(value).replace(/\d+/, '');
 
-          const animate = (timestamp) => {
-            if (!startTime) startTime = timestamp;
-            const progress = timestamp - startTime;
-            const percentage = Math.min(progress / (duration * 1000), 1);
-            
-            // Ease out quad
-            const easedProgress = percentage * (2 - percentage);
-            const currentCount = Math.floor(easedProgress * target);
-            
-            setCount(currentCount);
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const currentVal = Math.floor(progress * end);
+      setCount(currentVal);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
 
-            if (percentage < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setCount(target);
-            }
-          };
+    observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        window.requestAnimationFrame(step);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
 
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
+      if (observer) observer.disconnect();
     };
-  }, [target, duration]);
+  }, [value, duration]);
 
+  // Merge the animation number with any suffixes (like +)
+  const displaySuffix = String(value).replace(/\d+/, '');
+  
   return (
-    <span ref={elementRef} className="tabular-nums">
+    <span ref={ref} className="font-display font-bold">
       {count}
-      {suffix}
+      {displaySuffix}
     </span>
   );
 };

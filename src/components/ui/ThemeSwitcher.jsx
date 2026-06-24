@@ -1,48 +1,83 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaSun, FaMoon, FaSpaceShuttle } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaPalette, FaCheck } from 'react-icons/fa';
 
-export const ThemeSwitcher = ({ theme, onThemeChange }) => {
-  const themes = [
-    { id: 'cosmic-dark', name: 'Cosmic', icon: FaSpaceShuttle, tooltip: 'Cosmic Dark', color: 'text-purple-400 border-purple-500/20' },
-    { id: 'midnight-blue', name: 'Midnight', icon: FaMoon, tooltip: 'Midnight Blue', color: 'text-blue-400 border-blue-500/20' },
-    { id: 'light-mode', name: 'Light', icon: FaSun, tooltip: 'Light Mode', color: 'text-yellow-500 border-yellow-500/20' }
+export const ThemeSwitcher = ({ currentTheme, onThemeChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const themesList = [
+    { id: 'theme-cosmic', name: 'Cosmic Dark', desc: 'Space black & violet glow', colorBg: 'bg-[#0a0a0f]', border: 'border-violet-500' },
+    { id: 'theme-midnight', name: 'Midnight Blue', desc: 'Deep blue ocean aura', colorBg: 'bg-[#050b14]', border: 'border-blue-500' },
+    { id: 'theme-light', name: 'Light Slate', desc: 'Clean paper aesthetics', colorBg: 'bg-[#f8fafc]', border: 'border-indigo-600' }
   ];
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [isOpen]);
+
+  const selectTheme = (themeId) => {
+    onThemeChange(themeId);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="glass-panel p-1.5 rounded-full flex gap-1 items-center border border-white/10 shadow-lg select-none">
-      {themes.map((t) => {
-        const Icon = t.icon;
-        const isActive = theme === t.id;
-        
-        return (
-          <button
-            key={t.id}
-            onClick={() => onThemeChange(t.id)}
-            title={t.tooltip}
-            aria-label={`Switch theme to ${t.name}`}
-            className={`
-              relative p-2.5 rounded-full transition-all duration-300 group
-              ${isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-slate-200'}
-            `}
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Change Theme"
+        className="p-2.5 rounded-full glass-panel hover:text-accent border-white/10 hover:border-white/20 transition-all flex items-center justify-center cursor-pointer shadow-glass-sm"
+      >
+        <FaPalette className="w-4 h-4" />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 mt-3 w-64 glass-panel bg-background/95 rounded-xl border border-white/10 p-2 z-50 shadow-glass-lg"
           >
-            {/* Pulsing glow background for active icon */}
-            {isActive && (
-              <motion.div
-                layoutId="active-theme-bg"
-                className="absolute inset-0 bg-gradient-to-r from-primary-violet/20 to-primary-cyan/20 rounded-full border border-white/10 -z-10 shadow-[0_0_12px_rgba(124,58,237,0.3)]"
-                transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              />
-            )}
-            <Icon className="text-sm md:text-base relative z-10" />
+            <div className="px-3 py-2 text-xs font-mono font-bold tracking-wider text-accent border-b border-white/5 uppercase">
+              // Interface Theme
+            </div>
             
-            {/* Custom Tooltip */}
-            <span className="absolute bottom-full right-1/2 translate-x-1/2 mb-2 px-2 py-1 text-[10px] font-mono font-medium text-slate-100 bg-black/80 border border-white/10 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
-              {t.tooltip}
-            </span>
-          </button>
-        );
-      })}
+            <div className="mt-1 flex flex-col gap-1">
+              {themesList.map((item) => {
+                const isActive = currentTheme === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => selectTheme(item.id)}
+                    className={`w-full text-left p-2 rounded-lg flex items-center gap-3 hover:bg-white/5 transition-all text-xs cursor-pointer ${isActive ? 'bg-white/5' : ''}`}
+                  >
+                    {/* Circle Indicator */}
+                    <div className={`w-6 h-6 rounded-full border border-white/10 ${item.colorBg} shrink-0 flex items-center justify-center`}>
+                      {isActive && <FaCheck className={`w-2.5 h-2.5 ${item.id === 'theme-light' ? 'text-slate-800' : 'text-accent'}`} />}
+                    </div>
+                    {/* Label */}
+                    <div className="flex flex-col">
+                      <span className="font-display font-semibold text-slate-100">{item.name}</span>
+                      <span className="text-[10px] text-slate-500 font-mono mt-0.5">{item.desc}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

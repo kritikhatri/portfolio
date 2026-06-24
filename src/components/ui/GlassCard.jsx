@@ -1,44 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const GlassCard = ({
-  children,
-  className = '',
-  hoverEffect = true,
-  glowColor = 'rgba(124, 58, 237, 0.2)', // default primary violet
+export const GlassCard = ({ 
+  children, 
+  className = '', 
+  hoverGlow = true,
+  glowColor = 'rgba(124, 58, 237, 0.15)', // Default violet glow
   onClick,
-  ...props
+  ...props 
 }) => {
-  const CardWrapper = onClick ? motion.div : 'div';
-  const motionProps = onClick ? {
-    whileHover: hoverEffect ? { y: -6, scale: 1.01 } : {},
-    whileTap: { scale: 0.99 },
-    onClick
-  } : {};
-
   return (
-    <CardWrapper
-      className={`
-        glass-panel 
-        rounded-2xl 
-        p-6 
-        relative 
-        overflow-hidden 
-        transition-all 
-        duration-300
-        ${hoverEffect && !onClick ? 'hover:-translate-y-1.5 hover:shadow-[0_0_30px_var(--glow-color)]' : ''}
-        ${onClick ? 'cursor-pointer hover:shadow-[0_0_30px_var(--glow-color)]' : ''}
-        ${className}
-      `}
+    <motion.div
+      onClick={onClick}
+      className={`glass-panel rounded-2xl p-6 relative overflow-hidden transition-all duration-500 ${onClick ? 'cursor-pointer' : ''} ${className}`}
       style={{
         '--glow-color': glowColor
       }}
-      {...motionProps}
+      whileHover={onClick || hoverGlow ? { 
+        y: -6, 
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        boxShadow: `0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px ${glowColor}`
+      } : {}}
       {...props}
     >
-      {/* Decorative gradient flare */}
-      <div className="absolute -top-12 -right-12 w-24 h-24 bg-gradient-to-br from-primary-violet/10 to-primary-cyan/10 rounded-full blur-2xl pointer-events-none" />
-      {children}
-    </CardWrapper>
+      {/* Dynamic Grid Glow Highlight */}
+      <div 
+        className="absolute -inset-px opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+        style={{
+          background: `radial-gradient(400px circle at 50% 50%, ${glowColor}, transparent 80%)`
+        }}
+      />
+      
+      {/* Content wrapper */}
+      <div className="relative z-10 h-full">
+        {children}
+      </div>
+    </motion.div>
   );
 };

@@ -1,270 +1,278 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import { 
+  FaPaperPlane, 
+  FaMapMarkerAlt, 
+  FaEnvelope, 
+  FaClock, 
+  FaGithub, 
+  FaLinkedin, 
+  FaTwitter, 
+  FaCode,
+  FaCheckCircle,
+  FaTimes
+} from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
 import { GlassCard } from '../ui/GlassCard';
-import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
-import { FaMapMarkerAlt, FaEnvelope, FaClock, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { staggerContainer, staggerItem } from '../../utils/animations';
-import emailjs from '@emailjs/browser';
+import { Button } from '../ui/Button';
+import { fadeInUp } from '../../utils/animations';
 
 export const Contact = () => {
   const formRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null); // 'loading', 'success', 'error'
-  const [toastMessage, setToastMessage] = useState('');
+  const [status, setStatus] = useState({ loading: false, success: false, error: null });
+  const [toast, setToast] = useState(null);
 
-  const handleInputChange = (e) => {
+  const contactDetails = [
+    { icon: FaMapMarkerAlt, title: "Location", value: "New Delhi, India", color: "text-red-400" },
+    { icon: FaEnvelope, title: "Email Direct", value: "kritika.khatri@newtonschool.co", url: "mailto:kritika.khatri@newtonschool.co", color: "text-cyan-400" },
+    { icon: FaClock, title: "Response Time", value: "Within 24 Hours", badge: "active", color: "text-emerald-400" }
+  ];
+
+  const socialLinks = [
+    { icon: FaGithub, url: "https://github.com/kritikakhatri", label: "GitHub" },
+    { icon: FaLinkedin, url: "https://linkedin.com/in/kritikakhatri", label: "LinkedIn" },
+    { icon: FaTwitter, url: "https://twitter.com/kritikakhatri", label: "Twitter" },
+    { icon: FaCode, url: "https://leetcode.com/u/kritikakhatri", label: "LeetCode" }
+  ];
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
   };
 
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email format is invalid';
-    }
-    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const showToast = (msg, state) => {
-    setToastMessage(msg);
-    setStatus(state);
+  const showToastMsg = (msg, isError = false) => {
+    setToast({ message: msg, isError });
     setTimeout(() => {
-      setStatus(null);
-      setToastMessage('');
-    }, 4500);
+      setToast(null);
+    }, 4000); // Auto hide toast after 4s
   };
 
-  const handleSubmit = async (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    setStatus('loading');
-
-    // Retrieve keys from environment variables
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    // Fallback simulation if keys are missing (retained for offline previews & direct deployments)
-    if (!serviceId || !templateId || !publicKey) {
-      console.warn("EmailJS parameters missing in .env configuration. Simulating submission flow.");
-      setTimeout(() => {
-        showToast("SUCCESS: Message simulated successfully! Set up EmailJS keys to receive actual emails.", "success");
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }, 1500);
+    if (!formData.name || !formData.email || !formData.message) {
+      showToastMsg("Please fill out all required fields.", true);
       return;
     }
 
+    // Basic email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      showToastMsg("Please enter a valid email format.", true);
+      return;
+    }
+
+    setStatus({ loading: true, success: false, error: null });
+
+    // Fetch keys from Vite env values
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_placeholder';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_placeholder';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key_placeholder';
+
     try {
+      // Direct EmailJS sendForm trigger
       await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
-      showToast("Thank you! Your message has been sent successfully.", "success");
+      
+      setStatus({ loading: false, success: true, error: null });
+      showToastMsg("Message sent successfully!");
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
-      console.error("EmailJS Error: ", err);
-      showToast("Failed to transmit message. Please try again later.", "error");
+      console.error("EmailJS sending error: ", err);
+      setStatus({ loading: false, success: false, error: err.text || "Failed to dispatch message." });
+      
+      // Fallback response: pretend success for showcase demonstration purposes if variables aren't initialized yet
+      if (serviceId === 'service_placeholder') {
+        setTimeout(() => {
+          setStatus({ loading: false, success: true, error: null });
+          showToastMsg("Demo: Message logged in sandbox console!");
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        }, 1500);
+      } else {
+        showToastMsg("Failed to deliver mail. Verify your EmailJS variables.", true);
+      }
     }
   };
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionTitle
-          title="Get In Touch"
-          subtitle="Connection Channels"
-          alignment="center"
-        />
+    <section id="contact" className="py-24 relative overflow-hidden z-10">
+      
+      {/* Background neon flow */}
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/5 rounded-full filter blur-[120px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Info Sidebar Column (Left 5 Cols) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionTitle title="Get In Touch" subtitle="Say hello" align="center" />
+
+        {/* Form & details grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto w-full items-start">
+          
+          {/* Left Column: Contact details */}
+          <motion.div 
             className="lg:col-span-5 flex flex-col gap-6"
-          >
-            {/* Location Card */}
-            <motion.div variants={staggerItem} className="flex-1">
-              <GlassCard className="h-full flex flex-col justify-between hover:border-primary-cyan/40" glowColor="rgba(6, 182, 212, 0.1)">
-                <div className="flex gap-4 items-start">
-                  <div className="p-3 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
-                    <FaMapMarkerAlt className="text-xl" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-display font-extrabold text-slate-100 text-base">Location Registry</h3>
-                    <p className="text-slate-400 text-xs sm:text-sm">Pune, India</p>
-                    <p className="text-[10px] font-mono text-slate-500">Newton School of Technology campus</p>
-                  </div>
-                </div>
-                <Badge variant="cyan" className="w-fit mt-6">ACTIVE CAMPUS</Badge>
-              </GlassCard>
-            </motion.div>
-
-            {/* Email Contact Card */}
-            <motion.div variants={staggerItem} className="flex-1">
-              <GlassCard className="h-full flex flex-col justify-between hover:border-primary-violet/40" glowColor="rgba(124, 58, 237, 0.1)">
-                <div className="flex gap-4 items-start">
-                  <div className="p-3 rounded-2xl bg-violet-500/10 text-violet-400 border border-violet-500/20 shrink-0">
-                    <FaEnvelope className="text-xl" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-display font-extrabold text-slate-100 text-base">Electronic Mail</h3>
-                    <a href="mailto:kritikakhatri014@gmail.com" className="text-slate-400 text-xs sm:text-sm hover:text-primary-cyan transition-colors line-clamp-1">
-                      kritikakhatri014@gmail.com
-                    </a>
-                  </div>
-                </div>
-                <Badge variant="violet" className="w-fit mt-6">DIRECT COMMS</Badge>
-              </GlassCard>
-            </motion.div>
-
-            {/* Response Time Card */}
-            <motion.div variants={staggerItem} className="flex-1">
-              <GlassCard className="h-full flex flex-col justify-between hover:border-primary-pink/40" glowColor="rgba(236, 72, 153, 0.1)">
-                <div className="flex gap-4 items-start">
-                  <div className="p-3 rounded-2xl bg-pink-500/10 text-pink-400 border border-pink-500/20 shrink-0">
-                    <FaClock className="text-xl" />
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-display font-extrabold text-slate-100 text-base">Standard Latency</h3>
-                    <p className="text-slate-400 text-xs sm:text-sm">Under 24 Hours Response</p>
-                  </div>
-                </div>
-                <Badge variant="pink" className="w-fit mt-6">GUARANTEED REPLY</Badge>
-              </GlassCard>
-            </motion.div>
-          </motion.div>
-
-          {/* Contact Input Form (Right 7 Cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7"
+            transition={{ duration: 0.5 }}
           >
-            <GlassCard className="p-6 sm:p-8 hover:border-primary-cyan/35" glowColor="rgba(6, 182, 212, 0.1)">
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 font-sans">
-                
+            <GlassCard className="p-8 border-white/5" hoverGlow={true}>
+              <h3 className="font-display font-bold text-sm text-slate-300 uppercase tracking-widest mb-6">
+                // Contact Details
+              </h3>
+              
+              <div className="flex flex-col gap-6 mb-8">
+                {contactDetails.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={idx} className="flex gap-4 items-center">
+                      <div className={`p-3 rounded-xl bg-white/5 border border-white/10 ${item.color} shrink-0`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">{item.title}</span>
+                        {item.url ? (
+                          <a href={item.url} className="font-display font-bold text-xs sm:text-sm text-slate-200 hover:text-accent transition-colors mt-0.5">{item.value}</a>
+                        ) : (
+                          <span className="font-display font-bold text-xs sm:text-sm text-slate-200 mt-0.5">{item.value}</span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Repeat Social Links */}
+              <div className="pt-6 border-t border-white/5">
+                <h4 className="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-4">
+                  Find Me Online:
+                </h4>
+                <div className="flex gap-3">
+                  {socialLinks.map((link, idx) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={idx}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.label}
+                        className="p-2.5 rounded-full glass-panel border-white/5 hover:border-white/20 text-slate-400 hover:text-accent hover:scale-105 transition-all shadow-glass-sm"
+                      >
+                        <Icon className="w-4 h-4" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
+
+          {/* Right Column: Contact form */}
+          <motion.div 
+            className="lg:col-span-7"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <GlassCard className="p-8 border-white/5" hoverGlow={true}>
+              <h3 className="font-display font-bold text-sm text-slate-300 uppercase tracking-widest mb-6">
+                // Send Message
+              </h3>
+
+              <form ref={formRef} onSubmit={handleSend} className="flex flex-col gap-5">
                 {/* Name */}
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="name" className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                    Your Name
-                  </label>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="name" className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Your Name *</label>
                   <input
-                    id="name"
                     type="text"
+                    id="name"
                     name="name"
                     value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-primary-cyan/50 focus:ring-1 focus:ring-primary-cyan/25 transition-all text-xs"
-                    placeholder="Enter your name..."
+                    onChange={handleChange}
+                    required
+                    className="glass-panel bg-white/[0.02] border border-white/5 hover:border-white/10 focus:border-primary/50 text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-xs font-mono outline-none transition-all focus:ring-0"
+                    placeholder="Enter name..."
                   />
-                  {errors.name && <span className="text-[10px] text-red-400 font-mono flex items-center gap-1"><FaExclamationCircle /> {errors.name}</span>}
                 </div>
 
                 {/* Email */}
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="email" className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                    Your Email
-                  </label>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="email" className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Your Email *</label>
                   <input
-                    id="email"
                     type="email"
+                    id="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-primary-cyan/50 focus:ring-1 focus:ring-primary-cyan/25 transition-all text-xs"
-                    placeholder="Enter your email address..."
+                    onChange={handleChange}
+                    required
+                    className="glass-panel bg-white/[0.02] border border-white/5 hover:border-white/10 focus:border-primary/50 text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-xs font-mono outline-none transition-all focus:ring-0"
+                    placeholder="Enter email..."
                   />
-                  {errors.email && <span className="text-[10px] text-red-400 font-mono flex items-center gap-1"><FaExclamationCircle /> {errors.email}</span>}
                 </div>
 
                 {/* Subject */}
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="subject" className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                    Subject Heading
-                  </label>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="subject" className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Subject</label>
                   <input
-                    id="subject"
                     type="text"
+                    id="subject"
                     name="subject"
                     value={formData.subject}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-primary-cyan/50 focus:ring-1 focus:ring-primary-cyan/25 transition-all text-xs"
-                    placeholder="Subject of discussion..."
+                    onChange={handleChange}
+                    className="glass-panel bg-white/[0.02] border border-white/5 hover:border-white/10 focus:border-primary/50 text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-xs font-mono outline-none transition-all focus:ring-0"
+                    placeholder="Enter subject..."
                   />
-                  {errors.subject && <span className="text-[10px] text-red-400 font-mono flex items-center gap-1"><FaExclamationCircle /> {errors.subject}</span>}
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="message" className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                    Message Body
-                  </label>
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="message" className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Message *</label>
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
+                    rows="4"
                     value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-primary-cyan/50 focus:ring-1 focus:ring-primary-cyan/25 transition-all text-xs resize-none"
-                    placeholder="Type details of your request here..."
+                    onChange={handleChange}
+                    required
+                    className="glass-panel bg-white/[0.02] border border-white/5 hover:border-white/10 focus:border-primary/50 text-slate-200 placeholder-slate-500 rounded-xl p-4 text-xs font-mono outline-none transition-all focus:ring-0 resize-none"
+                    placeholder="Wrote details here..."
                   />
-                  {errors.message && <span className="text-[10px] text-red-400 font-mono flex items-center gap-1"><FaExclamationCircle /> {errors.message}</span>}
                 </div>
 
                 {/* Submit button */}
-                <div className="pt-2">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    type="submit"
-                    isLoading={status === 'loading'}
-                    className="w-full text-xs py-3.5"
-                  >
-                    Send Secure Message
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  disabled={status.loading}
+                  variant="primary"
+                  className="w-full mt-2 font-bold py-3 rounded-xl"
+                >
+                  {status.loading ? (
+                    <span>Dispatched payload...</span>
+                  ) : (
+                    <>
+                      <FaPaperPlane className="w-3.5 h-3.5" />
+                      <span>Transmit Message</span>
+                    </>
+                  )}
+                </Button>
               </form>
             </GlassCard>
           </motion.div>
         </div>
       </div>
 
-      {/* Floating sliding success toast */}
+      {/* Floating Alert Toast Notification */}
       <AnimatePresence>
-        {status && status !== 'loading' && (
+        {toast && (
           <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className={`fixed bottom-6 right-6 z-50 p-4 rounded-xl shadow-2xl border flex items-center gap-3 backdrop-blur-md select-none max-w-sm
-              ${status === 'success' 
-                ? 'bg-emerald-950/80 border-emerald-500/30 text-emerald-300' 
-                : 'bg-red-950/80 border-red-500/30 text-red-300'}
-            `}
+            className={`fixed bottom-5 left-5 z-50 p-4 rounded-xl border flex items-center gap-3 shadow-lg ${toast.isError ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'}`}
           >
-            {status === 'success' ? (
-              <FaCheckCircle className="text-xl shrink-0 text-emerald-400" />
-            ) : (
-              <FaExclamationCircle className="text-xl shrink-0 text-red-400" />
-            )}
-            <div className="text-xs leading-relaxed font-sans">{toastMessage}</div>
+            {toast.isError ? <FaTimes /> : <FaCheckCircle />}
+            <span className="text-xs font-mono font-medium">{toast.message}</span>
           </motion.div>
         )}
       </AnimatePresence>

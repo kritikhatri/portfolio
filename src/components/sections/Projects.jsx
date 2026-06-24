@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaSearch, FaGithub, FaExternalLinkAlt, FaEye } from 'react-icons/fa';
 import { SectionTitle } from '../ui/SectionTitle';
 import { GlassCard } from '../ui/GlassCard';
 import { Badge } from '../ui/Badge';
-import { Button } from '../ui/Button';
-import { ProjectModal } from './ProjectModal';
 import { projects } from '../../data/projects';
-import { staggerContainer, staggerItem } from '../../utils/animations';
-import { FaSearch, FaGithub, FaExternalLinkAlt, FaSpotify, FaPlay, FaRobot, FaLaptopCode, FaCodeBranch, FaCloudSun, FaArrowRight } from 'react-icons/fa';
-
-// Map icon string names to components
-const iconMap = {
-  FaSpotify,
-  FaPlay,
-  FaRobot,
-  FaLaptopCode,
-  FaCodeBranch,
-  FaCloudSun
-};
+import { ProjectModal } from './ProjectModal';
+import { staggerContainer, scaleUp } from '../../utils/animations';
 
 export const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -26,155 +15,148 @@ export const Projects = () => {
 
   const categories = ['All', 'Web', 'AI/ML', 'Clone', 'Open Source'];
 
-  // Filter projects based on category and search query
-  const filteredProjects = projects.filter(p => {
-    const matchesCategory = filter === 'All' || p.category === filter;
-    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          p.techStack.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+  // Filter & Search logic
+  const filteredProjects = projects.filter((project) => {
+    const matchesCategory = filter === 'All' || project.category === filter;
+    
+    const matchesSearch = 
+      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <section id="projects" className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionTitle
-          title="Featured Projects"
-          subtitle="My Creative Sandbox"
-          alignment="center"
-        />
+    <section id="projects" className="py-24 relative overflow-hidden z-10">
+      
+      {/* Background radial fade */}
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full filter blur-[120px] pointer-events-none" />
 
-        {/* Filter and Search Bar Row */}
-        <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionTitle title="Featured Projects" subtitle="My creations" align="center" />
+
+        {/* Search & Filter bar row */}
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-12 max-w-4xl mx-auto">
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 order-2 md:order-1">
+          <div className="flex flex-wrap gap-1.5 justify-center md:justify-start">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`
-                  px-4 py-2 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 border focus:outline-none
-                  ${filter === cat 
-                    ? 'bg-gradient-to-r from-primary-violet to-primary-cyan text-white border-transparent shadow-[0_0_12px_rgba(6,182,212,0.3)]' 
-                    : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:bg-white/10'}
-                `}
+                className={`px-4 py-2 rounded-full font-display text-xs font-semibold tracking-wider transition-all border cursor-pointer ${filter === cat ? 'bg-secondary text-white border-secondary/20 shadow-neon-cyan' : 'glass-panel text-slate-400 border-white/5 hover:text-slate-200'}`}
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* Search Input */}
-          <div className="relative w-full md:w-80 order-1 md:order-2">
-            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm" />
+          {/* Search bar input */}
+          <div className="relative w-full md:w-64 max-w-xs">
             <input
               type="text"
-              placeholder="Search by title or tech stack..."
+              placeholder="Search projects or stacks..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-primary-cyan/50 focus:ring-1 focus:ring-primary-cyan/20 transition-all text-xs font-sans"
+              className="w-full glass-panel bg-white/[0.02] border border-white/5 hover:border-white/10 focus:border-primary/50 text-slate-200 placeholder-slate-500 rounded-full py-2 pl-4 pr-10 text-xs font-mono outline-none transition-all focus:ring-0"
             />
+            <FaSearch className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 w-3 h-3" />
           </div>
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Projects Cards Grid */}
         <motion.div
           layout
+          variants={staggerContainer(0.1, 0.05)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => {
-              const ProjectIcon = iconMap[project.icon];
+              const ProjectIcon = project.icon;
               return (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  variants={staggerItem}
+                  variants={scaleUp}
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                   className="h-full"
                 >
                   <GlassCard 
-                    className="flex flex-col justify-between h-full group p-0 relative overflow-hidden cursor-pointer"
-                    onClick={() => setSelectedProject(project)}
+                    className="flex flex-col h-full hover:shadow-neon-violet border-white/5 hover:border-white/10 group select-none relative overflow-hidden"
+                    hoverGlow={true}
+                    glowColor="rgba(124, 58, 237, 0.1)"
                   >
-                    <div>
-                      {/* Gradient placeholder header with floating icon */}
-                      <div className={`h-48 w-full bg-gradient-to-tr ${project.accentColor} relative flex items-center justify-center overflow-hidden`}>
-                        <div className="absolute inset-0 bg-black/20" />
-                        <div className="absolute inset-0 bg-grid-overlay opacity-15" />
-                        
-                        {/* Hover Overlay "View Details" */}
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 z-10">
-                          <span className="font-display font-semibold text-xs tracking-wider uppercase text-cyan-400 border border-cyan-400/40 rounded-full px-4 py-2 flex items-center gap-1.5 hover:bg-cyan-500 hover:text-black hover:border-transparent transition-all">
-                            View Details <FaArrowRight />
-                          </span>
-                        </div>
-
-                        {/* Floating Tech Icon */}
-                        {ProjectIcon && (
-                          <div className="w-16 h-16 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-0">
-                            <ProjectIcon />
-                          </div>
-                        )}
+                    {/* Project Header Image placeholder with overlay icon */}
+                    <div className="w-full h-44 rounded-xl relative overflow-hidden bg-slate-900 border border-white/5 mb-5 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-accent/5 to-secondary/20 group-hover:scale-105 transition-transform duration-500" />
+                      <div className="z-10 w-16 h-16 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-slate-200 group-hover:scale-110 group-hover:text-accent transition-all duration-300">
+                        <ProjectIcon className="w-8 h-8" />
                       </div>
-
-                      {/* Content details */}
-                      <div className="p-6">
-                        <div className="flex justify-between items-center gap-2 mb-3">
-                          <Badge variant="cyan">{project.category}</Badge>
-                          <span className="text-[10px] font-mono text-slate-500 uppercase">#{project.id}</span>
-                        </div>
-                        <h3 className="font-display font-bold text-xl text-slate-100 mb-2 group-hover:text-primary-cyan transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-slate-400 text-xs leading-relaxed line-clamp-3 mb-4">
-                          {project.shortDescription}
-                        </p>
+                      
+                      {/* Hover action overlay */}
+                      <div 
+                        onClick={() => setSelectedProject(project)}
+                        className="absolute inset-0 bg-black/75 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 cursor-pointer z-20"
+                      >
+                        <FaEye className="w-7 h-7 text-accent animate-pulse" />
+                        <span className="font-display font-semibold text-xs text-white uppercase tracking-wider">
+                          View Details
+                        </span>
                       </div>
                     </div>
 
-                    {/* Tech list & CTAs */}
-                    <div className="px-6 pb-6 mt-auto">
-                      <div className="flex flex-wrap gap-1.5 mb-6">
-                        {project.techStack.slice(0, 3).map((tech, idx) => (
-                          <span key={idx} className="text-[10px] font-mono font-medium text-slate-400 bg-white/5 border border-white/5 rounded px-2 py-0.5">
-                            {tech}
-                          </span>
-                        ))}
-                        {project.techStack.length > 3 && (
-                          <span className="text-[10px] font-mono font-medium text-slate-500 bg-white/5 border border-white/5 rounded px-1.5 py-0.5">
-                            +{project.techStack.length - 3} more
-                          </span>
-                        )}
-                      </div>
+                    {/* Title and Category */}
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <h3 className="font-display font-bold text-base text-slate-100 truncate">
+                        {project.title}
+                      </h3>
+                      <Badge variant="primary">{project.category}</Badge>
+                    </div>
 
-                      <div className="flex gap-3 justify-end items-center" onClick={(e) => e.stopPropagation()}>
-                        <a
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="GitHub Repository"
-                          className="p-2.5 rounded-full bg-white/5 border border-white/5 text-slate-400 hover:text-white hover:border-primary-pink/40 hover:bg-white/10 hover:shadow-[0_0_12px_rgba(236,72,153,0.3)] transition-all duration-300"
-                        >
-                          <FaGithub className="text-sm" />
-                        </a>
-                        <a
-                          href={project.liveLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-white bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 hover:border-cyan-500/40 rounded-full px-4 py-2 transition-all duration-300"
-                        >
-                          <span>Live</span>
-                          <FaExternalLinkAlt className="text-[10px]" />
-                        </a>
-                      </div>
+                    {/* Description (clamp to 3 lines) */}
+                    <p className="text-xs text-slate-400 leading-relaxed font-body mb-5 grow line-clamp-3">
+                      {project.shortDescription}
+                    </p>
+
+                    {/* Tech stack badges (max 4 shown + "+N more") */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.techStack.slice(0, 4).map((tech, i) => (
+                        <Badge key={i} variant="secondary" className="text-[10px] py-0.5">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.techStack.length > 4 && (
+                        <Badge variant="secondary" className="text-[10px] py-0.5 opacity-60">
+                          +{project.techStack.length - 4} more
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Button actions row */}
+                    <div className="flex items-center justify-between gap-4 mt-auto pt-4 border-t border-white/5">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono font-medium text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors"
+                      >
+                        <FaGithub className="w-3.5 h-3.5" />
+                        <span>Source Code</span>
+                      </a>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono font-medium text-secondary hover:text-secondary-light flex items-center gap-1.5 transition-colors"
+                      >
+                        <span>Live Demo</span>
+                        <FaExternalLinkAlt className="w-3 h-3" />
+                      </a>
                     </div>
                   </GlassCard>
                 </motion.div>
@@ -183,12 +165,22 @@ export const Projects = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* Dynamic Project Details Overlay Modal */}
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-20 text-slate-500 font-mono text-xs uppercase tracking-wider">
+            No projects matched your search criteria.
+          </div>
+        )}
       </div>
+
+      {/* Project details modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal 
+            project={selectedProject} 
+            onClose={() => setSelectedProject(null)} 
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

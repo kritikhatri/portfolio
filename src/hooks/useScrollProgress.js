@@ -9,8 +9,6 @@ export const useScrollProgress = () => {
       if (totalScroll > 0) {
         const progress = (window.scrollY / totalScroll) * 100;
         setScrollProgress(progress);
-      } else {
-        setScrollProgress(0);
       }
     };
 

@@ -2,30 +2,20 @@ import { useState, useEffect } from 'react';
 
 export const useTheme = () => {
   const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    return savedTheme || 'cosmic-dark';
+    const saved = localStorage.getItem('portfolio-theme');
+    return saved || 'theme-cosmic'; // default theme is theme-cosmic (dark space)
   });
 
   useEffect(() => {
-    const root = document.documentElement;
-    const body = document.body;
+    const root = window.document.documentElement;
     
-    // Remove all theme classes
-    root.classList.remove('theme-midnight', 'theme-light', 'dark');
-    body.classList.remove('theme-midnight', 'theme-light');
-
-    // Add selected theme class
-    if (theme === 'midnight-blue') {
-      root.classList.add('theme-midnight', 'dark');
-      body.classList.add('theme-midnight');
-    } else if (theme === 'light-mode') {
-      root.classList.add('theme-light');
-      body.classList.add('theme-light');
-    } else {
-      // cosmic-dark is default
-      root.classList.add('dark');
-    }
-
+    // Remove other theme classes
+    root.classList.remove('theme-cosmic', 'theme-midnight', 'theme-light');
+    
+    // Add current theme class
+    root.classList.add(theme);
+    
+    // Save to local storage
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 

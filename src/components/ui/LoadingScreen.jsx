@@ -1,142 +1,109 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const LoadingScreen = ({ onFinished }) => {
-  const [isVisible, setIsVisible] = useState(true);
+export const LoadingScreen = ({ onComplete }) => {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      if (onFinished) {
-        // Delay callback slightly to allow exit animation to complete
-        setTimeout(onFinished, 500);
-      }
-    }, 2500);
+    // Increment progress counter
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          setTimeout(() => {
+            onComplete();
+          }, 300); // Small pause at 100%
+          return 100;
+        }
+        return prev + 4; // Fast loader
+      });
+    }, 80);
 
-    return () => clearTimeout(timer);
-  }, [onFinished]);
+    return () => clearInterval(timer);
+  }, [onComplete]);
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          key="loader"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background-cosmic select-none"
+    <motion.div
+      className="fixed inset-0 bg-background-dark z-50 flex flex-col items-center justify-center pointer-events-auto"
+      exit={{ 
+        opacity: 0,
+        y: -100,
+        transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } 
+      }}
+    >
+      {/* Space Grid Background */}
+      <div className="absolute inset-0 cyber-grid opacity-30" />
+
+      {/* Center SVG logo */}
+      <div className="w-32 h-32 relative flex items-center justify-center">
+        <svg 
+          viewBox="0 0 100 100" 
+          className="w-full h-full text-primary"
+          fill="none" 
+          stroke="currentColor"
         >
-          {/* Subtle Cyber Grid Background in Loader */}
-          <div className="absolute inset-0 bg-grid-overlay opacity-25 pointer-events-none" />
+          {/* Outer futuristic hexagon wrapper */}
+          <polygon 
+            points="50,5 90,28 90,72 50,95 10,72 10,28" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="animate-draw-svg"
+            style={{
+              strokeDasharray: 300,
+              strokeDashoffset: 300,
+            }}
+          />
+          {/* Inner monogram K */}
+          <path 
+            d="M38 30 V70 M38 50 L58 30 M38 50 L58 70" 
+            stroke="#06b6d4" 
+            strokeWidth="5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            className="animate-draw-svg"
+            style={{
+              strokeDasharray: 100,
+              strokeDashoffset: 100,
+              animationDelay: '0.8s'
+            }}
+          />
+        </svg>
 
-          <div className="relative flex flex-col items-center gap-6">
-            {/* Hexagon Outline + Monogram drawing */}
-            <svg
-              width="120"
-              height="120"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="filter drop-shadow-[0_0_15px_rgba(124,58,237,0.6)]"
-            >
-              {/* Hexagon Frame */}
-              <motion.polygon
-                points="50,5 90,28 90,72 50,95 10,72 10,28"
-                stroke="url(#gradient-stroke)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.8, ease: "easeInOut" }}
-              />
+        {/* Glow point */}
+        <div className="absolute inset-0 bg-primary/20 rounded-full filter blur-xl animate-pulse" />
+      </div>
 
-              {/* Stylized Monogram KK */}
-              {/* Left Vertical Bar of K */}
-              <motion.path
-                d="M 33 28 L 33 72"
-                stroke="#f1f5f9"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              />
-              {/* Left Diagonals of K */}
-              <motion.path
-                d="M 52 28 L 34 50 L 52 72"
-                stroke="#f1f5f9"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.4, delay: 0.6, ease: "easeOut" }}
-              />
+      {/* Brand Name */}
+      <motion.div 
+        className="mt-8 text-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
+        <h1 className="font-display text-2xl font-bold tracking-widest text-slate-100 uppercase">
+          Kritika Khatri
+        </h1>
+        <p className="font-mono text-xs text-accent mt-1 tracking-wider">
+          Initializing Portfolio Core v1.0.0
+        </p>
+      </motion.div>
 
-              {/* Right K */}
-              {/* Right Vertical Bar of K */}
-              <motion.path
-                d="M 55 28 L 55 72"
-                stroke="url(#gradient-accent)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-              />
-              {/* Right Diagonals of K */}
-              <motion.path
-                d="M 74 28 L 56 50 L 74 72"
-                stroke="url(#gradient-accent)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.4, delay: 1.0, ease: "easeOut" }}
-              />
+      {/* Progress counter bar */}
+      <div className="w-64 h-[2px] bg-slate-800 rounded-full mt-10 overflow-hidden relative">
+        <motion.div 
+          className="h-full bg-gradient-to-r from-primary to-secondary"
+          initial={{ width: "0%" }}
+          animate={{ width: `${progress}%` }}
+          transition={{ ease: "easeInOut" }}
+        />
+      </div>
 
-              <defs>
-                <linearGradient id="gradient-stroke" x1="0" y1="0" x2="100" y2="100">
-                  <stop offset="0%" stopColor="#7c3aed" />
-                  <stop offset="100%" stopColor="#06b6d4" />
-                </linearGradient>
-                <linearGradient id="gradient-accent" x1="0" y1="0" x2="100" y2="100">
-                  <stop offset="0%" stopColor="#ec4899" />
-                  <stop offset="100%" stopColor="#7c3aed" />
-                </linearGradient>
-              </defs>
-            </svg>
-
-            {/* Glowing Text Intro */}
-            <div className="flex flex-col items-center">
-              <motion.h1
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="font-display text-lg tracking-[0.3em] font-bold text-slate-100 uppercase"
-              >
-                Kritika Khatri
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
-                className="font-mono text-[10px] tracking-[0.2em] text-cyan-400 uppercase mt-1"
-              >
-                Initializing Core Systems...
-              </motion.p>
-            </div>
-            
-            {/* Loading progress bar */}
-            <div className="w-40 h-[2px] bg-white/5 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2.2, ease: "easeInOut" }}
-                className="h-full bg-gradient-to-r from-primary-violet to-primary-cyan"
-              />
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <div className="mt-2 font-mono text-[10px] text-slate-500 w-64 flex justify-between">
+        <span>ESTABLISHING SOCKETS</span>
+        <span>{progress}%</span>
+      </div>
+    </motion.div>
   );
 };

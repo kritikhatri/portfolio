@@ -1,122 +1,132 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Mock data to fall back on if API fails (rate limits, offline, etc.)
-const mockGitHubProfile = {
-  avatar_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&fit=crop",
-  bio: "B.Tech CSE Student @ NST | Building scalable web solutions & exploring DSA.",
-  followers: 48,
-  following: 54,
-  public_repos: 12,
-  stars: 42
+const FALLBACK_PROFILE = {
+  avatar_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+  bio: "B.Tech CSE Student @ Newton School of Technology | Aspiring Software Engineer | Building tech solutions that impact lives.",
+  followers: 45,
+  following: 56,
+  public_repos: 14,
+  total_stars: 38
 };
 
-const mockGitHubRepos = [
+const FALLBACK_REPOS = [
   {
-    id: 101,
+    id: 1,
     name: "spotify-clone",
-    description: "React-based Spotify player clone powered by the Spotify Web API. Fully functional audio controls.",
+    description: "Full-featured Spotify clone with user authentication, custom playlists, player controls, and dynamic lyrics search.",
     language: "JavaScript",
-    stargazers_count: 14,
-    forks_count: 3,
-    html_url: "https://github.com/kritika-khatri/spotify-clone"
+    stargazers_count: 12,
+    forks_count: 4,
+    html_url: "https://github.com/kritikakhatri/spotify-clone"
   },
   {
-    id: 102,
+    id: 2,
     name: "kdrama-stream",
-    description: "K-Drama streaming tracker catalog integrating TMDB API and Firebase database storage.",
-    language: "React",
-    stargazers_count: 11,
-    forks_count: 2,
-    html_url: "https://github.com/kritika-khatri/kdrama-stream"
-  },
-  {
-    id: 103,
-    name: "ai-chat-app",
-    description: "Real-time AI Chat tool with multi-room backend server socket and OpenAI completion APIs.",
+    description: "Curated K-Drama streaming platform aggregating titles and tracking watcher watchlists using TMDB API and Firebase.",
     language: "JavaScript",
-    stargazers_count: 8,
-    forks_count: 1,
-    html_url: "https://github.com/kritika-khatri/ai-chat"
+    stargazers_count: 9,
+    forks_count: 2,
+    html_url: "https://github.com/kritikakhatri/kdrama-stream"
   },
   {
-    id: 104,
+    id: 3,
+    name: "ai-chat-assistant",
+    description: "Sleek chatbot workspace integrating GPT-4, OpenAI streams, text-to-speech, and vector database document indexers.",
+    language: "JavaScript",
+    stargazers_count: 7,
+    forks_count: 1,
+    html_url: "https://github.com/kritikakhatri/ai-chat-assistant"
+  },
+  {
+    id: 4,
     name: "dsa-visualizer",
-    description: "Interactive visual demonstration of sorting algorithms and graph traversals in React.",
+    description: "Interactive pathfinder and sorting algorithm visualizer with step-by-step canvas graph renderings.",
     language: "JavaScript",
     stargazers_count: 6,
-    forks_count: 1,
-    html_url: "https://github.com/kritika-khatri/dsa-visualizer"
+    forks_count: 3,
+    html_url: "https://github.com/kritikakhatri/dsa-visualizer"
   },
   {
-    id: 105,
+    id: 5,
     name: "weather-dashboard",
-    description: "Weather lookup dashboard displaying meteorological graphs with OpenWeather details.",
+    description: "Weather analytics console presenting hourly changes, charts, and forecasts via Chart.js and OpenWeather.",
     language: "JavaScript",
     stargazers_count: 4,
     forks_count: 0,
-    html_url: "https://github.com/kritika-khatri/weather-dashboard"
+    html_url: "https://github.com/kritikakhatri/weather-dashboard"
   },
   {
-    id: 106,
-    name: "nst-hack-finder",
-    description: "AI-driven education aggregator tool built for NST Hackathon 2024.",
-    language: "Python",
-    stargazers_count: 3,
+    id: 6,
+    name: "developer-portfolio",
+    description: "Interactive dark-mode developer portfolio with customized themes, terminal commands, and analytics integrations.",
+    language: "JavaScript",
+    stargazers_count: 5,
     forks_count: 1,
-    html_url: "https://github.com/kritika-khatri/nst-hack-finder"
+    html_url: "https://github.com/kritikakhatri/developer-portfolio"
   }
 ];
 
 export const useGitHub = (username) => {
-  const [data, setData] = useState({ profile: null, repos: [] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState({
+    profile: null,
+    repos: [],
+    loading: true,
+    error: null,
+    isFallback: false
+  });
 
   useEffect(() => {
     if (!username) {
-      setData({ profile: mockGitHubProfile, repos: mockGitHubRepos });
-      setLoading(false);
+      setData({
+        profile: FALLBACK_PROFILE,
+        repos: FALLBACK_REPOS,
+        loading: false,
+        error: null,
+        isFallback: true
+      });
       return;
     }
 
-    const fetchData = async () => {
+    const fetchGitHubData = async () => {
       try {
-        setLoading(true);
         const [profileRes, reposRes] = await Promise.all([
           axios.get(`https://api.github.com/users/${username}`),
-          axios.get(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=30`)
+          axios.get(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
         ]);
 
-        // Filter out fork repositories and sort by star count or push date
-        const filteredRepos = reposRes.data
+        const repos = reposRes.data
           .filter(repo => !repo.fork)
           .sort((a, b) => b.stargazers_count - a.stargazers_count)
           .slice(0, 6);
 
+        const totalStars = reposRes.data.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+
         setData({
           profile: {
-            avatar_url: profileRes.data.avatar_url,
-            bio: profileRes.data.bio || mockGitHubProfile.bio,
-            followers: profileRes.data.followers,
-            following: profileRes.data.following,
-            public_repos: profileRes.data.public_repos,
-            stars: filteredRepos.reduce((acc, r) => acc + r.stargazers_count, 0)
+            ...profileRes.data,
+            total_stars: totalStars
           },
-          repos: filteredRepos.length > 0 ? filteredRepos : mockGitHubRepos
+          repos,
+          loading: false,
+          error: null,
+          isFallback: false
         });
-        setError(null);
       } catch (err) {
-        console.warn("GitHub API limit exceeded or network error, loading mock profile data.");
-        setData({ profile: mockGitHubProfile, repos: mockGitHubRepos });
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.warn("GitHub API rate limit exceeded or user not found. Falling back to static mock data.", err);
+        // Fallback to beautiful default mock profiles so application never breaks
+        setData({
+          profile: FALLBACK_PROFILE,
+          repos: FALLBACK_REPOS,
+          loading: false,
+          error: null,
+          isFallback: true
+        });
       }
     };
 
-    fetchData();
+    fetchGitHubData();
   }, [username]);
 
-  return { ...data, loading, error };
+  return data;
 };

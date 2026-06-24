@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { loadSlim } from '@tsparticles/slim';
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
-export const ParticleBackground = ({ theme = 'cosmic-dark' }) => {
+export const ParticleBackground = () => {
   const [init, setInit] = useState(false);
 
-  // Initialize tsparticles engine once
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -14,92 +13,82 @@ export const ParticleBackground = ({ theme = 'cosmic-dark' }) => {
     });
   }, []);
 
-  // Set particle properties depending on theme
-  const getParticleColors = () => {
-    if (theme === 'light-mode') {
-      return ["#4f46e5", "#0891b2"]; // indigo and cyan
-    }
-    if (theme === 'midnight-blue') {
-      return ["#2563eb", "#ec4899"]; // blue and pink
-    }
-    return ["#7c3aed", "#06b6d4"]; // cosmic: violet and cyan (default)
-  };
-
   const options = {
     background: {
-      color: "transparent",
+      color: {
+        value: "transparent",
+      },
     },
     fpsLimit: 60,
     interactivity: {
       events: {
         onClick: {
-          enable: true,
-          mode: "push",
+          enable: false,
         },
         onHover: {
           enable: true,
           mode: "grab",
         },
-        resize: true,
       },
       modes: {
         grab: {
-          distance: 140,
+          distance: 180,
           links: {
-            opacity: 0.12,
+            opacity: 0.15,
           },
-        },
-        push: {
-          quantity: 2,
         },
       },
     },
     particles: {
       color: {
-        value: getParticleColors(),
+        value: ["#7c3aed", "#06b6d4"],
       },
       links: {
-        color: theme === 'light-mode' ? "#4f46e5" : "#7c3aed",
-        distance: 125,
+        color: "#7c3aed",
+        distance: 150,
         enable: true,
-        opacity: theme === 'light-mode' ? 0.06 : 0.08,
+        opacity: 0.06,
         width: 1,
       },
       move: {
         direction: "none",
         enable: true,
         outModes: {
-          default: "out",
+          default: "bounce",
         },
         random: true,
-        speed: 1.0,
+        speed: 0.8,
         straight: false,
       },
       number: {
         density: {
           enable: true,
-          area: 900,
+          area: 800,
         },
-        value: 60,
+        value: 50,
       },
       opacity: {
-        value: theme === 'light-mode' ? 0.15 : 0.22,
+        value: { min: 0.1, max: 0.35 },
       },
       shape: {
         type: "circle",
       },
       size: {
-        value: { min: 1, max: 2.5 },
+        value: { min: 1, max: 3 },
       },
     },
     detectRetina: true,
   };
 
-  if (!init) return null;
+  if (init) {
+    return (
+      <Particles
+        id="tsparticles"
+        options={options}
+        className="absolute inset-0 -z-10 pointer-events-none"
+      />
+    );
+  }
 
-  return (
-    <div className="absolute inset-0 -z-10 w-full h-full pointer-events-none">
-      <Particles id="tsparticles" options={options} className="w-full h-full" />
-    </div>
-  );
+  return null;
 };

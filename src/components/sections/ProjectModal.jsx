@@ -1,173 +1,122 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaTimes, FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FaTimes, FaGithub, FaExternalLinkAlt, FaTools, FaInfoCircle } from 'react-icons/fa';
 import { Badge } from '../ui/Badge';
-import { Button } from '../ui/Button';
 
 export const ProjectModal = ({ project, onClose }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const modalRef = useRef(null);
 
-  // Disable body scroll when modal is open
+  // Esc key closes modal
   useEffect(() => {
-    if (project) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
     };
-  }, [project]);
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden'; // Lock background scroll
 
-  if (!project) return null;
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
 
-  const slides = [
-    { label: "Dashboard / Home", gradient: "from-primary-violet to-purple-800" },
-    { label: "Settings / Analytics Panel", gradient: "from-purple-800 to-indigo-800" },
-    { label: "Integrations / Output UI", gradient: "from-indigo-800 to-primary-cyan" }
-  ];
-
-  const handleNext = () => {
-    setActiveSlide((prev) => (prev + 1) % slides.length);
+  const handleBackdropClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
   };
 
-  const handlePrev = () => {
-    setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  const ProjectIcon = project.icon;
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        {/* Backdrop Close overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+    <div 
+      onClick={handleBackdropClick}
+      className="fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+    >
+      <motion.div
+        ref={modalRef}
+        initial={{ scale: 0.95, opacity: 0, y: 30 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 30 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="w-full max-w-2xl glass-panel bg-background/95 border border-white/10 rounded-2xl overflow-hidden shadow-glass-lg relative flex flex-col my-8"
+      >
+        {/* Close Button top corner */}
+        <button
           onClick={onClose}
-          className="absolute inset-0 bg-black/85 backdrop-blur-md"
-        />
-
-        {/* Modal content body */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          transition={{ type: "spring", stiffness: 150, damping: 18 }}
-          className="glass-panel w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl relative border border-white/10 z-10 max-h-[90vh] flex flex-col"
+          className="absolute top-4 right-4 p-2 rounded-full glass-panel border-white/5 hover:border-white/15 text-slate-400 hover:text-white transition-all cursor-pointer z-30"
+          aria-label="Close details"
         >
-          {/* Close button in top corner */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 border border-white/10 hover:border-primary-pink/50 flex items-center justify-center text-slate-400 hover:text-white transition-all focus:outline-none"
-          >
-            <FaTimes />
-          </button>
+          <FaTimes className="w-3.5 h-3.5" />
+        </button>
 
-          {/* Scrollable contents wrapper */}
-          <div className="overflow-y-auto max-h-[90vh]">
-            {/* Screenshot Carousel Container */}
-            <div className="relative h-64 sm:h-80 w-full overflow-hidden select-none bg-background-cosmic">
-              <div className="absolute inset-0 bg-grid-overlay opacity-15" />
-              
-              {/* Dynamic slide render */}
-              <div className={`w-full h-full bg-gradient-to-br ${slides[activeSlide].gradient} flex flex-col items-center justify-center text-white px-8`}>
-                <div className="w-12 h-12 rounded-xl bg-black/30 border border-white/10 flex items-center justify-center text-lg mb-3">
-                  {activeSlide + 1}
-                </div>
-                <span className="font-display font-bold text-lg text-slate-100 tracking-wider">
-                  {project.title} Screenshot
-                </span>
-                <span className="font-mono text-xs text-slate-300 mt-1 uppercase tracking-widest bg-black/25 px-2 py-0.5 rounded">
-                  {slides[activeSlide].label}
-                </span>
-              </div>
-
-              {/* Slider Arrows */}
-              <button
-                onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 border border-white/5 hover:border-white/20 hover:bg-black/85 flex items-center justify-center text-slate-300 hover:text-white transition-all focus:outline-none"
-              >
-                <FaChevronLeft className="text-xs" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 border border-white/5 hover:border-white/20 hover:bg-black/85 flex items-center justify-center text-slate-300 hover:text-white transition-all focus:outline-none"
-              >
-                <FaChevronRight className="text-xs" />
-              </button>
-
-              {/* Slider Dots */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-15">
-                {slides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveSlide(idx)}
-                    className={`w-2 h-2 rounded-full transition-all ${activeSlide === idx ? 'bg-primary-cyan w-4 shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'bg-white/30'}`}
-                  />
-                ))}
-              </div>
+        {/* Carousel / Banner image placeholder */}
+        <div className="w-full h-64 bg-slate-900 border-b border-white/5 relative overflow-hidden flex items-center justify-center shrink-0">
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/15 via-accent/5 to-secondary/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-slate-950/20 to-slate-950/10" />
+          <div className="z-10 text-center flex flex-col items-center gap-3">
+            <div className="w-16 h-16 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-accent shadow-lg animate-float-slow">
+              <ProjectIcon className="w-8 h-8" />
             </div>
+            <h2 className="font-display text-2xl font-bold tracking-wide text-slate-100 uppercase">
+              {project.title}
+            </h2>
+            <Badge variant="primary" className="mt-1">{project.category}</Badge>
+          </div>
+        </div>
 
-            {/* Project Details Content */}
-            <div className="p-6 sm:p-8 space-y-6">
-              {/* Category, Title & Badges */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Badge variant="cyan">{project.category}</Badge>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase">Interactive System</span>
-                </div>
-                <h2 className="font-display font-extrabold text-2xl sm:text-3xl bg-gradient-to-r from-primary-violet to-primary-cyan bg-clip-text text-transparent">
-                  {project.title}
-                </h2>
-              </div>
+        {/* Modal Info Content (Scrollable if height exceeds) */}
+        <div className="p-6 overflow-y-auto max-h-[50vh] flex flex-col gap-6 scrollbar-thin">
+          
+          {/* Detailed Paragraph */}
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xs font-mono font-bold tracking-widest text-accent uppercase flex items-center gap-1.5">
+              <FaInfoCircle /> // Project Overview
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-body">
+              {project.description}
+            </p>
+          </div>
 
-              {/* Description */}
-              <div className="space-y-2">
-                <h4 className="font-display font-bold text-xs uppercase tracking-widest text-slate-400">
-                  Project Description
-                </h4>
-                <p className="text-slate-300 text-sm leading-relaxed font-sans">
-                  {project.fullDescription}
-                </p>
-              </div>
-
-              {/* Complete Tech Stack pills list */}
-              <div className="space-y-3">
-                <h4 className="font-display font-bold text-xs uppercase tracking-widest text-slate-400">
-                  Technologies Deployed
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech, idx) => (
-                    <Badge key={idx} variant="violet">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons footer */}
-              <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5 items-center justify-end">
-                <Button
-                  variant="outline"
-                  size="md"
-                  onClick={() => window.open(project.githubLink, '_blank')}
-                  className="flex items-center gap-2 text-xs"
-                >
-                  <FaGithub className="text-sm" /> Source Code
-                </Button>
-                <Button
-                  variant="primary"
-                  size="md"
-                  onClick={() => window.open(project.liveLink, '_blank')}
-                  className="flex items-center gap-2 text-xs"
-                >
-                  Launch Live Demo <FaExternalLinkAlt className="text-[10px]" />
-                </Button>
-              </div>
+          {/* Full Tech Stack */}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-xs font-mono font-bold tracking-widest text-accent uppercase flex items-center gap-1.5">
+              <FaTools /> // Stack & Architecture
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.techStack.map((tech, i) => (
+                <Badge key={i} variant="secondary" className="py-1 px-3">
+                  {tech}
+                </Badge>
+              ))}
             </div>
           </div>
-        </motion.div>
-      </div>
-    </AnimatePresence>
+
+        </div>
+
+        {/* Modal footer action buttons */}
+        <div className="bg-black/40 border-t border-white/5 px-6 py-4 flex items-center justify-between shrink-0">
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-panel hover:bg-white/5 border-white/10 hover:border-white/20 px-4 py-2 rounded-xl text-xs font-mono font-medium text-slate-300 transition-all flex items-center gap-2"
+          >
+            <FaGithub className="w-4 h-4" />
+            <span>GitHub Repository</span>
+          </a>
+
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-primary to-secondary hover:shadow-neon-violet hover:scale-[1.02] px-5 py-2.5 rounded-xl text-xs font-display font-semibold text-white transition-all flex items-center gap-2"
+          >
+            <span>Launch Live App</span>
+            <FaExternalLinkAlt className="w-3 h-3" />
+          </a>
+        </div>
+      </motion.div>
+    </div>
   );
 };

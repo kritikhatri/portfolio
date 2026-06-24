@@ -1,96 +1,93 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+
+// Layout & UI
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { LoadingScreen } from './components/ui/LoadingScreen';
-import { CursorGlow } from './components/ui/CursorGlow';
 import { ScrollProgress } from './components/ui/ScrollProgress';
+import { CursorGlow } from './components/ui/CursorGlow';
 import { ParticleBackground } from './components/ui/ParticleBackground';
 import { CommandPalette } from './components/ui/CommandPalette';
+import { LoadingScreen } from './components/ui/LoadingScreen';
+
+// Sections
+import { Hero } from './components/sections/Hero';
+import { About } from './components/sections/About';
+import { Skills } from './components/sections/Skills';
+import { Projects } from './components/sections/Projects';
+import { Experience } from './components/sections/Experience';
+import { GitHub } from './components/sections/GitHub';
+import { LeetCode } from './components/sections/LeetCode';
+import { Achievements } from './components/sections/Achievements';
+import { Timeline } from './components/sections/Timeline';
+import { Testimonials } from './components/sections/Testimonials';
+import { Blog } from './components/sections/Blog';
+import { Contact } from './components/sections/Contact';
+
+// Hooks
 import { useTheme } from './hooks/useTheme';
 
-// Lazy-loaded portfolio sections for bundle performance
-const Hero = lazy(() => import('./components/sections/Hero').then(m => ({ default: m.Hero })));
-const About = lazy(() => import('./components/sections/About').then(m => ({ default: m.About })));
-const Skills = lazy(() => import('./components/sections/Skills').then(m => ({ default: m.Skills })));
-const Projects = lazy(() => import('./components/sections/Projects').then(m => ({ default: m.Projects })));
-const Experience = lazy(() => import('./components/sections/Experience').then(m => ({ default: m.Experience })));
-const GitHub = lazy(() => import('./components/sections/GitHub').then(m => ({ default: m.GitHub })));
-const LeetCode = lazy(() => import('./components/sections/LeetCode').then(m => ({ default: m.LeetCode })));
-const Achievements = lazy(() => import('./components/sections/Achievements').then(m => ({ default: m.Achievements })));
-const Timeline = lazy(() => import('./components/sections/Timeline').then(m => ({ default: m.Timeline })));
-const Testimonials = lazy(() => import('./components/sections/Testimonials').then(m => ({ default: m.Testimonials })));
-const Blog = lazy(() => import('./components/sections/Blog').then(m => ({ default: m.Blog })));
-const Contact = lazy(() => import('./components/sections/Contact').then(m => ({ default: m.Contact })));
-
-// Interactive section fallback loader
-const SectionLoader = () => (
-  <div className="w-full py-16 flex justify-center items-center">
-    <div className="w-6 h-6 rounded-full border-2 border-primary-cyan/10 border-t-primary-cyan animate-spin" />
-  </div>
-);
-
-function App() {
-  const { theme, toggleTheme } = useTheme();
+function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
-
-  // Set initial scroll offset
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <>
-      {/* 2.5s SVG Drawing Loading Screen */}
-      <LoadingScreen onFinished={() => setIsLoading(false)} />
+    <div className={`min-h-screen relative overflow-hidden font-body bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500`}>
+      {/* 2.5s Loading Animation Screen */}
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
       {!isLoading && (
-        <div className="relative min-h-screen flex flex-col justify-between">
-          {/* Scroll progress bar overlay */}
+        <>
+          {/* Scroll progress gradient bar */}
           <ScrollProgress />
 
-          {/* Mouse follow glowing cursor ring */}
+          {/* Interactive mouse radial glow cursor */}
           <CursorGlow />
 
-          {/* High-performance connected particle space */}
-          <ParticleBackground theme={theme} />
+          {/* Canvas particle background overlay */}
+          <ParticleBackground />
 
+          {/* Cmd+K spot search palette command options */}
+          <CommandPalette themeSwitcher={toggleTheme} />
 
+          {/* Responsive header navigation bar */}
+          <Navbar currentTheme={theme} onThemeChange={toggleTheme} />
 
-          {/* Ambient Aurora Light Spheres */}
-          <div className="fixed top-[-10%] left-[-15%] w-[60vw] h-[60vw] bg-primary-violet/10 aurora-bg-sphere animate-aurora-1" />
-          <div className="fixed bottom-[-15%] right-[-15%] w-[70vw] h-[70vw] bg-primary-cyan/10 aurora-bg-sphere animate-aurora-2" />
-          <div className="fixed top-[30%] right-[5%] w-[45vw] h-[45vw] bg-primary-pink/5 aurora-bg-sphere animate-aurora-1" style={{ animationDelay: "-8s" }} />
-
-          {/* Core Sticky Navbar */}
-          <Navbar theme={theme} onThemeChange={toggleTheme} />
-
-          {/* Page contents wrapping sections */}
-          <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10 overflow-hidden">
-            <Suspense fallback={<SectionLoader />}>
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <GitHub />
-              <LeetCode />
-              <Achievements />
-              <Timeline />
-              <Testimonials />
-              <Blog />
-              <Contact />
-            </Suspense>
+          {/* Page Sections layout wrapper */}
+          <main className="relative z-10">
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Experience />
+            <GitHub />
+            <LeetCode />
+            <Achievements />
+            <Timeline />
+            <Testimonials />
+            <Blog />
+            <Contact />
           </main>
 
-          {/* Command Console modal palette (⌘K) */}
-          <CommandPalette theme={theme} onThemeChange={toggleTheme} />
-
-          {/* Shared Footer component */}
+          {/* Page footer links */}
           <Footer />
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<AppContent />} />
+      </Routes>
+    </Router>
+  );
+}

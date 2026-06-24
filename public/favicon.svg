@@ -1,10 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="100" y2="100">
-      <stop offset="0%" stopColor="#7c3aed" />
-      <stop offset="100%" stopColor="#06b6d4" />
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#06b6d4" />
     </linearGradient>
   </defs>
-  <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="url(#g)" stroke-width="6" stroke-linejoin="round" fill="#0a0a0f" />
-  <path d="M 33 28 L 33 72 M 52 28 L 34 50 L 52 72 M 55 28 L 55 72 M 74 28 L 56 50 L 74 72" stroke="#f1f5f9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Sleek Cyberpunk style bracket / monogram -->
+  <path d="M30 25 L15 50 L30 75" stroke="url(#logo-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M70 25 L85 50 L70 75" stroke="url(#logo-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M45 70 L55 30" stroke="#ec4899" stroke-width="8" stroke-linecap="round" />
 </svg>

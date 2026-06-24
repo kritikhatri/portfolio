@@ -2,97 +2,107 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionTitle } from '../ui/SectionTitle';
 import { GlassCard } from '../ui/GlassCard';
-import { skillsData } from '../../data/skills';
-import { staggerContainer, staggerItem } from '../../utils/animations';
-
-// Import required React Icons dynamically
-import * as SiIcons from 'react-icons/si';
-
-const SkillIcon = ({ name, className }) => {
-  const IconComponent = SiIcons[name];
-  if (!IconComponent) return null;
-  return <IconComponent className={className} />;
-};
+import { skills } from '../../data/skills';
+import { staggerContainer, scaleUp } from '../../utils/animations';
 
 export const Skills = () => {
-  const tabs = Object.keys(skillsData);
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState('languages');
+
+  const tabs = [
+    { id: 'languages', label: 'Languages' },
+    { id: 'frontend', label: 'Frontend' },
+    { id: 'backend', label: 'Backend' },
+    { id: 'databases', label: 'Databases' },
+    { id: 'tools', label: 'Tools' },
+    { id: 'aiml', label: 'AI / ML' }
+  ];
+
+  // Helper for proficiency color dots
+  const getProficiencyStyle = (level) => {
+    switch (level) {
+      case 'Advanced':
+        return { color: 'bg-emerald-400', shadow: 'shadow-emerald-400/50' };
+      case 'Intermediate':
+        return { color: 'bg-cyan-400', shadow: 'shadow-cyan-400/50' };
+      case 'Beginner':
+      default:
+        return { color: 'bg-amber-400', shadow: 'shadow-amber-400/50' };
+    }
+  };
 
   return (
-    <section id="skills" className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionTitle
-          title="Skills Showcase"
-          subtitle="My Technical Weaponry"
-          alignment="center"
-        />
+    <section id="skills" className="py-24 relative overflow-hidden z-10">
+      
+      {/* Background Orbs */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[350px] h-[350px] bg-secondary/5 rounded-full filter blur-[100px] pointer-events-none" />
 
-        {/* Tab Switcher Pills */}
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionTitle title="Skills & Arsenal" subtitle="Technical capabilities" align="center" />
+
+        {/* Tab switch bar */}
         <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-2xl mx-auto">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`
-                px-5 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 border focus:outline-none
-                ${activeTab === tab 
-                  ? 'bg-gradient-to-r from-primary-violet to-primary-cyan text-white border-transparent shadow-[0_0_15px_rgba(124,58,237,0.4)]' 
-                  : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:bg-white/10'}
-              `}
-            >
-              {tab}
-            </button>
-          ))}
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-5 py-2.5 rounded-full font-display text-xs font-semibold tracking-wide transition-all border cursor-pointer ${isActive ? 'bg-gradient-to-r from-primary to-secondary text-white border-white/10 shadow-neon-violet' : 'glass-panel text-slate-400 border-white/5 hover:text-slate-200 hover:border-white/10'}`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Dynamic Skill Cards Grid */}
+        {/* Skills Cards Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
+            variants={staggerContainer(0.08, 0.05)}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            variants={staggerContainer}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
-            {skillsData[activeTab].map((skill, idx) => (
-              <motion.div
-                key={skill.name}
-                variants={staggerItem}
-                className="group"
-              >
-                <GlassCard
-                  hoverEffect={true}
-                  className="py-6 px-4 flex flex-col items-center justify-center text-center h-full group-hover:border-primary-cyan/40"
-                  glowColor="rgba(6, 182, 212, 0.15)"
+            {skills[activeTab].map((skill, index) => {
+              const Icon = skill.icon;
+              const { color, shadow } = getProficiencyStyle(skill.level);
+              
+              return (
+                <motion.div 
+                  key={index} 
+                  variants={scaleUp}
+                  className="h-full"
                 >
-                  {/* Glowing Icon */}
-                  <div className={`p-4 rounded-2xl bg-white/5 border border-white/5 mb-4 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300 ${skill.color}`}>
-                    <SkillIcon name={skill.icon} className="text-3xl filter drop-shadow-[0_0_8px_currentColor]" />
-                  </div>
+                  <GlassCard 
+                    className="p-5 flex items-center gap-4 h-full hover:shadow-neon-violet hover:border-white/20 transition-all duration-300"
+                    hoverGlow={true}
+                    glowColor="rgba(124, 58, 237, 0.1)"
+                  >
+                    {/* Icon container */}
+                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-secondary shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </div>
 
-                  {/* Name */}
-                  <span className="font-display font-bold text-sm text-slate-100 mb-3 group-hover:text-primary-cyan transition-colors">
-                    {skill.name}
-                  </span>
-
-                  {/* Proficiency dots */}
-                  <div className="flex gap-1.5 items-center justify-center">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className={`
-                          w-1.5 h-1.5 rounded-full transition-all duration-300
-                          ${i < skill.level 
-                            ? 'bg-primary-cyan group-hover:shadow-[0_0_8px_rgba(6,182,212,0.8)]' 
-                            : 'bg-white/10'}
-                        `}
-                      />
-                    ))}
-                  </div>
-                </GlassCard>
-              </motion.div>
-            ))}
+                    {/* Skill Info */}
+                    <div className="flex flex-col grow min-w-0">
+                      <span className="font-display font-bold text-slate-200 text-sm truncate">
+                        {skill.name}
+                      </span>
+                      
+                      {/* Proficiency Indicator */}
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className={`w-1.5 h-1.5 rounded-full ${color} shadow-[0_0_8px_var(--tw-shadow-color)] ${shadow} animate-pulse`} />
+                        <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+                          {skill.level}
+                        </span>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </AnimatePresence>
       </div>

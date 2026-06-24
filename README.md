@@ -1,147 +1,111 @@
-# 🌌 Kritika Khatri — Cyberpunk Developer Portfolio
+# Kritika Khatri | Personal Developer Portfolio
 
-[![React](https://img.shields.io/badge/React-18.3-cyan?style=for-the-badge&logo=react)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-5.3-purple?style=for-the-badge&logo=vite)](https://vitejs.dev)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-blue?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.3-pink?style=for-the-badge&logo=framer)](https://framer.com/motion)
-[![License](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.3-blue?logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-5.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.2-purple?logo=framer&logoColor=white)](https://framer.com/motion)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-A complete, production-ready developer portfolio website designed from scratch for **Kritika Khatri**. Leveraging a high-fidelity **Dark-first Glassmorphism & Cyberpunk-Futuristic** aesthetic, this codebase integrates live metrics (GitHub & LeetCode APIs), micro-animations, theme managers, and contact triggers to stand out in technical recruiting loops.
-
----
-
-## ✨ Features Breakdown
-
-1. **Space Grid Overlay Background & connected Particles** driven by high-performance `@tsparticles/slim` engine.
-2. **Cursor Glow Effect** follow physics utilizing Framer Motion spring engines (disabled on touch viewports).
-3. **SVG Monogram Loader** drawing path logo transitions on site initialization.
-4. **Command Console Palette** triggered by `⌘K` / `Ctrl+K` for seamless navigation, external profiles, and theme cycles.
-5. **Interactive Skills Tab system** showing tech stack indicators with level meters.
-6. **Feature Projects Dashboard** with search strings, filter tags, and detailed modally-displayed breakdowns.
-7. **APIs Stats Trackers** fetching real-time repository cards from GitHub and donut-chart breakdowns from LeetCode.
-8. **Contact System** bound to EmailJS with client-side validation checks and sliding confirmation toast alerts.
-9. **Multi-theme Toggle Widget** supporting Cosmic Dark, Midnight Blue, and Light Mode.
+A complete, production-ready, cyberpunk-futuristic developer portfolio website built from scratch. Designed with dark-first glassmorphism, dynamic animations, live third-party integrations, and professional branding strategy to stand out for software engineering applications.
 
 ---
 
-## 🛠️ Technology Stack
+## 🚀 Key Features
 
-- **Core Framework:** React 18 & Vite 5
-- **Styling:** Tailwind CSS 3 (JIT Mode) & PostCSS
-- **Animations:** Framer Motion 11
-- **Icons:** React Icons 5
-- **Forms Handling:** EmailJS `@emailjs/browser`
-- **Charts Engine:** Recharts
-- **HTTP Client:** Axios
-- **Typewriter FX:** `react-type-animation`
+1. **Space Particle Background** — Interactive floating node systems that link lines on cursor hover using `@tsparticles/react`.
+2. **Interactive Command Palette (⌘K)** — A spotlight search drawer enabling fast key navigations, theme alterations, and resume download triggers.
+3. **Cursor Radial Glow** — Custom blend-mode cursor spotlight overlay following cursors on non-touch devices.
+4. **Live GitHub Integration** — Live profile information stats fetcher and repository compiler, combined with a contribution square heat-matrix.
+5. **Live LeetCode Charts** — Detailed pie-chart distributions and submissions tracker fetching problem solutions in real-time.
+6. **Animated Counters** — Increments statistics parameters (Solved DSA, Hackathons, Projects) on viewport scroll visibility.
+7. **EmailJS Contact Gateway** — Real-time validation contact forms utilizing EmailJS templates and status toast notifications.
+8. **3 Custom Interfaces** — Persisted toggle schemes supporting Cosmic Dark, Midnight Blue, and Light Mode profiles.
+9. **SVG Stroke Loading Animation** — 2.5s SVG drawing path welcome screen tracking loader percentages.
+10. **Bento Grid Layout** — Asymmetric grid cards formatting achievements, certificates, and metrics with custom color glows.
 
 ---
 
-## 📁 File Structure
+## 🛠️ Stack & Architecture
+
+- **Core**: React 18 (Vite 5 Single-page App)
+- **Routing**: React Router DOM v6
+- **Styling**: Tailwind CSS 3 (JIT processing, custom properties mapping)
+- **Animations**: Framer Motion 11 (Spring physics and tween curves)
+- **Charts**: Recharts (Pie visualizer cell rendering)
+- **HTTP client**: Axios
+- **Form Dispatch**: `@emailjs/browser`
+- **Fonts**: Space Grotesk (Headers), Inter (Body), JetBrains Mono (Codes)
+
+---
+
+## 📂 Project Structure
 
 ```text
-kritikhatriportfolio/
+kritika-portfolio/
 ├── public/
-│   ├── favicon.svg          ← hex monogram icon
-│   ├── resume.pdf          ← placeholder resume
-│   └── og-image.png        ← Open Graph preview thumbnail
+│   ├── favicon.svg         ← Cyberpunk monogram logo icon
+│   ├── resume.pdf          ← Add your PDF CV file here
+│   └── og-image.png        ← Open Graph visual preview thumbnail
 ├── src/
-│   ├── main.jsx            ← React standard mount point
-│   ├── App.jsx             ← main router and lazy loader wrapper
-│   ├── index.css           ← global variables, directives, and themes
-│   ├── data/               ← centralized mock & metadata assets
-│   │   ├── projects.js
-│   │   ├── skills.js
-│   │   ├── experience.js
-│   │   ├── timeline.js
-│   │   └── achievements.js
-│   ├── hooks/              ← custom hooks for data fetching & theme state
-│   │   ├── useScrollProgress.js
-│   │   ├── useGitHub.js
-│   │   ├── useLeetCode.js
-│   │   └── useTheme.js
-│   ├── utils/
-│   │   └── animations.js   ← framer motion spring & slide presets
+│   ├── main.jsx            ← Mount points entry
+│   ├── App.jsx             ← Core router, loaders, and state controls
+│   ├── index.css           ← Base themes, scrollbar and grid styles
+│   ├── data/               ← Content arrays (experience, projects, etc)
+│   ├── hooks/              ← Custom hooks (useGitHub, useLeetCode, useTheme)
+│   ├── utils/              ← Motion animation configurations
 │   ├── components/
-│   │   ├── layout/         ← navigation & footer
-│   │   │   ├── Navbar.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── ui/             ← interactive layout modules
-│   │   │   ├── Button.jsx
-│   │   │   ├── GlassCard.jsx
-│   │   │   ├── Badge.jsx
-│   │   │   ├── SectionTitle.jsx
-│   │   │   ├── LoadingScreen.jsx
-│   │   │   ├── CursorGlow.jsx
-│   │   │   ├── ScrollProgress.jsx
-│   │   │   ├── ParticleBackground.jsx
-│   │   │   ├── CommandPalette.jsx
-│   │   │   └── ThemeSwitcher.jsx
-│   │   └── sections/       ← scroll sections
-│   │       ├── Hero.jsx
-│   │       ├── About.jsx
-│   │       ├── Skills.jsx
-│   │       ├── Projects.jsx
-│   │       ├── ProjectModal.jsx
-│   │       ├── Experience.jsx
-│   │       ├── GitHub.jsx
-│   │       ├── LeetCode.jsx
-│   │       ├── Achievements.jsx
-│   │       ├── Timeline.jsx
-│   │       ├── Testimonials.jsx
-│   │       ├── Blog.jsx
-│   │       └── Contact.jsx
-├── .env.example
-├── .gitignore
-├── index.html
-├── tailwind.config.js
-├── vite.config.js
-├── postcss.config.js
-├── package.json
-└── README.md
+│   │   ├── layout/         ← Sticky headers and footers
+│   │   ├── ui/             ← Glass cards, buttons, palettes, and particle loaders
+│   │   └── sections/       ← Page sections (Hero, About, Leetcode, Contact)
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Setup & Run
 
-### 1. Clone & Install Dependencies
-Navigate into your directory and run:
+### 1. Installation
+
+Install Node modules and project devDependencies:
+
 ```bash
 npm install
 ```
 
-### 2. Configure Environment Keys
-Duplicate `.env.example` to create a `.env` file:
-```bash
-cp .env.example .env
-```
-Provide your actual GitHub/LeetCode usernames and EmailJS service parameters.
+### 2. Local Development
 
-### 3. Run Locally
-Launch the Vite development server:
+Run the local Vite development server on `http://localhost:3000`:
+
 ```bash
 npm run dev
 ```
-Open `http://localhost:3000` in your web browser.
 
-### 4. Build for Production
-Compile optimized build bundles:
+### 3. Build Production Bundle
+
+Verify TypeScript compilation, asset optimization, and packaging:
+
 ```bash
 npm run build
 ```
-Verify compilation output in the generated `dist/` directory.
 
 ---
 
-## 🎨 Theme Details
+## ⚙️ Post-Launch Customizations
 
-Custom variables are processed inside `src/index.css`. To adjust color codes:
-- **Cosmic Dark (Base):** Deep Space Violet (#7c3aed) and Cyber Cyan (#06b6d4) accents on rich black background.
-- **Midnight Blue:** Sleek dark blue (#020817) background with Neon Pink (#ec4899) and Royal Blue (#2563eb) accents.
-- **Light Mode:** Modern soft slate background (#f8fafc) with Indigo (#4f46e5) and Teal highlights.
+1. **GitHub Stats**: Update the username parameter in `src/components/sections/GitHub.jsx` inside the `useGitHub('your_username')` hook call.
+2. **LeetCode Stats**: Update the username parameter in `src/components/sections/LeetCode.jsx` inside the `useLeetCode('your_username')` hook call.
+3. **EmailJS Contact Delivery**:
+   - Create a free account at [EmailJS](https://www.emailjs.com/).
+   - Set up a Mail service provider and Template.
+   - Create a `.env` file from `.env.example` and input your keys:
+     ```text
+     VITE_EMAILJS_SERVICE_ID=your_service_id
+     VITE_EMAILJS_TEMPLATE_ID=your_template_id
+     VITE_EMAILJS_PUBLIC_KEY=your_public_key
+     ```
+4. **Resume CV**: Save your professional resume as `resume.pdf` directly inside the `public/` directory to enable download button links.
 
 ---
 
 ## 📄 License
-This project is open-source under the [MIT License](LICENSE).
+
+MIT License. Feel free to clone, edit and build your personal branding portfolios.

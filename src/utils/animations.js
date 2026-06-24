@@ -1,4 +1,4 @@
-// Framer Motion transition presets
+// Framer Motion animation configurations
 
 export const springTransition = {
   type: "spring",
@@ -13,63 +13,62 @@ export const easeTransition = {
 };
 
 export const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
+  hidden: { y: 40, opacity: 0 },
+  visible: { 
+    y: 0, 
     opacity: 1,
-    y: 0,
     transition: springTransition
   }
 };
 
-export const fadeInDown = {
-  hidden: { opacity: 0, y: -30 },
-  visible: {
+export const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
     opacity: 1,
-    y: 0,
+    transition: { duration: 0.4 }
+  }
+};
+
+export const scaleUp = {
+  hidden: { scale: 0.95, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
     transition: springTransition
   }
 };
 
-export const fadeInLeft = {
-  hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: springTransition
-  }
-};
-
-export const fadeInRight = {
-  hidden: { opacity: 0, x: 30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: springTransition
-  }
-};
-
-export const staggerContainer = {
+export const staggerContainer = (staggerChildren = 0.1, delayChildren = 0) => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15
+      staggerChildren,
+      delayChildren
     }
+  }
+});
+
+export const slideInLeft = {
+  hidden: { x: -60, opacity: 0 },
+  visible: { 
+    x: 0, 
+    opacity: 1,
+    transition: springTransition
   }
 };
 
-export const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
+export const slideInRight = {
+  hidden: { x: 60, opacity: 0 },
+  visible: { 
+    x: 0, 
     opacity: 1,
-    y: 0,
     transition: springTransition
   }
 };
 
 export const pageTransition = {
   initial: { opacity: 0, y: 15 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -15 },
-  transition: { ease: "easeInOut", duration: 0.4 }
+  animate: { opacity: 1, y: 0, transition: easeTransition },
+  exit: { opacity: 0, y: -15, transition: easeTransition }
 };

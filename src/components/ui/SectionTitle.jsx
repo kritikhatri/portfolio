@@ -2,44 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/animations';
 
-export const SectionTitle = ({
-  title,
-  subtitle,
-  alignment = 'center', // center, left
-  className = ''
+export const SectionTitle = ({ 
+  title, 
+  subtitle, 
+  align = 'center' 
 }) => {
-  const alignClass = alignment === 'center' ? 'text-center items-center' : 'text-left items-start';
-  const dividerAlign = alignment === 'center' ? 'mx-auto' : 'mr-auto';
+  const alignment = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end'
+  };
 
   return (
-    <motion.div
+    <motion.div 
+      className={`flex flex-col mb-16 ${alignment[align]}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={fadeInUp}
-      className={`flex flex-col mb-12 ${alignClass} ${className}`}
     >
       {subtitle && (
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary-pink mb-2 font-semibold">
-          {subtitle}
+        <span className="text-xs font-mono tracking-widest text-accent uppercase mb-2 block font-semibold">
+          // {subtitle}
         </span>
       )}
-      <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
-        {title.split(' ').map((word, idx) => {
-          const isGradient = idx === title.split(' ').length - 1; // gradient last word
-          return (
-            <span
-              key={idx}
-              className={isGradient ? "bg-gradient-to-r from-primary-violet to-primary-cyan bg-clip-text text-transparent" : "text-slate-100"}
-            >
-              {word}{' '}
-            </span>
-          );
-        })}
+      <h2 className="text-3xl md:text-5xl font-display font-bold text-gradient pb-2 relative inline-block">
+        {title}
       </h2>
-      
-      {/* Dynamic cyberpunk underline bar */}
-      <div className={`h-1 w-20 bg-gradient-to-r from-primary-violet to-primary-cyan rounded-full mt-4 ${dividerAlign}`} />
+      <div className="h-[3px] w-20 bg-gradient-to-r from-primary to-secondary mt-4 rounded-full" />
     </motion.div>
   );
 };

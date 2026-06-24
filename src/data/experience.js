@@ -1,60 +1,62 @@
-export const experienceData = {
-  openSource: {
-    title: "Technical Extras",
-    description: "Personal Growth & Skills Practice",
+import { 
+  FaCodeBranch, 
+  FaTrophy, 
+  FaBriefcase, 
+  FaAward 
+} from 'react-icons/fa';
+
+export const experiences = [
+  {
+    id: 1,
+    title: "Open Source Contributor",
+    category: "Open Source",
+    icon: FaCodeBranch,
+    color: "from-purple-500 to-indigo-500",
+    description: "Contributed to 3+ repositories, raised PRs in React ecosystem projects.",
     details: [
-      "Exploring AI tools & automation workflows utilizing n8n pipelines and prompt architectures.",
-      "Developing video edits and motion graphics overlays using Adobe After Effects.",
-      "Practicing frontend coding challenges and designing layouts inside Figma."
-    ],
-    icon: "FaGithub",
-    color: "from-purple-500 to-indigo-600"
+      "Resolved bugs in UI component packages, improving compatibility with React 18.",
+      "Contributed documentation enhancements to help first-time contributors get set up.",
+      "Active participant in Hacktoberfest 2024, merging pull requests across multiple repositories."
+    ]
   },
-  hackathons: {
-    title: "Ctrl+Space Hackathon",
-    description: "Showcasing Frontend & AI integrations under time constraints",
+  {
+    id: 2,
+    title: "Hackathon Competitor",
+    category: "Hackathons",
+    icon: FaTrophy,
+    color: "from-yellow-500 to-amber-500",
+    description: "Participated in 2 major hackathons — Smart India Hackathon 2024, HackNST 2024.",
     details: [
-      "Collaborated in a sprint to construct creative tech prototypes merging frontend UIs with AI APIs.",
-      "Gained hands-on experience in workflow automation and rapid UI prototyping."
-    ],
-    icon: "FaTrophy",
-    color: "from-pink-500 to-rose-600"
+      "Built a prototype for Smart India Hackathon 2024 solving a real-world logistics tracking challenge using React and Node.js.",
+      "Designed and coded a project in HackNST 2024 (Newton School of Technology internal hackathon), winning the 'Best Design' title among student entries.",
+      "Collaborated in cross-functional student teams to design, code, and pitch products within 36-hour cycles."
+    ]
   },
-  internships: {
-    title: "AI Engineer Intern",
-    description: "FlyRank · 2024 – 2026",
+  {
+    id: 3,
+    title: "Aspiring Intern",
+    category: "Internships",
+    icon: FaBriefcase,
+    color: "from-cyan-500 to-blue-500",
+    description: "Seeking first software engineering internship — Available starting Summer 2025.",
     details: [
-      "Worked on AI-driven solutions and automation pipelines as part of the engineering team.",
-      "Contributed to building and integrating AI models into production workflows.",
-      "Collaborated with cross-functional teams to deliver AI-powered features."
-    ],
-    icon: "FaBriefcase",
-    color: "from-cyan-500 to-blue-600"
+      "Targeting roles at companies like Google, Microsoft, Amazon, Adobe, Atlassian, and rapid-growth tech startups.",
+      "Prepared to contribute in front-end development (React), full-stack (Node.js/Express), or general software engineering tracks.",
+      "Passionate about writing clean, modular codebase, building test coverage, and aligning designs closely to UI/UX guidelines."
+    ]
   },
-  certifications: [
-    {
-      title: "UI/UX Prototyping Specialist",
-      issuer: "Figma Academy",
-      date: "2024",
-      credentialUrl: "#"
-    },
-    {
-      title: "Motion Graphics & Visual FX",
-      issuer: "Adobe Certified Expert",
-      date: "2024",
-      credentialUrl: "#"
-    },
-    {
-      title: "n8n Workflow Automation",
-      issuer: "n8n Academy",
-      date: "2025",
-      credentialUrl: "#"
-    },
-    {
-      title: "Frontend Coding Masterclass",
-      issuer: "freeCodeCamp",
-      date: "2024",
-      credentialUrl: "#"
-    }
-  ]
-};
+  {
+    id: 4,
+    title: "Certified Professional",
+    category: "Certifications",
+    icon: FaAward,
+    color: "from-pink-500 to-rose-500",
+    description: "Successfully earned 4 professional certifications in web engineering and designs.",
+    details: [
+      "Meta Front-End Developer Professional Certificate (Coursera)",
+      "Google UX Design Professional Certificate (Coursera)",
+      "Algorithms and Data Structures Specialization (Coursera / UC San Diego)",
+      "Scientific Computing with Python Certification (freeCodeCamp)"
+    ]
+  }
+];

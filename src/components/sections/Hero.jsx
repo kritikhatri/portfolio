@@ -1,234 +1,219 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaArrowDown } from 'react-icons/fa';
-import { SiReact, SiJavascript, SiPython, SiCplusplus, SiGit, SiTailwindcss } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaChevronDown, FaReact, FaPython, FaJs, FaNodeJs, FaGitAlt } from 'react-icons/fa';
 import { Button } from '../ui/Button';
-import { springTransition } from '../../utils/animations';
 
 export const Hero = () => {
   const name = "Kritika Khatri";
 
-  const socialLinks = [
-    { icon: FaGithub, url: "https://github.com/kritikhatri", color: "hover:text-slate-100 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]", label: "GitHub" },
-    { icon: FaLinkedin, url: "https://linkedin.com/in/kritika-khatri", color: "hover:text-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]", label: "LinkedIn" },
-    { icon: FaTwitter, url: "https://twitter.com/kritika-khatri", color: "hover:text-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]", label: "Twitter" },
-    { icon: FaCode, url: "https://leetcode.com/u/kritikhatri/", color: "hover:text-amber-500 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]", label: "LeetCode" }
-  ];
-
-  // Orbiting Tech Icons config
-  const orbitingIcons = [
-    { icon: SiReact, className: "text-cyan-400 animate-orbit-slow", delay: "0s", pos: "top-0 left-1/2 -ml-6" },
-    { icon: SiJavascript, className: "text-yellow-400 animate-orbit-medium", delay: "-2s", pos: "right-0 top-1/2 -mt-6" },
-    { icon: SiPython, className: "text-blue-500 animate-orbit-fast", delay: "-4s", pos: "bottom-0 left-1/2 -ml-6" },
-    { icon: SiCplusplus, className: "text-indigo-500 animate-orbit-slow", delay: "-6s", pos: "left-0 top-1/2 -mt-6" },
-    { icon: SiGit, className: "text-orange-500 animate-orbit-medium", delay: "-1s", pos: "top-12 right-12" },
-    { icon: SiTailwindcss, className: "text-teal-400 animate-orbit-fast", delay: "-3s", pos: "bottom-12 left-12" }
-  ];
-
-  const characterVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
+  // Framer motion variants for character-by-character name entry
+  const nameContainer = {
+    hidden: { opacity: 0 },
+    visible: {
       opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.3 + i * 0.05,
-        ...springTransition
-      }
-    })
+      transition: { staggerChildren: 0.08, delayChildren: 0.3 }
+    }
   };
 
-  const handleConnect = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = contactSection.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+  const charVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 150, damping: 10 }
+    }
+  };
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+  const socialLinks = [
+    { icon: FaGithub, url: "https://github.com/kritikakhatri", label: "GitHub", color: "hover:text-slate-100 hover:shadow-white/20" },
+    { icon: FaLinkedin, url: "https://linkedin.com/in/kritikakhatri", label: "LinkedIn", color: "hover:text-blue-400 hover:shadow-blue-500/20" },
+    { icon: FaTwitter, url: "https://twitter.com/kritikakhatri", label: "Twitter", color: "hover:text-cyan-400 hover:shadow-cyan-500/20" },
+    { icon: FaCode, url: "https://leetcode.com/u/kritikakhatri", label: "LeetCode", color: "hover:text-amber-400 hover:shadow-amber-500/20" }
+  ];
+
+  const handleConnect = () => {
+    const contact = document.getElementById('contact');
+    if (contact) {
+      contact.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+    <section id="home" className="min-h-screen relative flex items-center justify-center pt-24 pb-16 overflow-hidden z-10">
+      
+      {/* Background soft lighting orbs */}
+      <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-primary/10 rounded-full filter blur-[120px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-secondary/10 rounded-full filter blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+
+      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Left Col - Introduction */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left order-2 lg:order-1">
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-mono text-sm tracking-[0.25em] text-primary-pink font-semibold uppercase mb-4"
-          >
-            Hi, I'm
-          </motion.span>
+        {/* Left Grid: Bio and descriptions */}
+        <div className="lg:col-span-7 text-left flex flex-col justify-center">
           
-          {/* Animated Name */}
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 select-none">
-            {name.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                custom={index}
-                initial="hidden"
-                animate="visible"
-                variants={characterVariants}
-                className={char === " " ? "inline-block w-4" : "inline-block bg-gradient-to-r from-primary-violet via-primary-pink to-primary-cyan bg-clip-text text-transparent text-glow"}
-              >
-                {char}
-              </motion.span>
-            ))}
+          <motion.span 
+            className="text-xs font-mono font-bold tracking-widest text-accent uppercase mb-3 block"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            // Welcome to my digital space
+          </motion.span>
+
+          {/* Character-by-character greeting */}
+          <h1 className="text-4xl sm:text-6xl font-display font-bold text-slate-100 leading-none tracking-tight mb-4 flex flex-wrap gap-x-2">
+            <span>Hi, I'm</span>
+            <motion.span 
+              variants={nameContainer}
+              initial="hidden"
+              animate="visible"
+              className="text-gradient inline-flex"
+            >
+              {name.split("").map((char, index) => (
+                <motion.span 
+                  key={index} 
+                  variants={charVariants}
+                  className={char === " " ? "w-3" : ""}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.span>
           </h1>
 
           {/* Cycling Typewriter */}
-          <div className="h-10 sm:h-12 flex items-center mb-6">
-            <span className="font-mono text-slate-400 text-lg sm:text-2xl mr-2 font-medium">I am a</span>
-            <span className="font-display text-primary-cyan text-lg sm:text-2xl font-bold">
-              <TypeAnimation
-                sequence={[
-                  'Software Developer',
-                  1500,
-                  'AI/ML Enthusiast',
-                  1500,
-                  'Open Source Contributor',
-                  1500,
-                  'Future Tech Founder',
-                  1500,
-                  'DSA Explorer',
-                  1500
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-              />
-            </span>
+          <div className="h-10 sm:h-12 flex items-center text-lg sm:text-2xl font-mono text-slate-300 mb-6">
+            <span className="text-secondary mr-2">{'>'}</span>
+            <TypeAnimation
+              sequence={[
+                "Software Developer", 1800,
+                "AI/ML Enthusiast", 1800,
+                "Open Source Contributor", 1800,
+                "Future Tech Founder", 1800,
+                "DSA Explorer", 1800,
+              ]}
+              wrapper="span"
+              speed={40}
+              repeat={Infinity}
+              className="cursor-blink font-semibold text-slate-100"
+            />
           </div>
 
-          {/* Subtext Compelling bio */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            className="text-slate-400 text-sm sm:text-base md:text-lg mb-8 max-w-xl leading-relaxed font-sans"
+          <motion.p 
+            className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
           >
-            Engineering robust systems and crafting premium digital experiences. 
-            Currently diving deep into DSA, full-stack application development, and open-source frameworks to build products that impact millions.
+            I am a B.Tech Computer Science student at Newton School of Technology, driven by a core goal to build tech products that impact millions of people worldwide. Currently diving deep into React, modern web development, and algorithms.
           </motion.p>
 
           {/* CTA Row */}
-          <motion.div
+          <motion.div 
+            className="flex flex-wrap gap-4 items-center mb-8"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-wrap gap-4 items-center mb-10 w-full"
+            transition={{ delay: 1.7, duration: 0.5 }}
           >
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => window.open('/resume.pdf', '_blank')}
-            >
-              Download Resume
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={handleConnect}
-            >
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <Button variant="primary">
+                Download Resume
+              </Button>
+            </a>
+            <Button variant="secondary" onClick={handleConnect}>
               Let's Connect
             </Button>
           </motion.div>
 
-          {/* Social Row with custom hover glows */}
-          <motion.div
+          {/* Social Row */}
+          <motion.div 
+            className="flex items-center gap-3"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.8 }}
-            transition={{ duration: 1.0, delay: 1.4 }}
-            className="flex items-center gap-5"
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.9, duration: 0.5 }}
           >
-            <span className="font-mono text-[10px] tracking-[0.2em] text-slate-500 uppercase">Registry:</span>
-            <div className="flex gap-4">
-              {socialLinks.map((link, index) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.label}
-                    className={`
-                      w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 
-                      transition-all duration-300 ${link.color} hover:bg-white/10 hover:-translate-y-1
-                    `}
-                  >
-                    <Icon className="text-lg" />
-                  </a>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Right Col - Visual Avatar Orbit */}
-        <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.0, delay: 0.5, type: 'spring' }}
-            className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center select-none"
-          >
-            {/* Pulsing glow background */}
-            <div className="absolute inset-0 bg-primary-violet/10 rounded-full blur-3xl animate-pulse-slow -z-10" />
-
-            {/* Tilted frame outline */}
-            <div className="absolute inset-2 border border-primary-cyan/20 rounded-[2.2rem_5.2rem_2.2rem_5.2rem] rotate-3 group-hover:rotate-6 transition-transform duration-500" />
-            <div className="absolute inset-0 border border-dashed border-primary-pink/20 rounded-[2.4rem_5.4rem_2.4rem_5.4rem] -rotate-3 group-hover:-rotate-6 transition-transform duration-500" />
-
-            {/* Avatar Container in Leaf-Shield shape */}
-            <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-[2rem_5rem_2rem_5rem] p-1 bg-gradient-to-tr from-primary-violet via-primary-pink to-primary-cyan relative z-10 shadow-[0_0_35px_rgba(234,179,8,0.25)] overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(234,179,8,0.4)]">
-              <div className="w-full h-full rounded-[1.8rem_4.8rem_1.8rem_4.8rem] bg-background-cosmic flex items-center justify-center overflow-hidden">
-                <img
-                  src="/avatar.jpg"
-                  alt="Kritika Khatri Profile"
-                  className="w-full h-full object-cover scale-105 hover:scale-110 brightness-95 hover:brightness-100 transition-all duration-700"
-                />
-              </div>
-            </div>
-
-            {/* Orbiting Tech Icons */}
-            {orbitingIcons.map((item, index) => {
-              const TechIcon = item.icon;
+            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mr-2">Locate Me:</span>
+            {socialLinks.map((link, idx) => {
+              const Icon = link.icon;
               return (
-                <div
-                  key={index}
-                  className={`absolute w-12 h-12 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg transition-transform hover:scale-110 z-20 ${item.pos}`}
-                  style={{
-                    animation: `float 4s ease-in-out infinite`,
-                    animationDelay: item.delay
-                  }}
+                <a
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className={`p-2.5 rounded-full glass-panel border-white/5 text-slate-400 hover:scale-105 active:scale-95 transition-all duration-300 ${link.color}`}
                 >
-                  <TechIcon className="text-2xl" />
-                </div>
+                  <Icon className="w-4 h-4" />
+                </a>
               );
             })}
           </motion.div>
         </div>
+
+        {/* Right Grid: Circular Avatar Placeholder & Orbiting Icons */}
+        <div className="lg:col-span-5 flex justify-center items-center">
+          <motion.div 
+            className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
+          >
+            {/* Outer Rotating Gradient Ring */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary via-accent to-secondary animate-rotate-gradient p-[4px] opacity-75">
+              <div className="w-full h-full rounded-full bg-background-dark" />
+            </div>
+
+            {/* Inner avatar background circle */}
+            <div className="w-[85%] h-[85%] rounded-full overflow-hidden bg-slate-900 border-2 border-white/10 relative z-10 flex items-center justify-center flex-col shadow-inner">
+              <svg viewBox="0 0 100 100" className="w-16 h-16 text-secondary mb-2" fill="none" stroke="currentColor">
+                <path d="M35 30 L20 50 L35 70" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M65 30 L80 50 L65 70" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M45 65 L55 35" stroke="#ec4899" strokeWidth="6" strokeLinecap="round" />
+              </svg>
+              <span className="font-display font-semibold text-xs text-slate-400 tracking-wider mt-2">// CORE DEVS</span>
+            </div>
+
+            {/* Orbiting / Floating Tech Icons around avatar */}
+            <div className="absolute top-0 right-4 w-11 h-11 rounded-xl glass-panel flex items-center justify-center text-secondary border-white/10 animate-float-slow z-20 shadow-glass-sm">
+              <FaReact className="w-5 h-5 animate-spin" style={{ animationDuration: '8s' }} />
+            </div>
+
+            <div className="absolute bottom-4 left-0 w-11 h-11 rounded-xl glass-panel flex items-center justify-center text-primary border-white/10 animate-float-medium z-20 shadow-glass-sm" style={{ animationDelay: '1.5s' }}>
+              <FaPython className="w-5 h-5" />
+            </div>
+
+            <div className="absolute top-1/2 left-[-20px] -translate-y-1/2 w-11 h-11 rounded-xl glass-panel flex items-center justify-center text-yellow-400 border-white/10 animate-float-fast z-20 shadow-glass-sm" style={{ animationDelay: '0.8s' }}>
+              <FaJs className="w-5 h-5" />
+            </div>
+
+            <div className="absolute bottom-6 right-0 w-11 h-11 rounded-xl glass-panel flex items-center justify-center text-emerald-400 border-white/10 animate-float-slow z-20 shadow-glass-sm" style={{ animationDelay: '2.2s' }}>
+              <FaNodeJs className="w-5 h-5" />
+            </div>
+
+            <div className="absolute top-4 left-8 w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-orange-500 border-white/10 animate-float-medium z-20 shadow-glass-sm" style={{ animationDelay: '3s' }}>
+              <FaGitAlt className="w-4 h-4" />
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Bouncing Scroll Indicator Arrow */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10 cursor-pointer text-slate-500 hover:text-white transition-colors duration-200">
-        <span className="font-mono text-[9px] tracking-[0.25em] uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+      {/* Scroll indicator bounce */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+        <button
+          onClick={() => {
+            const about = document.getElementById('about');
+            if (about) {
+              const yOffset = -80;
+              const y = about.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }}
+          aria-label="Scroll to About Section"
+          className="text-slate-500 hover:text-white p-2 rounded-full cursor-pointer animate-bounce transition-colors duration-300"
         >
-          <FaArrowDown className="text-xs" />
-        </motion.div>
+          <FaChevronDown className="w-4 h-4" />
+        </button>
       </div>
     </section>
   );
