@@ -22,14 +22,14 @@ export const SectionTitle = ({
       variants={fadeInUp}
     >
       {subtitle && (
-        <span className="text-xs font-mono tracking-widest text-accent uppercase mb-2 block font-semibold">
+        <span className="text-xs font-mono tracking-widest text-[#3a3a3a]/45 uppercase mb-2 block">
           // {subtitle}
         </span>
       )}
-      <h2 className="text-3xl md:text-5xl font-display font-bold text-gradient pb-2 relative inline-block">
+      <h2 className="text-3xl md:text-5xl font-display font-light text-[#3a3a3a] pb-2 relative inline-block">
         {title}
       </h2>
-      <div className="h-[3px] w-20 bg-gradient-to-r from-primary to-secondary mt-4 rounded-full" />
+      <div className="h-[2px] w-16 bg-[#D9D4F0] mt-4 rounded-full" />
     </motion.div>
   );
 };
