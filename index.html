@@ -1,37 +1,2751 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary Meta Tags -->
-    <title>Kritika Khatri | Aspiring Software Engineer & Tech Builder</title>
-    <meta name="title" content="Kritika Khatri | Aspiring Software Engineer & Tech Builder" />
-    <meta name="description" content="Portfolio of Kritika Khatri, B.Tech Computer Science student at Newton School of Technology. Aspiring Software Engineer focusing on React, AI/ML, Web Apps, and DSA." />
-    <meta name="author" content="Kritika Khatri" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://kritikakhatri.dev/" />
-    <meta property="og:title" content="Kritika Khatri | Aspiring Software Engineer & Tech Builder" />
-    <meta property="og:description" content="B.Tech CSE Student & Aspiring Software Engineer. Building impactful software, exploring AI/ML, and solving DSA problems." />
-    <meta property="og:image" content="/og-image.png" />
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kritika Khatri - Personal Tech Portfolio & Journal">
+  <title>Kritika Khatri ♡ Journal Portfolio</title>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://kritikakhatri.dev/" />
-    <meta property="twitter:title" content="Kritika Khatri | Aspiring Software Engineer & Tech Builder" />
-    <meta property="twitter:description" content="B.Tech CSE Student & Aspiring Software Engineer. Building impactful software, exploring AI/ML, and solving DSA problems." />
-    <meta property="twitter:image" content="/og-image.png" />
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Abril Fatface (Retro Serif), Satisfy (Handwritten), Pacifico (Script), Lato (Body Text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Pacifico&family=Satisfy&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body class="antialiased overflow-x-hidden">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <style>
+    /* CSS VARIABLES - Cottagecore Stationery Scrapbook Aesthetic */
+    :root {
+      --cream:        #fffbf5;       /* Warm page background */
+      --blush-light:  #fce8f4;       /* Soft pink surfaces */
+      --blush-mid:    #f5b8d8;       /* Pink accents */
+      --blush-deep:   #d4789a;       /* Pink headings/borders */
+      --lavender:     #e8e0f8;       /* Lavender surfaces */
+      --lavender-mid: #c4b0e8;       /* Lavender accents */
+      --lavender-deep:#8b72c8;       /* Lavender text/borders */
+      --sage:         #d4e8d0;       /* Sage green washi tape */
+      --sage-mid:     #9aba94;       /* Sage accents */
+      --brown-ink:    #5c3d2e;       /* Main body text, like ink */
+      --brown-muted:  #9a7868;       /* Muted labels */
+      --yellow-tape:  #f5e6a0;       /* Yellow washi tape */
+      --white:        #ffffff;       /* Pure white sheets */
+      
+      /* New Scrapbook Palette Elements */
+      --forest-green: #2e4f3f;       /* Dark Green Banner Fills */
+      --dusty-rose:   #dca7a7;       /* Dusty Rose sheets */
+      --peach-blush:  #f9e5db;       /* Peach sheet highlights */
+      --scrapbook-shadow: 5px 5px 0px var(--brown-ink);
+      
+      --font-title:   'Abril Fatface', serif;
+      --font-accent:  'Satisfy', cursive;
+      --font-cursive: 'Pacifico', cursive;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    /* GLOBAL RESET & STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cream);
+      color: var(--brown-ink);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* Subtle Paper Texture Background */
+    body {
+      min-height: 100vh;
+      position: relative;
+      background-color: var(--cream);
+      background-image: 
+        radial-gradient(rgba(92, 61, 46, 0.04) 1px, transparent 0),
+        radial-gradient(rgba(92, 61, 46, 0.03) 1px, transparent 0);
+      background-size: 10px 10px, 14px 14px;
+      background-position: 0 0, 5px 5px;
+    }
+
+
+
+    /* Ruled paper background lines on sections */
+    .ruled-section {
+      position: relative;
+    }
+
+    .max-width-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    a {
+      color: var(--lavender-deep);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--blush-deep);
+    }
+
+    /* SECTION HEADER STYLE - High Contrast Scrapbook Banner Card */
+    .section-header-wrap {
+      text-align: center;
+      position: relative;
+      margin: 1.5rem auto 4.5rem;
+      padding: 0.8rem 2.2rem;
+      background-color: var(--forest-green);
+      border: 2.5px solid var(--brown-ink);
+      box-shadow: 4px 4px 0px var(--brown-ink);
+      display: table;
+      transform: rotate(-1.5deg);
+    }
+    .section-header-wrap:nth-of-type(even) {
+      background-color: var(--blush-deep);
+      transform: rotate(1deg);
+    }
+    .section-header-wrap h2 {
+      font-family: var(--font-title);
+      font-size: 2.3rem;
+      color: var(--cream);
+      font-weight: 400;
+      letter-spacing: 1px;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+    .section-header-wrap p {
+      font-family: var(--font-cursive);
+      font-size: 1.15rem;
+      color: var(--yellow-tape);
+      margin-top: 0.2rem;
+    }
+    .section-header-pin-tape {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      width: 100px;
+      height: 20px;
+      opacity: 0.85;
+      z-index: 2;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    /* WASHI TAPE - Torn horizontal edges */
+    .washi-tape {
+      position: relative;
+    }
+    .washi-tape-torn-horizontal {
+      clip-path: polygon(
+        0% 12%, 1.5% 0%, 98.5% 0%, 100% 12%, 99% 25%, 100% 40%, 98.5% 55%, 100% 70%, 99% 85%, 100% 100%, 98.5% 95%, 1.5% 100%, 0% 90%, 1% 75%, 0% 60%, 1.5% 45%, 0% 30%, 1% 15%
+      );
+    }
+
+    /* WASHI TAPE SECTON DIVIDERS */
+    .washi-divider {
+      width: 80%;
+      max-width: 750px;
+      height: 22px;
+      margin: 2rem auto;
+      opacity: 0.8;
+      box-shadow: 1px 2px 4px rgba(92, 61, 46, 0.04);
+    }
+    .washi-divider.blush {
+      background-color: var(--blush-mid);
+      transform: rotate(1.2deg);
+    }
+    .washi-divider.lavender {
+      background-color: var(--lavender-mid);
+      transform: rotate(-1.5deg);
+    }
+    .washi-divider.sage {
+      background-color: var(--sage-mid);
+      transform: rotate(1.8deg);
+    }
+    .washi-divider.yellow {
+      background-color: var(--yellow-tape);
+      transform: rotate(-1.2deg);
+    }
+
+    /* SCATTERED FLOWER / DINGBAT DECORATIONS */
+    .spacer-decorations {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-family: var(--font-accent);
+      font-size: 1.6rem;
+      color: var(--blush-mid);
+      margin: 1rem 0;
+      user-select: none;
+    }
+    .spacer-decorations span {
+      animation: gentle-float 4s ease-in-out infinite alternate;
+    }
+    .spacer-decorations span:nth-child(2) {
+      animation-delay: 1.5s;
+      color: var(--lavender-mid);
+    }
+    .spacer-decorations span:nth-child(3) {
+      animation-delay: 3s;
+      color: var(--sage-mid);
+    }
+
+    @keyframes gentle-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+
+    /* 1. HERO SECTION (Immersive Scroll Sticky) */
+    #hero {
+      height: 180vh;
+      position: relative;
+      background-color: #ffaeb5; /* Softer, sweet pastel pink */
+    }
+    .hero-content {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      padding: 2rem 0;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+    
+    /* Peeking Kitty styling */
+    #peeking-cat {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      width: 700px;
+      max-width: 90vw;
+      height: 350px;
+      max-height: 45vw;
+      z-index: 6;
+      pointer-events: none;
+      transform-origin: bottom center;
+      will-change: transform, opacity;
+      transition: opacity 0.15s ease;
+    }
+    #peeking-cat svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    /* Flying stickers scroll-burst effect */
+    .fly {
+      position: absolute;
+      will-change: transform, opacity;
+      opacity: 0;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .sticker-chip.fly {
+      pointer-events: auto; /* enable links/hover after burst */
+    }
+    .sticker-deco {
+      filter: drop-shadow(2px 3px 6px rgba(92, 61, 46, 0.06));
+    }
+
+    .draggable {
+      user-select: none;
+      touch-action: none;
+    }
+    
+    /* Screen Flash */
+    #screen-flash {
+      position: fixed;
+      inset: 0;
+      background-color: #fff;
+      opacity: 0;
+      z-index: 9999;
+      pointer-events: none;
+      transition: opacity 0.15s ease-out;
+    }
+    #screen-flash.flash-active {
+      opacity: 0.95;
+      transition: none;
+    }
+    
+    /* Coffee Steam animation */
+    @keyframes steam-rise {
+      0% { transform: translateY(0) scaleY(1) scaleX(1); opacity: 0.3; }
+      50% { transform: translateY(-6px) scaleY(1.2) scaleX(1.1); opacity: 0.8; }
+      100% { transform: translateY(-12px) scaleY(1) scaleX(1); opacity: 0.3; }
+    }
+    .steam-path {
+      animation: steam-rise 2s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+    .steam-path:nth-child(2) {
+      animation-delay: 1s;
+    }
+    
+    /* Polaroid Develop Animation Pulse */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Falling flower petal mouse trail */
+    .flower-petal-trail {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      animation: drift-and-fade 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      user-select: none;
+    }
+    
+    @keyframes drift-and-fade {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(var(--drift-x), 45px) rotate(var(--rotate-deg));
+        opacity: 0;
+      }
+    }
+
+    /* Hero washi tape pattern */
+    .hero-top-tape {
+      width: 250px;
+      height: 28px;
+      margin: 0 auto 2.5rem;
+      transform: rotate(3deg);
+      box-shadow: 1px 2px 4px rgba(0,0,0,0.05);
+      background-color: var(--lavender);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.149-10.009-8.972-12-3.568z' fill='%238b72c8' opacity='0.25'/%3E%3C/svg%3E");
+      background-size: 16px 16px;
+    }
+    /* Interactive Wax-Sealed Envelope */
+    .envelope-container {
+      position: relative;
+      width: 250px;
+      height: 180px;
+      margin: 0 auto 2.5rem;
+      perspective: 1000px;
+      cursor: pointer;
+      z-index: 5;
+      transform: rotateX(15deg) rotateY(-10deg) rotateZ(-2deg);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    }
+    .envelope-container:hover {
+      transform: rotateX(5deg) rotateY(0deg) rotateZ(0deg) translateY(-8px);
+    }
+
+    /* Envelope Body Components */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+    
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background-color: #f7ede2; /* kraft paper color */
+      border: 1.5px solid var(--brown-ink);
+      border-radius: 4px;
+      box-shadow: 3px 5px 15px rgba(92, 61, 46, 0.08);
+      z-index: 1;
+    }
+    
+    /* Decorative envelope liner */
+    .envelope-liner {
+      position: absolute;
+      inset: 6px;
+      background-color: var(--blush-light);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.149-10.009-8.972-12-3.568z' fill='%23f5b8d8' opacity='0.3'/%3E%3C/svg%3E");
+      background-size: 24px 24px;
+      border-radius: 2px;
+      opacity: 0.85;
+    }
+
+    /* Lined Letter inside envelope */
+    .envelope-letter {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 5px;
+      height: 165px;
+      background-color: var(--white);
+      border: 1.5px solid var(--blush-light);
+      border-radius: 4px;
+      padding: 10px 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      z-index: 2;
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      transform: translateY(0px);
+      /* Lined Paper style */
+      background-image: linear-gradient(to bottom, var(--blush-light) 1px, transparent 1px);
+      background-size: 100% 22px;
+      line-height: 22px;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+      perspective: 600px;
+    }
+    
+    .envelope-container:hover .envelope-letter {
+      transform: translateY(-90px);
+      box-shadow: 0 8px 20px rgba(92, 61, 46, 0.12);
+    }
+    
+    .envelope-letter-content {
+      font-family: var(--font-accent);
+      text-align: center;
+      color: var(--brown-ink);
+      transform-style: preserve-3d;
+    }
+
+    /* 3D Pop-up scene styles */
+    .popup-3d-container {
+      position: relative;
+      width: 100%;
+      height: 75px;
+      margin: 4px auto;
+      transform-style: preserve-3d;
+    }
+    .popup-layer {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      transform-origin: bottom center;
+      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.6s ease;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .layer-bg {
+      bottom: 12px;
+      transform: rotateX(-90deg) translateZ(0);
+      z-index: 1;
+    }
+    .layer-mid {
+      bottom: 4px;
+      transform: rotateX(-90deg) translateZ(0);
+      z-index: 2;
+    }
+    .layer-fg {
+      bottom: 0px;
+      transform: rotateX(-90deg) translateZ(0);
+      z-index: 3;
+    }
+    
+    /* Pop-up triggers on envelope hover */
+    .envelope-container:hover .layer-bg {
+      transform: rotateX(0deg) translateZ(8px);
+      opacity: 1;
+    }
+    .envelope-container:hover .layer-mid {
+      transform: rotateX(0deg) translateZ(20px);
+      opacity: 1;
+    }
+    .envelope-container:hover .layer-fg {
+      transform: rotateX(0deg) translateZ(32px);
+      opacity: 1;
+    }
+    
+    /* Front cover flaps */
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none; /* Let hovers pass to container */
+    }
+
+    /* Top Flap folds down */
+    .envelope-flap {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 90px;
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform 0.5s ease;
+      z-index: 4;
+    }
+    
+    .envelope-container:hover .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 0; /* Goes behind the letter when opened */
+    }
+
+    /* Wax seal stamp at the center intersection */
+    .wax-seal {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -20%) scale(1);
+      width: 44px;
+      height: 44px;
+      z-index: 5;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    
+    .envelope-container:hover .wax-seal {
+      opacity: 0.15;
+      transform: translate(-50%, 20%) scale(0.85);
+    }
+    
+    /* Decorative Hand-drawn Box for Title */
+    .name-box {
+      position: relative;
+      padding: 1.5rem 3.5rem;
+      margin: 1.5rem auto;
+      display: inline-block;
+    }
+    .name-box h1 {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--brown-ink);
+      line-height: 1.2;
+    }
+    .hero-subtitle {
+      font-family: var(--font-accent);
+      font-size: 1.8rem;
+      color: var(--brown-ink);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Sticker-style Chips */
+    .hero-chips-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .sticker-chip {
+      background-color: var(--white);
+      border: 1.5px solid var(--blush-light);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-family: var(--font-accent);
+      font-size: 1.25rem;
+      color: var(--brown-ink);
+      box-shadow: 2px 3px 6px rgba(92, 61, 46, 0.05);
+      transition: all 0.2s ease;
+    }
+    .sticker-chip:nth-child(1) { transform: rotate(-2deg); border-color: var(--blush-mid); }
+    .sticker-chip:nth-child(2) { transform: rotate(1.5deg); border-color: var(--lavender-mid); }
+    .sticker-chip:nth-child(3) { transform: rotate(-1deg); border-color: var(--sage-mid); }
+    .sticker-chip:hover {
+      transform: translateY(-3px) scale(1.05) rotate(0deg);
+      box-shadow: 3px 5px 10px rgba(92, 61, 46, 0.08);
+      background-color: var(--blush-light);
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      color: var(--brown-muted);
+      margin-top: 1rem;
+      animation: bounce 2s infinite;
+      display: inline-block;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* Tiny float stars in background */
+    .float-stars {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .float-star-item {
+      position: absolute;
+      font-family: var(--font-accent);
+      color: var(--lavender-mid);
+      opacity: 0.35;
+      font-size: 1.4rem;
+      user-select: none;
+    }
+
+    /* 2. ABOUT ME SECTION */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-card {
+      background-color: var(--forest-green);
+      border: 2.5px solid var(--brown-ink);
+      box-shadow: var(--scrapbook-shadow);
+      border-radius: 8px;
+      padding: 2.5rem 1.5rem 1.8rem;
+      position: relative;
+      text-align: center;
+      color: var(--cream);
+    }
+    .about-card h3, .about-card .monogram-circle span {
+      color: var(--brown-ink);
+    }
+    .about-card-tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      width: 90px;
+      height: 22px;
+      background-color: var(--lavender-mid);
+      opacity: 0.85;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+    }
+    .monogram-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px dashed var(--brown-ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 1.5rem;
+      background-color: var(--dusty-rose);
+    }
+    .monogram-circle span {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--brown-ink);
+    }
+    .about-stickers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+    }
+    .about-sticker {
+      font-family: var(--font-accent);
+      font-size: 1.15rem;
+      color: var(--brown-ink);
+      background-color: var(--cream);
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      border: 1.5px solid var(--brown-ink);
+      box-shadow: 2px 2px 0px var(--brown-ink);
+      transform: rotate(calc(var(--rot, 0) * 1deg));
+    }
+    .about-sticker:nth-child(1) { --rot: -2; }
+    .about-sticker:nth-child(2) { --rot: 2; }
+    .about-sticker:nth-child(3) { --rot: -1; }
+    .about-sticker:nth-child(4) { --rot: 3; }
+
+    /* Pure CSS Pressed Flower Drawing */
+    .pressed-flower {
+      position: relative;
+      width: 50px;
+      height: 70px;
+      margin: 1.5rem auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .pressed-flower .stem {
+      position: absolute;
+      bottom: 0;
+      width: 2px;
+      height: 45px;
+      background-color: var(--sage-mid);
+      border-radius: 2px;
+    }
+    .pressed-flower .leaf {
+      position: absolute;
+      background-color: var(--sage);
+      border: 1px solid var(--sage-mid);
+      border-radius: 50% 0 50% 0;
+    }
+    .pressed-flower .leaf.left {
+      width: 12px;
+      height: 7px;
+      bottom: 18px;
+      left: 15px;
+      transform: rotate(-30deg);
+    }
+    .pressed-flower .leaf.right {
+      width: 12px;
+      height: 7px;
+      bottom: 26px;
+      right: 15px;
+      transform: rotate(30deg);
+    }
+    .pressed-flower .blossom {
+      position: absolute;
+      top: 12px;
+      width: 22px;
+      height: 22px;
+    }
+    .pressed-flower .petal {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      background-color: var(--blush-mid);
+      border: 1px solid var(--blush-deep);
+      border-radius: 50%;
+      opacity: 0.8;
+      top: 4px; left: 7px;
+    }
+    .pressed-flower .petal:nth-child(1) { transform: rotate(0deg) translate(0, -5px); }
+    .pressed-flower .petal:nth-child(2) { transform: rotate(72deg) translate(0, -5px); }
+    .pressed-flower .petal:nth-child(3) { transform: rotate(144deg) translate(0, -5px); }
+    .pressed-flower .petal:nth-child(4) { transform: rotate(216deg) translate(0, -5px); }
+    .pressed-flower .petal:nth-child(5) { transform: rotate(288deg) translate(0, -5px); }
+    .pressed-flower .flower-center {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      width: 8px;
+      height: 8px;
+      background-color: var(--yellow-tape);
+      border: 1.2px solid var(--brown-ink);
+      border-radius: 50%;
+    }
+
+    .journal-entry {
+      background-color: rgba(255, 251, 245, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: var(--scrapbook-shadow);
+      border: 2.5px solid var(--brown-ink);
+      background-image: linear-gradient(to bottom, var(--blush-light) 1px, transparent 1px);
+      background-size: 100% 28px;
+      line-height: 28px;
+      position: relative;
+    }
+    .journal-entry h3 {
+      font-family: var(--font-accent);
+      font-size: 1.8rem;
+      color: var(--blush-deep);
+      margin-bottom: 1rem;
+      line-height: 28px;
+      display: inline-block;
+    }
+    .journal-entry p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--brown-ink);
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    .journal-signature {
+      font-family: var(--font-accent);
+      font-size: 1.5rem;
+      color: var(--lavender-deep);
+      text-align: right;
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* 3. TECH STACK SECTION */
+    .toolkit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+    .toolkit-card {
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2.5rem 1.8rem 1.8rem;
+      box-shadow: var(--scrapbook-shadow);
+      position: relative;
+      border: 2.5px solid var(--brown-ink);
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .toolkit-card-tape {
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      width: 70px;
+      height: 18px;
+      opacity: 0.85;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+    }
+    .toolkit-card.frontend-card .toolkit-card-tape { background-color: var(--blush-mid); }
+    .toolkit-card.ai-card .toolkit-card-tape { background-color: var(--lavender-mid); }
+    .toolkit-card.uiux-card .toolkit-card-tape { background-color: var(--sage-mid); }
+    .toolkit-card.motion-card .toolkit-card-tape { background-color: var(--yellow-tape); }
+
+    .toolkit-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .toolkit-header svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--brown-ink);
+      flex-shrink: 0;
+    }
+    .toolkit-header h3 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      color: var(--brown-ink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Skills badges */
+    .toolkit-skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-pill {
+      font-family: var(--font-accent);
+      font-size: 1.25rem;
+      background-color: var(--white);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 1.5px 2px 4px rgba(92, 61, 46, 0.05);
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+    /* Set color mappings for skill pills based on parent category */
+    .frontend-card .skill-pill { border-color: var(--blush-mid); color: var(--blush-deep); }
+    .ai-card .skill-pill { border-color: var(--lavender-mid); color: var(--lavender-deep); }
+    .uiux-card .skill-pill { border-color: var(--sage-mid); color: var(--sage-mid); }
+    .motion-card .skill-pill { border-color: var(--yellow-tape); color: var(--brown-muted); }
+
+    /* Alternating rotations on skill pills for handwriting sticker look */
+    .skill-pill:nth-child(even) { transform: rotate(1.5deg); }
+    .skill-pill:nth-child(odd) { transform: rotate(-2deg); }
+
+    /* Interactive animations on hover */
+    .toolkit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 6px 10px 22px rgba(92, 61, 46, 0.08);
+      border-color: var(--blush-light);
+    }
+    .toolkit-card:hover .skill-pill {
+      transform: rotate(0deg) scale(1.05);
+    }
+
+    /* INFINITE SCROLLING MARQUEE DIVIDER styled as washi tape roll */
+    .marquee-tape {
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(245, 184, 216, 0.8) 0px,
+        rgba(245, 184, 216, 0.8) 250px,
+        rgba(196, 176, 232, 0.8) 250px,
+        rgba(196, 176, 232, 0.8) 500px
+      );
+      border-top: 1.5px dashed rgba(255,255,255,0.4);
+      border-bottom: 1.5px dashed rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(92, 61, 46, 0.05);
+    }
+    .marquee-inner {
+      display: flex;
+      white-space: nowrap;
+      width: max-content;
+      animation: marquee-scroll 24s linear infinite;
+    }
+    .marquee-inner span {
+      font-family: var(--font-accent);
+      font-size: 1.5rem;
+      padding: 0 1rem;
+      letter-spacing: 0.5px;
+    }
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* 4. PROJECTS SECTION */
+    .project-filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 5;
+    }
+    .filter-tab {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      padding: 0.4rem 1.4rem;
+      border: 1px solid var(--blush-light);
+      border-bottom: none;
+      background-color: var(--white);
+      color: var(--brown-muted);
+      cursor: pointer;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 0;
+      transition: all 0.3s ease;
+      position: relative;
+      margin-bottom: -1px;
+      box-shadow: 0 -1px 3px rgba(0,0,0,0.02);
+    }
+    .filter-tab:hover {
+      color: var(--brown-ink);
+      background-color: var(--blush-light);
+    }
+    .filter-tab.active {
+      color: var(--brown-ink);
+      font-weight: 700;
+      border-color: var(--blush-mid);
+      z-index: 2;
+    }
+    /* Tab bookmark colors when active */
+    .filter-tab:nth-child(1).active { background-color: var(--blush-light); border-color: var(--blush-mid); }
+    .filter-tab:nth-child(2).active { background-color: var(--lavender); border-color: var(--lavender-mid); }
+    .filter-tab:nth-child(3).active { background-color: var(--sage); border-color: var(--sage-mid); }
+    .filter-tab:nth-child(4).active { background-color: var(--yellow-tape); border-color: var(--yellow-tape); }
+
+    /* Polaroid Cards Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 3rem 2rem;
+    }
+    
+    /* Polaroid style card */
+    .project-card {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1.2rem;
+      border-radius: 4px;
+      box-shadow: var(--scrapbook-shadow);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      border: 2.5px solid var(--brown-ink);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    /* Top corner washi tape */
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      width: 65px;
+      height: 18px;
+      opacity: 0.8;
+      transform: rotate(-6deg);
+      z-index: 3;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+    }
+    
+    /* Alternate cards rotation */
+    .project-card:nth-child(even) { transform: rotate(-1.2deg); }
+    .project-card:nth-child(odd) { transform: rotate(1.2deg); }
+
+    /* Unique corner tape backgrounds */
+    .project-card:nth-child(4n+1)::before {
+      background-color: var(--blush-mid);
+      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
+    }
+    .project-card:nth-child(4n+2)::before {
+      background-color: var(--lavender-mid);
+      clip-path: polygon(0 10%, 1% 0, 99% 0, 100% 10%, 98% 25%, 100% 40%, 99% 55%, 100% 70%, 98% 85%, 100% 100%, 99% 95%, 1% 100%, 0 90%, 2% 75%, 0 60%, 1% 45%, 0 30%, 2% 15%);
+    }
+    .project-card:nth-child(4n+3)::before {
+      background-color: var(--sage-mid);
+      clip-path: polygon(0 5%, 2% 0, 98% 0, 100% 5%, 99% 20%, 100% 35%, 98% 50%, 100% 65%, 99% 80%, 100% 95%, 98% 100%, 2% 95%, 0 100%, 1% 85%, 0 70%, 2% 55%, 0 40%, 1% 25%);
+    }
+    .project-card:nth-child(4n+4)::before {
+      background-color: var(--yellow-tape);
+      clip-path: polygon(0 12%, 1% 0, 99% 0, 100% 12%, 98% 24%, 100% 36%, 99% 48%, 100% 60%, 98% 72%, 100% 84%, 99% 96%, 1% 100%, 0 88%, 2% 76%, 0 64%, 1% 52%, 0 40%, 2% 28%);
+    }
+
+    /* Colored Illustration box replacing screenshot */
+    .project-illustration-box {
+      width: 100%;
+      height: 130px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px dashed var(--brown-muted);
+    }
+    .project-card:nth-child(4n+1) .project-illustration-box { background-color: var(--blush-light); }
+    .project-card:nth-child(4n+2) .project-illustration-box { background-color: var(--lavender); }
+    .project-card:nth-child(4n+3) .project-illustration-box { background-color: var(--sage); }
+    .project-card:nth-child(4n+4) .project-illustration-box { background-color: var(--yellow-tape); opacity: 0.6; }
+    
+    .project-illustration-box svg {
+      width: 44px;
+      height: 44px;
+      stroke: var(--brown-ink);
+      stroke-width: 1.3;
+      filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.05));
+    }
+
+    .project-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      color: var(--brown-ink);
+      margin-bottom: 0.4rem;
+    }
+    .project-card p {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--brown-muted);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .project-tag {
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      color: var(--brown-ink);
+      background-color: var(--cream);
+      padding: 0.1rem 0.6rem;
+      border-radius: 8px;
+      border: 1px solid var(--blush-light);
+    }
+    .project-link-label {
+      font-family: var(--font-accent);
+      font-size: 1.25rem;
+      color: var(--blush-deep);
+      text-align: right;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+    
+    /* Project Hover interactions */
+    .project-card:hover {
+      transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.03);
+      box-shadow: 8px 8px 0px var(--brown-ink);
+      z-index: 10;
+    }
+    .project-card:hover .project-link-label {
+      color: var(--lavender-deep);
+    }
+
+    /* 5. EXPERIENCE SECTION */
+    .timeline-container {
+      position: relative;
+      max-width: 750px;
+      margin: 3.5rem auto 0;
+      padding: 1rem 0;
+    }
+    /* Dash timelines */
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 30px;
+      width: 2px;
+      border-left: 2.5px dashed var(--blush-mid);
+    }
+    .timeline-entry {
+      position: relative;
+      margin-bottom: 3.5rem;
+      padding-left: 75px;
+    }
+    .timeline-badge {
+      position: absolute;
+      left: 9px;
+      top: 15px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--blush-light);
+      border: 2px dashed var(--blush-deep);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-accent);
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--brown-ink);
+      z-index: 2;
+      box-shadow: 1.5px 2px 4px rgba(92, 61, 46, 0.05);
+      transform: rotate(-5deg);
+    }
+    .timeline-card {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.8rem;
+      border-radius: 8px;
+      box-shadow: var(--scrapbook-shadow);
+      position: relative;
+      border: 2.5px solid var(--brown-ink);
+    }
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      width: 70px;
+      height: 18px;
+      background-color: var(--lavender-mid);
+      opacity: 0.8;
+      transform: rotate(2.5deg);
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
+    }
+
+    /* Inside Log Card */
+    .timeline-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .timeline-card-title h3 {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--brown-ink);
+      display: inline-block;
+    }
+    .timeline-card-title p {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      color: var(--lavender-deep);
+      margin-top: 0.1rem;
+    }
+    .status-badge {
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      padding: 0.2rem 0.7rem;
+      background-color: var(--sage);
+      border-radius: 12px;
+      color: var(--brown-ink);
+      border: 1px dashed var(--sage-mid);
+      transform: rotate(1deg);
+      box-shadow: 1.5px 2px 4px rgba(0,0,0,0.03);
+    }
+    
+    .timeline-bullets {
+      list-style: none;
+      padding-left: 0.5rem;
+    }
+    .timeline-bullets li {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--brown-muted);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+      padding-left: 1.2rem;
+    }
+    .timeline-bullets li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: var(--blush-deep);
+      top: -2px;
+    }
+
+    /* Hackathon Highlight Card */
+    .hackathon-card {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2.2rem;
+      border-radius: 12px;
+      box-shadow: var(--scrapbook-shadow);
+      position: relative;
+      border: 2.5px dashed var(--brown-ink);
+      max-width: 675px;
+      margin: 4.5rem auto 0;
+      overflow: hidden;
+    }
+    .hackathon-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      width: 110px;
+      height: 22px;
+      background-color: var(--yellow-tape);
+      opacity: 0.9;
+      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
+    }
+    .gold-star-sticker {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 46px;
+      height: 46px;
+      background-color: var(--yellow-tape);
+      border-radius: 50%;
+      border: 1.5px dashed var(--brown-ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      color: var(--brown-ink);
+      transform: rotate(15deg);
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+      user-select: none;
+    }
+    .hackathon-label {
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      color: var(--brown-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .hackathon-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--brown-ink);
+      margin-bottom: 0.6rem;
+    }
+    .hackathon-card p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--brown-muted);
+      line-height: 1.5;
+    }
+
+    /* 6. STATS & CONTACT SECTIONS */
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3.5rem auto 0;
+      max-width: 850px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .tracker-card {
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 2.2rem;
+      border-radius: 12px;
+      box-shadow: var(--scrapbook-shadow);
+      flex: 1;
+      min-width: 290px;
+      position: relative;
+      border: 2.5px solid var(--brown-ink);
+    }
+    .tracker-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 40px;
+      width: 75px;
+      height: 20px;
+      opacity: 0.85;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
+    }
+    .tracker-card.github::before { background-color: var(--sage-mid); }
+    .tracker-card.linkedin::before { background-color: var(--lavender-mid); }
+
+    .tracker-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: var(--brown-ink);
+      margin-bottom: 0.2rem;
+    }
+    .tracker-handle {
+      font-family: var(--font-accent);
+      font-size: 1.25rem;
+      color: var(--brown-muted);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .tracker-stats {
+      font-family: var(--font-title);
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--brown-ink);
+      margin: 1rem 0;
+    }
+    .tracker-stats span {
+      font-size: 1.1rem;
+      color: var(--blush-deep);
+      font-family: var(--font-accent);
+    }
+
+    /* Contribution Grid Representation */
+    .contribution-grid {
+      display: flex;
+      gap: 6px;
+      margin: 1.2rem 0;
+    }
+    .contrib-square {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+    }
+    .contrib-square.filled {
+      background-color: var(--sage-mid);
+      border: 1px solid var(--sage);
+    }
+    .contrib-square.empty {
+      background-color: var(--cream);
+      border: 1px dashed var(--sage-mid);
+    }
+
+    .tracker-card p.bottom-note {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      color: var(--brown-muted);
+      margin-top: 1.2rem;
+    }
+
+    /* Floating Yellow Post-It Note */
+    .sticky-note {
+      background-color: #fffacd;
+      padding: 1.6rem;
+      box-shadow: var(--scrapbook-shadow);
+      width: 210px;
+      min-height: 140px;
+      transform: rotate(3deg);
+      font-family: var(--font-accent);
+      font-size: 1.4rem;
+      color: #5c3d2e;
+      border: 2px solid var(--brown-ink);
+      position: absolute;
+      top: -30px;
+      left: calc(50% - 105px);
+      z-index: 10;
+      text-align: center;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .sticky-note {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 1.5rem auto;
+        transform: rotate(1deg);
+      }
+    }
+
+    /* 7. CONTACT SECTION */
+    .contact-card {
+      max-width: 680px;
+      margin: 4rem auto 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 8px;
+      box-shadow: var(--scrapbook-shadow);
+      position: relative;
+      border: 2.5px solid var(--brown-ink);
+    }
+
+    /* Paperclip decoration element */
+    .paperclip {
+      position: absolute;
+      top: -16px;
+      right: 25px;
+      width: 32px;
+      height: 48px;
+      z-index: 15;
+      pointer-events: none;
+      transform: rotate(10deg);
+      filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.12));
+    }
+
+    /* Vintage Scalloped Postage Stamp */
+    .postage-stamp {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 44px;
+      height: 52px;
+      z-index: 5;
+      pointer-events: none;
+      transform: rotate(5deg);
+      filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.1));
+    }
+    /* Lavender washi tape */
+    .contact-card::after {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 100px;
+      height: 22px;
+      background-color: var(--lavender-mid);
+      opacity: 0.85;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
+    }
+    
+    /* Floral border inside card */
+    .contact-card-inner {
+      border: 12px solid transparent;
+      border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4' fill='%23f5b8d8'/%3E%3Ccircle cx='12' cy='6' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='12' cy='18' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='6' cy='12' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='18' cy='12' r='3' fill='%23fce8f4'/%3E%3C/svg%3E") 12 round;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .contact-card-inner h4 {
+      font-family: var(--font-accent);
+      font-size: 1.5rem;
+      color: var(--brown-muted);
+      margin-bottom: 0.8rem;
+    }
+    .contact-card-inner h3 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--brown-ink);
+      line-height: 1.2;
+    }
+    .contact-card-inner .beautiful-word {
+      font-family: var(--font-accent);
+      font-size: 3rem;
+      color: var(--blush-deep);
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    /* Collab Tags Sticker pills */
+    .collab-stickers {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 3rem;
+    }
+    .collab-sticker {
+      font-family: var(--font-accent);
+      font-size: 1.25rem;
+      padding: 0.4rem 1.1rem;
+      background-color: var(--white);
+      border: 1.5px dashed var(--blush-deep);
+      border-radius: 20px;
+      color: var(--brown-ink);
+      box-shadow: 2px 2px 4px rgba(92, 61, 46, 0.03);
+    }
+    .collab-sticker:nth-child(even) { transform: rotate(-2deg); }
+    .collab-sticker:nth-child(odd) { transform: rotate(1.5deg); }
+
+    /* CTA BUTTON */
+    .cta-button {
+      display: inline-block;
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      color: var(--white);
+      background-color: var(--blush-deep);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 2px 4px 10px rgba(212, 120, 154, 0.25);
+      transition: all 0.3s ease;
+      margin-bottom: 2.2rem;
+    }
+    .cta-button:hover {
+      background-color: var(--lavender-deep);
+      box-shadow: 2px 4px 12px rgba(139, 114, 200, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Social icons below CTA */
+    .contact-socials {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-social-link {
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      color: var(--brown-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .contact-social-link:hover {
+      color: var(--blush-deep);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      border-top: 1px dashed var(--blush-light);
+      background-color: rgba(255, 251, 245, 0.5);
+    }
+    .footer-text {
+      font-family: var(--font-accent);
+      font-size: 1.35rem;
+      color: var(--brown-muted);
+    }
+
+    /* SCROLL REVEAL CLASS */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scroll-reveal.reveal-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Cool Background Watercolor Blobs */
+    .bg-watercolor-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -2;
+      opacity: 0.35;
+      pointer-events: none;
+      animation: float-blob 25s infinite alternate ease-in-out;
+    }
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background-color: var(--blush-light);
+      top: -10%;
+      left: -10%;
+      animation-duration: 20s;
+    }
+    .blob-2 {
+      width: 500px;
+      height: 500px;
+      background-color: var(--lavender);
+      top: 40%;
+      right: -15%;
+      animation-duration: 28s;
+      animation-delay: -5s;
+    }
+    .blob-3 {
+      width: 450px;
+      height: 450px;
+      background-color: var(--sage);
+      bottom: -10%;
+      left: 15%;
+      animation-duration: 24s;
+      animation-delay: -10s;
+    }
+    .blob-4 {
+      width: 350px;
+      height: 350px;
+      background-color: var(--yellow-tape);
+      top: 15%;
+      left: 60%;
+      opacity: 0.25;
+      animation-duration: 22s;
+      animation-delay: -3s;
+    }
+
+    @keyframes float-blob {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      50% { transform: translate(50px, -40px) scale(1.1) rotate(180deg); }
+      100% { transform: translate(-30px, 50px) scale(0.9) rotate(360deg); }
+    }
+
+    /* Floating Botanical Sketches in Background */
+    .bg-botanical-sketch {
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+      user-select: none;
+      animation: float-sketch 30s infinite ease-in-out alternate;
+    }
+    .sketch-1 {
+      top: 15%;
+      left: 5%;
+      animation-duration: 35s;
+    }
+    .sketch-2 {
+      bottom: 20%;
+      right: 5%;
+      animation-duration: 40s;
+      animation-delay: -7s;
+    }
+    .sketch-3 {
+      top: 60%;
+      left: 80%;
+      animation-duration: 32s;
+      animation-delay: -15s;
+    }
+
+    @keyframes float-sketch {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, 30px) rotate(8deg); }
+      100% { transform: translate(30px, -20px) rotate(-12deg); }
+    }
+
+    /* RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 768px) {
+      .name-box h1 {
+        font-size: 2.6rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .toolkit-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .section-header-wrap h2 {
+        font-size: 2rem;
+      }
+      .timeline-line {
+        left: 20px;
+      }
+      .timeline-entry {
+        padding-left: 55px;
+      }
+      .timeline-badge {
+        left: -1px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.85rem;
+      }
+      .contact-card-inner h3 {
+        font-size: 1.8rem;
+      }
+      .contact-card-inner .beautiful-word {
+        font-size: 2.3rem;
+      }
+    }
+
+    /* Top Navigation Banner */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      z-index: 1000;
+      background-color: rgba(255, 251, 245, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 2px dashed var(--brown-ink);
+      transition: all 0.3s ease;
+    }
+    .top-nav.scrolled {
+      height: 60px;
+      background-color: rgba(255, 251, 245, 0.95);
+      box-shadow: 0 4px 20px rgba(92, 61, 46, 0.08);
+    }
+    .nav-container {
+      max-width: 1100px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+    .logo-svg {
+      flex-shrink: 0;
+      animation: wiggle-slow 6s ease-in-out infinite alternate;
+    }
+    .logo-name {
+      font-family: var(--font-accent);
+      font-size: 2.1rem;
+      color: var(--brown-ink);
+      font-weight: normal;
+      line-height: 1;
+      margin-top: -4px;
+    }
+    @keyframes wiggle-slow {
+      0% { transform: rotate(-3deg); }
+      100% { transform: rotate(3deg); }
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-link {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brown-ink);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      padding: 6px 0;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--blush-deep);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+    .nav-link:hover {
+      color: var(--blush-deep);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+    }
+    .mobile-nav-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--brown-ink);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background-color: var(--cream);
+        border-left: 2.5px solid var(--brown-ink);
+        box-shadow: -10px 0 30px rgba(92, 61, 46, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        z-index: 1000;
+      }
+      .nav-links.active {
+        right: 0;
+      }
+      .mobile-nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .mobile-nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Banner -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg class="logo-svg" viewBox="0 0 50 50" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="22" stroke="var(--brown-ink)" stroke-width="1.8" stroke-dasharray="4,3" />
+          <circle cx="25" cy="25" r="18" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="1.5" />
+          <text x="25" y="31" font-family="var(--font-title)" font-size="16" fill="var(--blush-deep)" text-anchor="middle" font-weight="bold">K</text>
+        </svg>
+        <span class="logo-name">Kritika</span>
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#techstack" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Animated Watercolor Background Blobs -->
+  <div class="bg-watercolor-blob blob-1"></div>
+  <div class="bg-watercolor-blob blob-2"></div>
+  <div class="bg-watercolor-blob blob-3"></div>
+  <div class="bg-watercolor-blob blob-4"></div>
+
+  <!-- Floating Botanical Sketches in Background -->
+  <div class="bg-botanical-sketch sketch-1">
+    <svg viewBox="0 0 100 100" width="120" height="120">
+      <path d="M10,90 Q30,60 50,40 T90,10 M50,40 Q40,30 30,35 Q40,45 50,40 M70,20 Q60,10 50,15 Q60,25 70,20" fill="none" stroke="var(--sage-mid)" stroke-width="1.5" opacity="0.3" stroke-linecap="round" />
+    </svg>
+  </div>
+  <div class="bg-botanical-sketch sketch-2">
+    <svg viewBox="0 0 100 100" width="140" height="140">
+      <path d="M90,90 Q60,60 10,10 M35,35 Q20,30 15,40 Q25,45 35,35 M60,60 Q45,50 40,60 Q50,65 60,60" fill="none" stroke="var(--sage-mid)" stroke-width="1.5" opacity="0.25" stroke-linecap="round" />
+    </svg>
+  </div>
+  <div class="bg-botanical-sketch sketch-3">
+    <svg viewBox="0 0 100 100" width="100" height="100">
+      <circle cx="50" cy="50" r="10" fill="none" stroke="var(--blush-deep)" stroke-width="1.2" opacity="0.2" />
+      <path d="M50,40 C45,30 55,30 50,40 M50,60 C45,70 55,70 50,60 M40,50 C30,45 30,55 40,50 M60,50 C70,45 70,55 60,50" fill="none" stroke="var(--blush-deep)" stroke-width="1.2" opacity="0.2" />
+    </svg>
+  </div>
+
+  <!-- SCREEN FLASH INTERACTIVE DECORATION -->
+  <div id="screen-flash"></div>
+
+  <!-- BACKGROUND DECORATIVE FLOAT STARS -->
+  <div class="float-stars">
+    <div class="float-star-item" style="top: 15%; left: 8%;">✦</div>
+    <div class="float-star-item" style="top: 25%; right: 10%;">✦</div>
+    <div class="float-star-item" style="top: 45%; left: 12%;">✦</div>
+    <div class="float-star-item" style="top: 60%; right: 8%;">✦</div>
+    <div class="float-star-item" style="top: 75%; left: 10%;">✦</div>
+    <div class="float-star-item" style="top: 85%; right: 12%;">✦</div>
+  </div>
+
+  <!-- 1. HERO SECTION -->
+  <header id="hero" class="ruled-section">
+    <div class="max-width-wrapper hero-content" style="position: relative;">
+      
+      <!-- Name Card Box (Borderless, with bows and lilies) -->
+      <div class="name-box" style="z-index: 5; border: none; background: transparent; box-shadow: none;">
+        <!-- Top-Left Bow -->
+        <div class="corner-bow bow-tl" style="position: absolute; top: -12px; left: -12px; transform: rotate(-15deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
+            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+        
+        <!-- Top-Right Bow -->
+        <div class="corner-bow bow-tr" style="position: absolute; top: -12px; right: -12px; transform: rotate(15deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
+            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Left Lily -->
+        <div class="side-lily lily-l" style="position: absolute; left: -46px; top: calc(50% - 15px); transform: rotate(-10deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,38 Q 20,30 22,22" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <path d="M 21,32 Q 13,29 11,23 Q 17,25 21,30 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
+            <path d="M 21,34 Q 28,33 30,27 Q 25,28 21,32 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
+            <path d="M 12,20 C 10,12 18,10 20,18 C 22,10 30,12 28,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
+            <path d="M 20,22 C 16,16 14,24 20,26 C 26,24 24,16 20,22 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
+            <circle cx="20" cy="18" r="2.5" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="1" />
+          </svg>
+        </div>
+
+        <h1>Kritika Khatri</h1>
+
+        <!-- Right Lily -->
+        <div class="side-lily lily-r" style="position: absolute; right: -46px; top: calc(50% - 15px); transform: rotate(10deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,38 Q 20,30 22,22" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <path d="M 21,32 Q 13,29 11,23 Q 17,25 21,30 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
+            <path d="M 21,34 Q 28,33 30,27 Q 25,28 21,32 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
+            <path d="M 12,20 C 10,12 18,10 20,18 C 22,10 30,12 28,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
+            <path d="M 20,22 C 16,16 14,24 20,26 C 26,24 24,16 20,22 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
+            <circle cx="20" cy="18" r="2.5" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="1" />
+          </svg>
+        </div>
+        
+        <!-- Bottom-Left Bow -->
+        <div class="corner-bow bow-bl" style="position: absolute; bottom: -12px; left: -12px; transform: rotate(-45deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
+            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+        
+        <!-- Bottom-Right Bow -->
+        <div class="corner-bow bow-br" style="position: absolute; bottom: -12px; right: -12px; transform: rotate(45deg);">
+          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
+            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Scroll down hint -->
+      <div class="scroll-hint" style="z-index: 5;">scroll ↓</div>
+
+      <!-- Peeking Interactive Cat -->
+      <div id="peeking-cat">
+        <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cat Head Silhouette -->
+          <path d="M 20,100 C 20,70 40,48 50,48 L 62,15 C 64,10 68,13 70,25 L 76,45 C 84,42 92,40 100,40 C 108,40 116,42 124,45 L 130,25 C 132,13 136,10 138,15 L 150,48 C 160,48 180,70 180,100 Z" fill="#1c1c1c" stroke="var(--brown-ink)" stroke-width="2.5" stroke-linejoin="round" />
+          <!-- Golden Eyes -->
+          <circle cx="78" cy="65" r="16" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="2.5" />
+          <circle cx="122" cy="65" r="16" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="2.5" />
+          <!-- Pupils + highlights -->
+          <g id="pupil-left">
+            <circle cx="78" cy="65" r="8" fill="#1e130c" />
+            <circle cx="75" cy="62" r="2.5" fill="#ffffff" />
+          </g>
+          <g id="pupil-right">
+            <circle cx="122" cy="65" r="8" fill="#1e130c" />
+            <circle cx="119" cy="62" r="2.5" fill="#ffffff" />
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 2. ABOUT ME SECTION -->
+  <section id="about" class="ruled-section scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <div class="about-grid">
+        
+        <!-- Left: Monogram and pressed flower card -->
+        <div class="about-card">
+          <!-- Washi tape pinning the card -->
+          <div class="about-card-tape washi-tape washi-tape-torn-horizontal"></div>
+
+          <div class="monogram-circle">
+            <span>KK</span>
+          </div>
+
+          <div class="about-stickers">
+            <span class="about-sticker">✦ frontend</span>
+            <span class="about-sticker">✦ ai & automation</span>
+            <span class="about-sticker">✦ ui/ux</span>
+            <span class="about-sticker">✦ motion</span>
+          </div>
+
+          <!-- Pressed flower drawing -->
+          <div class="pressed-flower" aria-hidden="true">
+            <div class="stem"></div>
+            <div class="leaf left"></div>
+            <div class="leaf right"></div>
+            <div class="blossom">
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="petal"></div>
+              <div class="flower-center"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Notebook letter description -->
+        <div class="journal-entry">
+          <!-- Decorative Paperclip holding card -->
+          <div class="paperclip">
+            <svg viewBox="0 0 32 48" width="100%" height="100%">
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>dear visitor ♡</h3>
+          <p>
+            I'm a B.Tech CS student at Newton School of Technology, currently interning as an AI Engineer at FlyRank. I build at the edge of frontend development, AI automation, and product design — because I don't think those should be separate skills.
+          </p>
+          <p>
+            I'm 20, learning fast, and building in public. I believe code should not just work flawlessly, but it should also delight and inspire. Welcome to my creative workspace.
+          </p>
+          <span class="journal-signature">— Kritika, writing code & making things ✦</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Divider (Yellow washi tape at -2deg) -->
+  <div class="washi-divider yellow washi-tape washi-tape-torn-horizontal"></div>
+
+  <!-- 3. TECH STACK (TOOLKIT) SECTION -->
+  <section id="techstack" class="scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <!-- Section Header -->
+      <div class="section-header-wrap">
+        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--sage-mid);"></div>
+        <h2>my toolkit ♡</h2>
+        <p>things I know & love</p>
+      </div>
+
+      <!-- 2x2 grid of pockets -->
+      <div class="toolkit-grid">
+        
+        <!-- Frontend pocket -->
+        <div class="toolkit-card frontend-card">
+          <!-- Decorative Paperclip -->
+          <div class="paperclip" style="right: 15px; transform: rotate(-5deg); top: -14px;">
+            <svg viewBox="0 0 32 48" width="100%" height="100%">
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
+          <div class="toolkit-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="12" rx="2" ry="2"/>
+              <line x1="2" y1="20" x2="22" y2="20"/>
+              <line x1="12" y1="16" x2="12" y2="20"/>
+            </svg>
+            <h3>Frontend Systems</h3>
+          </div>
+          <div class="toolkit-skills-wrap">
+            <span class="skill-pill">HTML5</span>
+            <span class="skill-pill">CSS3</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">React</span>
+          </div>
+        </div>
+
+        <!-- AI & Auto pocket -->
+        <div class="toolkit-card ai-card">
+          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
+          <div class="toolkit-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" fill="var(--yellow-tape)"/>
+              <path d="M5 14l1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" fill="var(--blush-mid)"/>
+            </svg>
+            <h3>AI & Automation</h3>
+          </div>
+          <div class="toolkit-skills-wrap">
+            <span class="skill-pill">n8n</span>
+            <span class="skill-pill">Chatbot Integration</span>
+            <span class="skill-pill">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <!-- UI/UX pocket -->
+        <div class="toolkit-card uiux-card">
+          <!-- Decorative Paperclip -->
+          <div class="paperclip" style="right: 15px; transform: rotate(8deg); top: -14px;">
+            <svg viewBox="0 0 32 48" width="100%" height="100%">
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
+          <div class="toolkit-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+            </svg>
+            <h3>UI/UX Design</h3>
+          </div>
+          <div class="toolkit-skills-wrap">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Prototyping</span>
+            <span class="skill-pill">Responsive Design</span>
+          </div>
+        </div>
+
+        <!-- Motion pocket -->
+        <div class="toolkit-card motion-card">
+          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
+          <div class="toolkit-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+            </svg>
+            <h3>Motion & Video</h3>
+          </div>
+          <div class="toolkit-skills-wrap">
+            <span class="skill-pill">After Effects</span>
+            <span class="skill-pill">Motion Graphics</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Infinite scrolling marquee strip divider -->
+    <div class="marquee-tape washi-tape washi-tape-torn-horizontal" aria-label="Scrolling toolkit list">
+      <div class="marquee-inner">
+        <span>&nbsp;♡ React &nbsp;♡ Figma &nbsp;♡ n8n &nbsp;♡ JavaScript &nbsp;♡ After Effects &nbsp;♡ HTML5 &nbsp;♡ CSS3 &nbsp;♡ Prompt Engineering &nbsp;♡ Figma &nbsp;</span>
+        <span>&nbsp;♡ React &nbsp;♡ Figma &nbsp;♡ n8n &nbsp;♡ JavaScript &nbsp;♡ After Effects &nbsp;♡ HTML5 &nbsp;♡ CSS3 &nbsp;♡ Prompt Engineering &nbsp;♡ Figma &nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decorative Spacers -->
+  <div class="spacer-decorations" aria-hidden="true">
+    <span>✦</span>
+    <span>♡</span>
+    <span>✦</span>
+  </div>
+
+  <!-- 4. PROJECTS (Spread Pinned Cards) SECTION -->
+  <section id="projects" class="ruled-section scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <!-- Section Header -->
+      <div class="section-header-wrap">
+        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--lavender-mid);"></div>
+        <h2>things I've built ✦</h2>
+        <p>projects & experiments</p>
+      </div>
+
+      <!-- Filter tabs sticking out from top -->
+      <div class="project-filter-container">
+        <button class="filter-tab active" onclick="filterProjects('all')">all</button>
+        <button class="filter-tab" onclick="filterProjects('frontend')">frontend</button>
+        <button class="filter-tab" onclick="filterProjects('ai')">ai & auto</button>
+        <button class="filter-tab" onclick="filterProjects('uiux')">ui/ux</button>
+      </div>
+
+      <!-- Staggered Projects Grid -->
+      <div class="projects-grid">
+        
+        <!-- Project 1 -->
+        <div class="project-card" data-category="frontend">
+          <!-- Decorative Paperclip -->
+          <div class="paperclip" style="right: 15px; transform: rotate(12deg); top: -12px;">
+            <svg viewBox="0 0 32 48" width="100%" height="100%">
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="project-card-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--blush-mid);"></div>
+          <div class="project-illustration-box">
+            <!-- Music player outline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            </svg>
+          </div>
+          <h3>♡ Spotify Clone</h3>
+          <p>Responsive music streaming UI in React — playlists, player controls, dynamic components.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">CSS3</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+          <div class="project-link-label">view project →</div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-category="frontend uiux">
+          <div class="project-illustration-box">
+            <!-- shopping bag outline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <h3>✦ Aurelia E-Commerce</h3>
+          <p>Modern shopping platform with product listing, cart, and smooth checkout flow.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Responsive</span>
+            <span class="project-tag">Frontend</span>
+          </div>
+          <div class="project-link-label">view project →</div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-category="frontend">
+          <div class="project-illustration-box">
+            <!-- Film reel / stream outline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+            </svg>
+          </div>
+          <h3>♡ K-Flix</h3>
+          <p>K-Drama discovery site with genre filters and streaming-style show detail pages.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+          <div class="project-link-label">view project →</div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="frontend ai">
+          <div class="project-illustration-box">
+            <!-- satellite/world tracker outline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>✦ ISS & News Dashboard</h3>
+          <p>Real-time ISS tracker with live APIs and an integrated AI chatbot interface.</p>
+          <div class="project-tags">
+            <span class="project-tag">APIs</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">AI</span>
+          </div>
+          <div class="project-link-label">view project →</div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="ai">
+          <div class="project-illustration-box">
+            <!-- pipeline automated workflow outline -->
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3>♡ AI Newsletter Automation</h3>
+          <p>Automated pipeline — collects news, writes AI summaries, sends via Gmail.</p>
+          <div class="project-tags">
+            <span class="project-tag">n8n</span>
+            <span class="project-tag">AI</span>
+            <span class="project-tag">Automation</span>
+          </div>
+          <div class="project-link-label">view project →</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Divider (Sage green tape at 2deg) -->
+  <div class="washi-divider sage washi-tape washi-tape-torn-horizontal"></div>
+
+  <!-- 5. EXPERIENCE (Timeline Spread) SECTION -->
+  <section id="experience" class="scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <!-- Section Header -->
+      <div class="section-header-wrap">
+        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--blush-mid);"></div>
+        <h2>my journey so far</h2>
+        <p>the story till now ✦</p>
+      </div>
+
+      <!-- timeline -->
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        
+        <!-- Experience Entry 1 -->
+        <div class="timeline-entry">
+          <div class="timeline-badge">24–26</div>
+          <div class="timeline-card">
+            <!-- Vintage Scalloped Postage Stamp -->
+            <div class="postage-stamp">
+              <svg viewBox="0 0 44 52" width="100%" height="100%">
+                <path d="M 4 4 L 40 4 A 2 2 0 0 0 40 8 A 2 2 0 0 0 40 12 A 2 2 0 0 0 40 16 A 2 2 0 0 0 40 20 A 2 2 0 0 0 40 24 A 2 2 0 0 0 40 28 A 2 2 0 0 0 40 32 A 2 2 0 0 0 40 36 A 2 2 0 0 0 40 40 A 2 2 0 0 0 40 44 A 2 2 0 0 0 40 48 L 4 48 A 2 2 0 0 0 4 44 A 2 2 0 0 0 4 40 A 2 2 0 0 0 4 36 A 2 2 0 0 0 4 32 A 2 2 0 0 0 4 28 A 2 2 0 0 0 4 24 A 2 2 0 0 0 4 20 A 2 2 0 0 0 4 16 A 2 2 0 0 0 4 12 A 2 2 0 0 0 4 8 Z" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="1.8" />
+                <circle cx="22" cy="22" r="7" fill="var(--blush-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
+                <path d="M22,22 L22,34 M17,29 Q22,25 27,29" stroke="var(--sage-mid)" stroke-width="1.5" fill="none" />
+                <path d="M8,12 Q22,4 36,12 M6,16 Q22,8 38,16" fill="none" stroke="rgba(92, 61, 46, 0.3)" stroke-width="1.2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="timeline-card-header">
+              <div class="timeline-card-title">
+                <h3>FlyRank</h3>
+                <p>AI Engineer Intern ♡</p>
+              </div>
+              <span class="status-badge">● currently here</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Built AI-driven automation pipelines for the engineering team</li>
+              <li>Integrated AI models into production workflows</li>
+              <li>Shipped AI-powered features with cross-functional teams</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hackathon highlight box -->
+      <div class="hackathon-card">
+        <!-- Scalloped Stamp -->
+        <div class="postage-stamp" style="top: 15px; left: 15px; transform: rotate(-8deg);">
+          <svg viewBox="0 0 44 52" width="100%" height="100%">
+            <path d="M 4 4 L 40 4 A 2 2 0 0 0 40 8 A 2 2 0 0 0 40 12 A 2 2 0 0 0 40 16 A 2 2 0 0 0 40 20 A 2 2 0 0 0 40 24 A 2 2 0 0 0 40 28 A 2 2 0 0 0 40 32 A 2 2 0 0 0 40 36 A 2 2 0 0 0 40 40 A 2 2 0 0 0 40 44 A 2 2 0 0 0 40 48 L 4 48 A 2 2 0 0 0 4 44 A 2 2 0 0 0 4 40 A 2 2 0 0 0 4 36 A 2 2 0 0 0 4 32 A 2 2 0 0 0 4 28 A 2 2 0 0 0 4 24 A 2 2 0 0 0 4 20 A 2 2 0 0 0 4 16 A 2 2 0 0 0 4 12 A 2 2 0 0 0 4 8 Z" fill="var(--yellow-tape)" stroke="var(--brown-ink)" stroke-width="1.8" />
+            <polygon points="22,12 25,18 32,19 27,24 28,30 22,27 16,30 17,24 12,19 19,18" fill="var(--cream)" stroke="var(--brown-ink)" stroke-width="1" />
+            <path d="M8,12 Q22,4 36,12" fill="none" stroke="rgba(92, 61, 46, 0.3)" stroke-width="1.2" />
+          </svg>
+        </div>
+        <div class="gold-star-sticker" style="right: 15px; left: auto;" aria-hidden="true">✦</div>
+        <span class="hackathon-label">achievement unlocked ✦</span>
+        <h3>Ctrl+Space Hackathon</h3>
+        <p>Built creative tech solutions under time pressure — frontend development + AI automation.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Decorative Spacers -->
+  <div class="spacer-decorations" aria-hidden="true">
+    <span>♡</span>
+    <span>✦</span>
+    <span>♡</span>
+  </div>
+
+  <!-- 6. STATS (Habit Tracker HUD) SECTION -->
+  <section id="stats" class="ruled-section scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <!-- Section Header -->
+      <div class="section-header-wrap">
+        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--yellow-tape);"></div>
+        <h2>find me here ✦</h2>
+      </div>
+
+      <div class="stats-container">
+        
+        <!-- GitHub tracker -->
+        <div class="tracker-card github">
+          <h3>GitHub</h3>
+          <span class="tracker-handle">@kritikakhatri</span>
+          
+          <div class="tracker-stats">
+            10+ <span>projects</span> &middot; 8+ <span>repos</span>
+          </div>
+
+          <!-- Contribution Grid representation -->
+          <div class="contribution-grid" aria-label="Contribution Activity Grid Mockup">
+            <div class="contrib-square filled"></div>
+            <div class="contrib-square empty"></div>
+            <div class="contrib-square filled"></div>
+            <div class="contrib-square filled"></div>
+            <div class="contrib-square empty"></div>
+            <div class="contrib-square filled"></div>
+            <div class="contrib-square filled"></div>
+            <div class="contrib-square empty"></div>
+          </div>
+
+          <p class="bottom-note">where the builds live ♡</p>
+        </div>
+
+        <!-- LinkedIn tracker -->
+        <div class="tracker-card linkedin">
+          <h3>LinkedIn</h3>
+          <span class="tracker-handle">/in/kritika-khatri</span>
+
+          <div class="tracker-stats">
+            Growing &middot; Consistent
+          </div>
+          
+          <div class="contribution-grid" style="opacity: 0.7;" aria-hidden="true">
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+            <div class="contrib-square empty"></div>
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+            <div class="contrib-square empty"></div>
+            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
+          </div>
+
+          <p class="bottom-note">sharing the journey ✦</p>
+        </div>
+
+        <!-- Floating Yellow Post-It Note -->
+        <div class="sticky-note">
+          <div>✦ just started writing about AI & automation!</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. CONTACT SECTION -->
+  <section id="contact" class="scroll-reveal">
+    <div class="max-width-wrapper">
+      
+      <!-- Invitation style card -->
+      <div class="contact-card">
+        <!-- Decorative Paperclip -->
+        <div class="paperclip" style="right: 40px; transform: rotate(-10deg); top: -14px;">
+          <svg viewBox="0 0 32 48" width="100%" height="100%">
+            <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="contact-card-inner">
+          
+          <h4>want to work together?</h4>
+          <h3>let's make something</h3>
+          <span class="beautiful-word">beautiful. ♡</span>
+
+          <!-- Collab tags -->
+          <div class="collab-stickers">
+            <span class="collab-sticker">[ frontend projects ]</span>
+            <span class="collab-sticker">[ ai builds ]</span>
+            <span class="collab-sticker">[ ui/ux design ]</span>
+            <span class="collab-sticker">[ automation ]</span>
+            <span class="collab-sticker">[ internships ]</span>
+          </div>
+
+          <!-- CTA email button -->
+          <a href="mailto:kritikakhatri014@gmail.com" class="cta-button">
+            ✉ kritikakhatri014@gmail.com
+          </a>
+
+          <!-- Social link pairs -->
+          <div class="contact-socials">
+            <a href="https://github.com/kritikhatri" target="_blank" class="contact-social-link">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/kritika-khatri" target="_blank" class="contact-social-link">
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-text">
+      made with ♡ by kritika &middot; pune, india &middot; 2025
+    </div>
+  </footer>
+
+  <script>
+    // Project filtering script
+    function filterProjects(category) {
+      // Toggle active states on tabs
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => {
+        if (tab.textContent.trim().toLowerCase().includes(category.replace('ai', 'ai & auto'))) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+      
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        const categories = card.getAttribute('data-category').split(' ');
+        if (category === 'all' || categories.includes(category)) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 200);
+        }
+      });
+    }
+
+    // Scroll reveal observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Immersive scroll-zoom and sticker-burst
+    const heroSection = document.getElementById('hero');
+    const scrollHint = heroSection.querySelector('.scroll-hint');
+    const nameBox = heroSection.querySelector('.name-box');
+    
+    // Peeking Cat elements
+    const peekingCat = document.getElementById('peeking-cat');
+    const pupilLeft = document.getElementById('pupil-left');
+    const pupilRight = document.getElementById('pupil-right');
+
+    // Interactive 3D mouse parallax and scroll lerping
+    let targetScroll = 0;
+    let currentScroll = 0;
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let currentTiltX = 0;
+    let currentTiltY = 0;
+    let inHeroView = true;
+
+    // Track mouse position over the hero section for 3D tilt
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const maxTilt = 10; // max tilt degrees
+      targetTiltX = -(y / (rect.height / 2)) * maxTilt;
+      targetTiltY = (x / (rect.width / 2)) * maxTilt;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      targetTiltX = 0;
+      targetTiltY = 0;
+    });
+
+    const heroViewObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        inHeroView = entry.isIntersecting;
+      });
+    }, { threshold: 0.05 });
+    heroViewObserver.observe(heroSection);
+
+    // (measureFlies removed as stickers were cleaned up)
+
+    function updateScrollProgress() {
+      const rect = heroSection.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height - vh;
+      if (total <= 0) {
+        targetScroll = 0;
+        return;
+      }
+      targetScroll = Math.min(1, Math.max(0, -rect.top / total));
+    }
+
+    // Unified animation render loop running at high performance
+    function renderHero() {
+      if (inHeroView) {
+        // Smoothly interpolate (lerp) values
+        currentScroll += (targetScroll - currentScroll) * 0.12;
+        currentTiltX += (targetTiltX - currentTiltX) * 0.08;
+        currentTiltY += (targetTiltY - currentTiltY) * 0.08;
+
+        const p = currentScroll;
+        
+        // Fade out non-fly elements gently near the bottom of scroll
+        const fadeProgress = Math.min(1, Math.max(0, (p - 0.6) / 0.4));
+        const textOpacity = 1 - fadeProgress;
+
+        // Name Card Box 3D Parallax Tilt
+        if (nameBox) {
+          nameBox.style.opacity = textOpacity;
+          nameBox.style.transform = `scale(${1 - p * 0.03}) translateY(${-p * 15}px) rotateX(${currentTiltX * 0.5}deg) rotateY(${currentTiltY * 0.5}deg)`;
+        }
+
+        // Scroll Hint
+        if (scrollHint) {
+          scrollHint.style.opacity = Math.max(0, 1 - p * 5);
+        }
+
+        // Peeking Cat Scroll Animation and Eye Tracking
+        if (peekingCat) {
+          peekingCat.style.transform = `translateX(-50%) translateY(${p * 390}px)`;
+          peekingCat.style.opacity = textOpacity;
+        }
+        if (pupilLeft && pupilRight) {
+          const dx = currentTiltY * 0.45;
+          const dy = -currentTiltX * 0.45;
+          pupilLeft.style.transform = `translate(${dx}px, ${dy}px)`;
+          pupilRight.style.transform = `translate(${dx}px, ${dy}px)`;
+        }
+      }
+      
+      requestAnimationFrame(renderHero);
+    }
+    
+    // Start unified loop
+    renderHero();
+
+    // Tactile Drag & Drop mechanics
+    function initDraggables() {
+      const draggables = document.querySelectorAll('.draggable');
+      
+      draggables.forEach(el => {
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let currentX = parseFloat(el.getAttribute('data-drag-x')) || 0;
+        let currentY = parseFloat(el.getAttribute('data-drag-y')) || 0;
+        
+        const dragStart = (e) => {
+          if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+          
+          isDragging = true;
+          el.style.zIndex = 100;
+          
+          const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+          const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+          
+          startX = clientX - currentX;
+          startY = clientY - currentY;
+          
+          document.body.style.userSelect = 'none';
+        };
+        
+        const dragMove = (e) => {
+          if (!isDragging) return;
+          
+          const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+          const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
+          
+          currentX = clientX - startX;
+          currentY = clientY - startY;
+          
+          el.setAttribute('data-drag-x', currentX);
+          el.setAttribute('data-drag-y', currentY);
+        };
+        
+        const dragEnd = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          el.style.zIndex = el.classList.contains('sticker-chip') ? 10 : 12;
+          document.body.style.userSelect = 'auto';
+        };
+        
+        el.addEventListener('mousedown', dragStart);
+        el.addEventListener('touchstart', dragStart, { passive: true });
+        
+        window.addEventListener('mousemove', dragMove);
+        window.addEventListener('touchmove', dragMove, { passive: true });
+        
+        window.addEventListener('mouseup', dragEnd);
+        window.addEventListener('touchend', dragEnd);
+      });
+    }
+
+    // (initCanvas, initPolaroidCamera, and initCoffeeCup removed as hero was simplified)
+
+    // Flower petal mouse trail particle effect
+    function initMouseTrail() {
+      let lastSpawn = 0;
+      
+      heroSection.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSpawn < 80) return; // spawn every 80ms max
+        lastSpawn = now;
+        
+        const rect = heroSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        createPetal(x, y);
+      });
+      
+      function createPetal(x, y) {
+        const petal = document.createElement('div');
+        petal.className = 'flower-petal-trail';
+        
+        const colors = ['#fce8f4', '#f5b8d8', '#e8e0f8', '#d4e8d0'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        const flowers = ['🌸', '❀', '✿', '🌸'];
+        const randomFlower = flowers[Math.floor(Math.random() * flowers.length)];
+        
+        petal.textContent = randomFlower;
+        petal.style.left = `${x}px`;
+        petal.style.top = `${y}px`;
+        petal.style.color = randomColor;
+        petal.style.fontSize = `${10 + Math.random() * 12}px`;
+        
+        const driftX = (Math.random() - 0.5) * 60;
+        const rotate = (Math.random() - 0.5) * 360;
+        
+        petal.style.setProperty('--drift-x', `${driftX}px`);
+        petal.style.setProperty('--rotate-deg', `${rotate}deg`);
+        
+        heroSection.appendChild(petal);
+        
+        setTimeout(() => {
+          petal.remove();
+        }, 1500);
+      }
+    }
+    
+    initDraggables();
+    initMouseTrail();
+    
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', () => {
+      updateScrollProgress();
+    });
+    updateScrollProgress();
+  </script>
+</body>
 </html>
