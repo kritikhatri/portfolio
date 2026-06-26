@@ -17,7 +17,7 @@
   <style>
     /* CSS VARIABLES - Cottagecore Stationery Scrapbook Aesthetic */
     :root {
-      --cream:        #fffbf5;       /* Warm page background */
+      --cream:        #faf7f2;       /* Warm linen background */
       --blush-light:  #fce8f4;       /* Soft pink surfaces */
       --blush-mid:    #f5b8d8;       /* Pink accents */
       --blush-deep:   #d4789a;       /* Pink headings/borders */
@@ -36,6 +36,12 @@
       --dusty-rose:   #dca7a7;       /* Dusty Rose sheets */
       --peach-blush:  #f9e5db;       /* Peach sheet highlights */
       --scrapbook-shadow: 5px 5px 0px var(--brown-ink);
+      
+      /* Botanical Herbarium Elements */
+      --leaf-green:   #3d5a45;       /* Deep leaf green */
+      --terracotta:   #c67d6c;       /* Terracotta clay */
+      --wood-brown:   #8b5a2b;       /* Wood panels */
+      --metal-silver: #a0a0a0;       /* Wing nuts */
       
       --font-title:   'DM Serif Display', serif;
       --font-accent:  'Caveat', cursive;
@@ -1806,6 +1812,471 @@
         transform: rotate(-45deg) translate(6px, -6px);
       }
     }
+
+    /* ==========================================================================
+       🌿 BOTANICAL HERBARIUM COMPONENT STYLES
+       ========================================================================== */
+
+    /* Twig Frame and Butterfly styles */
+    .twig-frame {
+      filter: drop-shadow(1px 2px 2px rgba(92, 61, 46, 0.12));
+    }
+    .botanical-butterfly {
+      position: absolute;
+      top: -24px;
+      right: 15px;
+      width: 32px;
+      height: 32px;
+      z-index: 10;
+      transform-style: preserve-3d;
+      transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: none;
+    }
+    .butterfly-body {
+      position: absolute;
+      width: 2px;
+      height: 18px;
+      background-color: var(--brown-ink);
+      top: 7px;
+      left: 15px;
+      border-radius: 1px;
+    }
+    .butterfly-wing {
+      position: absolute;
+      width: 14px;
+      height: 16px;
+      border: 1.2px solid var(--brown-ink);
+      background-color: rgba(198, 125, 108, 0.85); /* terracotta translucent wing */
+      border-radius: 50% 50% 20% 50%;
+      top: 6px;
+      transform-origin: right center;
+    }
+    .wing-left {
+      left: 1px;
+      transform-origin: right center;
+      animation: wing-flap-left 0.15s ease-in-out infinite alternate;
+    }
+    .wing-right {
+      left: 17px;
+      transform-origin: left center;
+      border-radius: 50% 50% 50% 20%;
+      animation: wing-flap-right 0.15s ease-in-out infinite alternate;
+    }
+    @keyframes wing-flap-left {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(70deg); }
+    }
+    @keyframes wing-flap-right {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(-70deg); }
+    }
+    
+    .name-box:hover .botanical-butterfly {
+      transform: translate(220px, -200px) rotate(-15deg) scale(0.6);
+      opacity: 0;
+    }
+
+    /* Interactive Flower Press Widget */
+    .flower-press {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      height: 480px;
+      background-color: var(--wood-brown);
+      border: 3.5px solid var(--brown-ink);
+      border-radius: 12px;
+      box-shadow: 6px 6px 0px var(--brown-ink);
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: visible;
+      user-select: none;
+    }
+    .flower-press::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1.5px dashed rgba(255,255,255,0.2);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .press-label {
+      background-color: var(--cream);
+      border: 2px solid var(--brown-ink);
+      padding: 0.5rem 1.2rem;
+      transform: rotate(-1.5deg);
+      box-shadow: 3px 3px 0px var(--brown-ink);
+      z-index: 10;
+      margin-top: 1rem;
+    }
+    .press-label h3 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      color: var(--brown-ink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .press-screws-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .press-screw {
+      position: absolute;
+      pointer-events: auto;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .press-screw:hover {
+      transform: scale(1.1);
+    }
+    .press-screw.spinning {
+      animation: screw-spin 0.6s ease-out;
+    }
+    @keyframes screw-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .screw-tl { top: 12px; left: 12px; }
+    .screw-tr { top: 12px; right: 12px; }
+    .screw-bl { bottom: 12px; left: 12px; }
+    .screw-br { bottom: 12px; right: 12px; }
+
+    /* Flower Press Pages stack & slider drawer */
+    .press-sheets-container {
+      position: absolute;
+      inset: 15px;
+      z-index: 5;
+      overflow: visible;
+    }
+    .press-sheet {
+      position: absolute;
+      inset: 0;
+      background-color: var(--cream);
+      border: 2.5px solid var(--brown-ink);
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      box-shadow: 4px 4px 0px var(--brown-ink);
+      transform-origin: left center;
+      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      opacity: 0;
+      transform: scale(0.92) translateX(0);
+      pointer-events: none;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .press-sheet.active {
+      opacity: 1;
+      transform: scale(1) translateX(105%);
+      pointer-events: auto;
+      z-index: 15;
+    }
+    @media (max-width: 900px) {
+      .press-sheet.active {
+        transform: scale(1) translateY(105%);
+      }
+    }
+    .press-sheet h3 {
+      font-family: var(--font-accent);
+      font-size: 2.2rem;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .press-sheet p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--brown-ink);
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+    .press-sheet-tag {
+      position: absolute;
+      right: -25px;
+      top: 40px;
+      background-color: var(--terracotta);
+      color: var(--white);
+      font-family: var(--font-accent);
+      font-size: 1.1rem;
+      padding: 4px 12px;
+      border: 1.8px solid var(--brown-ink);
+      border-radius: 0 4px 4px 0;
+      transform: rotate(90deg);
+      transform-origin: left top;
+      cursor: pointer;
+      z-index: 18;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+      transition: background-color 0.2s ease;
+    }
+    .press-sheet-tag:hover {
+      background-color: var(--leaf-green);
+    }
+    .press-sheet:nth-child(2) .press-sheet-tag {
+      top: 140px;
+      background-color: var(--leaf-green);
+    }
+    .press-sheet:nth-child(2) .press-sheet-tag:hover {
+      background-color: var(--terracotta);
+    }
+    .press-sheet:nth-child(3) .press-sheet-tag {
+      top: 240px;
+      background-color: var(--lavender-deep);
+    }
+    .press-sheet:nth-child(3) .press-sheet-tag:hover {
+      background-color: var(--terracotta);
+    }
+    
+    /* Seed Packets Toolkit styles */
+    .toolkit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .toolkit-card {
+      position: relative;
+      background-color: #f4ebd0; /* kraft paper */
+      border: 2.5px solid var(--brown-ink);
+      box-shadow: var(--scrapbook-shadow);
+      border-radius: 6px;
+      padding: 1.5rem 1.2rem;
+      height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .seed-header-label {
+      background-color: var(--terracotta);
+      color: var(--white);
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      padding: 2px 10px;
+      border: 1.5px solid var(--brown-ink);
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      z-index: 10;
+      box-shadow: 1px 1px 0px var(--brown-ink);
+    }
+    .seed-illus {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+      z-index: 10;
+      filter: drop-shadow(1px 2px 1px rgba(92, 61, 46, 0.1));
+    }
+    .seed-packet-title {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--brown-ink);
+      text-align: center;
+      margin-bottom: 1rem;
+      z-index: 10;
+    }
+    /* Seed insert card */
+    .seed-insert-card {
+      position: absolute;
+      top: 175px;
+      left: 10px;
+      right: 10px;
+      background-color: var(--cream);
+      border: 2px solid var(--brown-ink);
+      border-radius: 4px;
+      padding: 1rem 0.8rem;
+      box-shadow: 2px 2px 0px rgba(92,61,46,0.15);
+      transition: top 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 5;
+      height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .toolkit-card:hover .seed-insert-card {
+      top: 50px;
+    }
+    .seed-skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    /* Specimen Sheet Projects */
+    .project-card {
+      background-color: var(--cream);
+      border: 2px solid var(--brown-ink);
+      outline: 1.2px solid var(--brown-ink);
+      outline-offset: -6px;
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: var(--scrapbook-shadow);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 1px dashed rgba(92, 61, 46, 0.15);
+      pointer-events: none;
+    }
+    .glass-vial-wrapper {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .glass-vial {
+      filter: drop-shadow(2px 3px 2px rgba(92, 61, 46, 0.15));
+      transform: rotate(5deg);
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover .glass-vial {
+      transform: rotate(-5deg) translateY(-2px);
+    }
+    .specimen-tag {
+      background-color: #f4ebd0; /* cardboard paper */
+      border: 1.5px solid var(--brown-ink);
+      border-radius: 4px;
+      padding: 0.5rem;
+      margin-top: 1.2rem;
+      position: relative;
+      font-family: var(--font-accent);
+      font-size: 1.15rem;
+      color: var(--brown-ink);
+      box-shadow: 2px 2px 0px rgba(92,61,46,0.1);
+      transform: rotate(-1deg);
+      transition: transform 0.2s ease;
+    }
+    .project-card:hover .specimen-tag {
+      transform: rotate(1deg) scale(1.02);
+    }
+    .specimen-tag::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      border: 1.2px solid var(--brown-ink);
+      border-radius: 50%;
+      background-color: var(--cream);
+    }
+    
+    /* Interactive tree rings experience styles */
+    .experience-container-botanical {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    @media (max-width: 850px) {
+      .experience-container-botanical {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tree-slice-panel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .tree-ring-path {
+      cursor: pointer;
+      stroke: var(--brown-ink);
+      stroke-width: 1.5;
+      fill: none;
+      transition: all 0.25s ease;
+    }
+    .tree-ring-path:hover {
+      stroke: var(--terracotta);
+      stroke-width: 3.5;
+    }
+    .tree-ring-path.active {
+      stroke: var(--leaf-green);
+      stroke-width: 4.5;
+    }
+    .tree-crack {
+      stroke: var(--brown-ink);
+      stroke-width: 1.2;
+      stroke-linecap: round;
+      opacity: 0.65;
+    }
+    .experience-clipboard {
+      background-color: var(--cream);
+      border: 3px solid var(--brown-ink);
+      border-radius: 8px;
+      box-shadow: var(--scrapbook-shadow);
+      padding: 2.5rem 2rem;
+      position: relative;
+      min-height: 250px;
+    }
+    .clipboard-clip {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 30px;
+      background-color: #a0a0a0;
+      border: 2px solid var(--brown-ink);
+      border-radius: 4px;
+      z-index: 10;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    }
+    .clipboard-clip::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background-color: #606060;
+      border-radius: 50%;
+    }
+    .clipboard-content-area h3 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--leaf-green);
+      margin-bottom: 0.2rem;
+    }
+    .clipboard-content-area .clipboard-meta {
+      font-family: var(--font-accent);
+      font-size: 1.2rem;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+    }
+    .clipboard-content-area ul {
+      margin-left: 1.2rem;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--brown-ink);
+    }
+    .clipboard-content-area li {
+      margin-bottom: 0.6rem;
+    }
   </style>
 </head>
 <body>
@@ -1915,85 +2386,48 @@
   <header id="hero" class="ruled-section">
     <div class="max-width-wrapper hero-content" style="position: relative;">
       
-      <!-- Name Card Box (Borderless, with bows and lilies) -->
-      <div class="name-box" style="z-index: 5; border: none; background: transparent; box-shadow: none;">
-        <!-- Top-Left Bow -->
-        <div class="corner-bow bow-tl" style="position: absolute; top: -12px; left: -12px; transform: rotate(-15deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
-            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
-        </div>
-        
-        <!-- Top-Right Bow -->
-        <div class="corner-bow bow-tr" style="position: absolute; top: -12px; right: -12px; transform: rotate(15deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
-            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+      <!-- Name Card Box (Borderless, with twig frame and butterfly) -->
+      <div class="name-box" style="z-index: 5; border: none; background: transparent; box-shadow: none; position: relative;">
+        <!-- 3D Fluttering Butterfly -->
+        <div class="botanical-butterfly">
+          <div class="butterfly-wing wing-left"></div>
+          <div class="butterfly-wing wing-right"></div>
+          <div class="butterfly-body"></div>
         </div>
 
-        <!-- Left Lily -->
-        <div class="side-lily lily-l" style="position: absolute; left: -46px; top: calc(50% - 15px); transform: rotate(-10deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,38 Q 20,30 22,22" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
-            <path d="M 21,32 Q 13,29 11,23 Q 17,25 21,30 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
-            <path d="M 21,34 Q 28,33 30,27 Q 25,28 21,32 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
-            <path d="M 12,20 C 10,12 18,10 20,18 C 22,10 30,12 28,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
-            <path d="M 20,22 C 16,16 14,24 20,26 C 26,24 24,16 20,22 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
-            <circle cx="20" cy="18" r="2.5" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="1" />
+        <!-- Twig Frame Vector Drawing wrapping name -->
+        <div class="twig-frame-container" style="position: relative; display: inline-block; padding: 2rem 3rem;">
+          <svg class="twig-frame" viewBox="0 0 320 220" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Intersecting circle/oval twig rings -->
+            <ellipse cx="160" cy="110" rx="140" ry="90" stroke="var(--brown-ink)" stroke-width="1.8" opacity="0.75" stroke-dasharray="12,10" />
+            <ellipse cx="160" cy="110" rx="136" ry="86" stroke="var(--brown-ink)" stroke-width="1.2" opacity="0.6" />
+            <ellipse cx="162" cy="108" rx="144" ry="94" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" />
+            <!-- Hand-drawn leaf twigs branching off -->
+            <path d="M 280,70 C 295,60 300,65 295,75" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
+            <path d="M 270,60 Q 285,45 288,52 C 278,58 270,60 270,60" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
+            <path d="M 40,150 Q 25,165 22,158 C 32,152 40,150 40,150" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
+            <path d="M 50,160 C 35,170 30,165 35,155" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
+            <path d="M 160,20 Q 175,5 180,12 C 170,18 160,20 160,20" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
+            <path d="M 130,204 Q 115,215 110,208 C 120,202 130,204 130,204" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
           </svg>
-        </div>
-
-        <h1>Kritika Khatri</h1>
-
-        <!-- Right Lily -->
-        <div class="side-lily lily-r" style="position: absolute; right: -46px; top: calc(50% - 15px); transform: rotate(10deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,38 Q 20,30 22,22" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
-            <path d="M 21,32 Q 13,29 11,23 Q 17,25 21,30 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
-            <path d="M 21,34 Q 28,33 30,27 Q 25,28 21,32 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
-            <path d="M 12,20 C 10,12 18,10 20,18 C 22,10 30,12 28,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
-            <path d="M 20,22 C 16,16 14,24 20,26 C 26,24 24,16 20,22 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
-            <circle cx="20" cy="18" r="2.5" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="1" />
-          </svg>
-        </div>
-        
-        <!-- Bottom-Left Bow -->
-        <div class="corner-bow bow-bl" style="position: absolute; bottom: -12px; left: -12px; transform: rotate(-45deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
-            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
-        </div>
-        
-        <!-- Bottom-Right Bow -->
-        <div class="corner-bow bow-br" style="position: absolute; bottom: -12px; right: -12px; transform: rotate(45deg);">
-          <svg viewBox="0 0 40 40" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,20 C 10,12 5,18 10,22 C 14,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M 20,20 C 30,12 35,18 30,22 C 26,25 20,20 20,20 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linejoin="round" />
-            <circle cx="20" cy="20" r="3.5" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.8" />
-            <path d="M 18,22 Q 13,32 8,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M 22,22 Q 27,32 32,35" stroke="var(--brown-ink)" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+          <h1 style="position: relative; z-index: 2; margin: 0; font-family: var(--font-title); font-size: 3.2rem; color: var(--brown-ink); letter-spacing: 0.5px;">Kritika Khatri</h1>
         </div>
       </div>
 
       <!-- Scroll down hint -->
       <div class="scroll-hint" style="z-index: 5;">scroll ↓</div>
 
-      <!-- Peeking Interactive Cat -->
+      <!-- Peeking Interactive Cat surrounded by grass & ferns -->
       <div id="peeking-cat">
         <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grass Blades and Ferns peeking out -->
+          <path d="M 10,100 Q 5,60 14,40 Q 18,65 24,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
+          <path d="M 22,100 Q 32,50 38,35 Q 36,65 28,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
+          <path d="M 188,100 Q 195,60 186,40 Q 183,65 178,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
+          <path d="M 176,100 Q 166,55 158,35 Q 162,65 168,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
+          <path d="M 5,100 Q -5,75 -12,55 M -2,85 Q -10,80 -8,75" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
+          <path d="M -5,75 Q -15,70 -12,65" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
+          
           <!-- Cat Head Silhouette -->
           <path d="M 20,100 C 20,70 40,48 50,48 L 62,15 C 64,10 68,13 70,25 L 76,45 C 84,42 92,40 100,40 C 108,40 116,42 124,45 L 130,25 C 132,13 136,10 138,15 L 150,48 C 160,48 180,70 180,100 Z" fill="#1c1c1c" stroke="var(--brown-ink)" stroke-width="2.5" stroke-linejoin="round" />
           <!-- Golden Eyes -->
@@ -2020,41 +2454,73 @@
       
       <div class="about-grid">
         
-        <!-- Left: Monogram and pressed flower card -->
-        <div class="about-card">
-          <!-- Washi tape pinning the card -->
-          <div class="about-card-tape washi-tape washi-tape-torn-horizontal"></div>
+        <!-- Left: Flower Press Widget -->
+        <div class="flower-press-wrapper" style="position: relative; z-index: 10;">
+          <div class="flower-press">
+            <!-- screws at corners -->
+            <div class="press-screws-container">
+              <img class="press-screw screw-tl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
+              <img class="press-screw screw-tr" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
+              <img class="press-screw screw-bl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
+              <img class="press-screw screw-br" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
+            </div>
 
-          <div class="monogram-circle">
-            <span>KK</span>
-          </div>
+            <!-- central label -->
+            <div class="press-label">
+              <h3>Flower Press</h3>
+            </div>
 
-          <div class="about-stickers">
-            <span class="about-sticker">✦ frontend</span>
-            <span class="about-sticker">✦ ai & automation</span>
-            <span class="about-sticker">✦ ui/ux</span>
-            <span class="about-sticker">✦ motion</span>
-          </div>
+            <!-- Sheets slider container -->
+            <div class="press-sheets-container">
+              
+              <!-- Sheet 1 -->
+              <div class="press-sheet active">
+                <div class="press-sheet-tag">The Naturalist</div>
+                <h3>The Naturalist</h3>
+                <p>
+                  I'm a B.Tech Computer Science student at Newton School of Technology, currently working as an AI Engineer Intern at FlyRank. I operate at the intersection of frontend mechanics, intelligent agents, and aesthetic UI/UX systems.
+                </p>
+                <p>
+                  For me, web development isn't just about rendering data; it's about composing an immersive experience.
+                </p>
+              </div>
 
-          <!-- Pressed flower drawing -->
-          <div class="pressed-flower" aria-hidden="true">
-            <div class="stem"></div>
-            <div class="leaf left"></div>
-            <div class="leaf right"></div>
-            <div class="blossom">
-              <div class="petal"></div>
-              <div class="petal"></div>
-              <div class="petal"></div>
-              <div class="petal"></div>
-              <div class="petal"></div>
-              <div class="flower-center"></div>
+              <!-- Sheet 2 -->
+              <div class="press-sheet">
+                <div class="press-sheet-tag">Core Traits</div>
+                <h3>Core Traits</h3>
+                <p>
+                  <strong>Intuitive UX:</strong> Interactions should feel natural and tactile, like turning a page or spinning a screw.
+                </p>
+                <p>
+                  <strong>AI Symbiosis:</strong> Automating repetitive logic so that we can focus on building highly customized, creative digital art.
+                </p>
+                <p>
+                  <strong>Attention to Detail:</strong> Every font-face choice, drop-shadow, and micro-animation is selected to evoke a premium feel.
+                </p>
+              </div>
+
+              <!-- Sheet 3 -->
+              <div class="press-sheet">
+                <div class="press-sheet-tag">Field Notes</div>
+                <h3>Field Notes</h3>
+                <p>
+                  When I'm not writing code or building automated LLM agents, you can find me:
+                </p>
+                <ul style="margin-left: 1.2rem; line-height: 1.6; font-family: var(--font-body); font-size: 1rem; color: var(--brown-ink);">
+                  <li>Exploring vintage sketching and hand-lettering</li>
+                  <li>Designing high-end layouts in Figma</li>
+                  <li>Analyzing motion curves in After Effects</li>
+                  <li>Documenting my tech exploration in public</li>
+                </ul>
+              </div>
+
             </div>
           </div>
         </div>
 
         <!-- Right: Notebook letter description -->
         <div class="journal-entry">
-          <!-- Decorative Paperclip holding card -->
           <div class="paperclip">
             <svg viewBox="0 0 32 48" width="100%" height="100%">
               <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
@@ -2063,12 +2529,12 @@
           </div>
           <h3>dear visitor ♡</h3>
           <p>
-            I'm a B.Tech CS student at Newton School of Technology, currently interning as an AI Engineer at FlyRank. I build at the edge of frontend development, AI automation, and product design — because I don't think those should be separate skills.
+            Welcome to my herbarium! Spin the wing-nuts or tap the tabs on the flower press to reveal my background, core traits, and field notes.
           </p>
           <p>
-            I'm 20, learning fast, and building in public. I believe code should not just work flawlessly, but it should also delight and inspire. Welcome to my creative workspace.
+            I'm 20, building fast, and learning out loud. I believe code should not just perform optimally, but should also look and feel like art.
           </p>
-          <span class="journal-signature">— Kritika, writing code & making things ✦</span>
+          <span class="journal-signature">— Kritika, writing code & pressing flowers ✦</span>
         </div>
 
       </div>
@@ -2093,87 +2559,84 @@
       <!-- 2x2 grid of pockets -->
       <div class="toolkit-grid">
         
-        <!-- Frontend pocket -->
-        <div class="toolkit-card frontend-card">
-          <!-- Decorative Paperclip -->
-          <div class="paperclip" style="right: 15px; transform: rotate(-5deg); top: -14px;">
-            <svg viewBox="0 0 32 48" width="100%" height="100%">
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
-          <div class="toolkit-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="12" rx="2" ry="2"/>
-              <line x1="2" y1="20" x2="22" y2="20"/>
-              <line x1="12" y1="16" x2="12" y2="20"/>
-            </svg>
-            <h3>Frontend Systems</h3>
-          </div>
-          <div class="toolkit-skills-wrap">
-            <span class="skill-pill">HTML5</span>
-            <span class="skill-pill">CSS3</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">React</span>
+        <!-- Frontend Herbs seed packet -->
+        <div class="toolkit-card">
+          <div class="seed-header-label">Seed Co.</div>
+          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 32,58 Q 32,32 32,8" stroke-width="2.5" />
+            <path d="M 32,45 Q 48,40 50,30 Q 38,32 32,45 Z" fill="var(--leaf-green)" />
+            <path d="M 32,35 Q 16,30 14,20 Q 26,22 32,35 Z" fill="var(--leaf-green)" />
+            <path d="M 32,22 Q 48,15 45,5 Q 35,8 32,22 Z" fill="var(--leaf-green)" />
+          </svg>
+          <h3 class="seed-packet-title">Frontend Herbs</h3>
+          <div class="seed-insert-card">
+            <span class="seed-header-label" style="background-color: var(--leaf-green); font-size: 0.7rem; margin-bottom: 0.5rem;">Herbs List</span>
+            <div class="seed-skills-list">
+              <span class="skill-pill">HTML5</span>
+              <span class="skill-pill">CSS3</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">React</span>
+              <span class="skill-pill">Tailwind</span>
+            </div>
           </div>
         </div>
 
-        <!-- AI & Auto pocket -->
-        <div class="toolkit-card ai-card">
-          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
-          <div class="toolkit-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" fill="var(--yellow-tape)"/>
-              <path d="M5 14l1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" fill="var(--blush-mid)"/>
-            </svg>
-            <h3>AI & Automation</h3>
-          </div>
-          <div class="toolkit-skills-wrap">
-            <span class="skill-pill">n8n</span>
-            <span class="skill-pill">Chatbot Integration</span>
-            <span class="skill-pill">Prompt Engineering</span>
-          </div>
-        </div>
-
-        <!-- UI/UX pocket -->
-        <div class="toolkit-card uiux-card">
-          <!-- Decorative Paperclip -->
-          <div class="paperclip" style="right: 15px; transform: rotate(8deg); top: -14px;">
-            <svg viewBox="0 0 32 48" width="100%" height="100%">
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
-          <div class="toolkit-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-            </svg>
-            <h3>UI/UX Design</h3>
-          </div>
-          <div class="toolkit-skills-wrap">
-            <span class="skill-pill">Figma</span>
-            <span class="skill-pill">Prototyping</span>
-            <span class="skill-pill">Responsive Design</span>
+        <!-- AI Blooms seed packet -->
+        <div class="toolkit-card">
+          <div class="seed-header-label">Seed Co.</div>
+          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 32,58 Q 32,35 32,24 M 20,45 Q 32,42 32,58" stroke-width="2" />
+            <circle cx="32" cy="20" r="10" fill="var(--blush-mid)" />
+            <path d="M 28,15 L 36,25 M 36,15 L 28,25" stroke="var(--brown-ink)" stroke-width="1.5"/>
+          </svg>
+          <h3 class="seed-packet-title">AI Blooms</h3>
+          <div class="seed-insert-card">
+            <span class="seed-header-label" style="background-color: var(--terracotta); font-size: 0.7rem; margin-bottom: 0.5rem;">Blooms List</span>
+            <div class="seed-skills-list">
+              <span class="skill-pill">n8n</span>
+              <span class="skill-pill">LLM Integration</span>
+              <span class="skill-pill">Prompt Eng.</span>
+              <span class="skill-pill">AI Agents</span>
+            </div>
           </div>
         </div>
 
-        <!-- Motion pocket -->
-        <div class="toolkit-card motion-card">
-          <div class="toolkit-card-tape washi-tape washi-tape-torn-horizontal"></div>
-          <div class="toolkit-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
-              <line x1="7" y1="2" x2="7" y2="22"/>
-              <line x1="17" y1="2" x2="17" y2="22"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-            </svg>
-            <h3>Motion & Video</h3>
+        <!-- Design Vines seed packet -->
+        <div class="toolkit-card">
+          <div class="seed-header-label">Seed Co.</div>
+          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,58 Q 40,40 32,15 T 48,5" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 35,32 Q 48,35 48,25 Q 38,22 35,32 Z" fill="var(--sage-mid)" />
+            <path d="M 28,45 Q 12,42 16,32 Q 26,35 28,45 Z" fill="var(--sage-mid)" />
+          </svg>
+          <h3 class="seed-packet-title">Design Vines</h3>
+          <div class="seed-insert-card">
+            <span class="seed-header-label" style="background-color: var(--sage-mid); font-size: 0.7rem; margin-bottom: 0.5rem;">Vines List</span>
+            <div class="seed-skills-list">
+              <span class="skill-pill">Figma</span>
+              <span class="skill-pill">Prototyping</span>
+              <span class="skill-pill">Responsive Design</span>
+              <span class="skill-pill">Wireframing</span>
+            </div>
           </div>
-          <div class="toolkit-skills-wrap">
-            <span class="skill-pill">After Effects</span>
-            <span class="skill-pill">Motion Graphics</span>
+        </div>
+
+        <!-- Motion Sprouts seed packet -->
+        <div class="toolkit-card">
+          <div class="seed-header-label">Seed Co.</div>
+          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 32,58 C 32,45 32,35 32,25" stroke-width="2.5" />
+            <path d="M 32,25 C 22,20 12,30 32,25 C 52,20 42,30 32,25 Z" fill="var(--yellow-tape)" />
+            <circle cx="32" cy="18" r="3" fill="var(--terracotta)" />
+          </svg>
+          <h3 class="seed-packet-title">Motion Sprouts</h3>
+          <div class="seed-insert-card">
+            <span class="seed-header-label" style="background-color: var(--terracotta); font-size: 0.7rem; margin-bottom: 0.5rem;">Sprouts List</span>
+            <div class="seed-skills-list">
+              <span class="skill-pill">After Effects</span>
+              <span class="skill-pill">Motion Graphics</span>
+              <span class="skill-pill">SVG Animation</span>
+            </div>
           </div>
         </div>
 
@@ -2219,110 +2682,175 @@
       <!-- Staggered Projects Grid -->
       <div class="projects-grid">
         
-        <!-- Project 1 -->
+        <!-- Project 1 Specimen Sheet -->
         <div class="project-card" data-category="frontend">
-          <!-- Decorative Paperclip -->
-          <div class="paperclip" style="right: 15px; transform: rotate(12deg); top: -12px;">
-            <svg viewBox="0 0 32 48" width="100%" height="100%">
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+          <!-- Glass Vial with stem -->
+          <div class="glass-vial-wrapper">
+            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork -->
+              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
+              <!-- Vial Neck -->
+              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
+              <!-- Glass Highlights -->
+              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
+              <!-- Pressed Flower inside -->
+              <path d="M 20,90 Q 20,40 22,25" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
+              <path d="M 22,45 Q 12,40 15,35 Z" fill="var(--leaf-green)" />
+              <circle cx="22" cy="25" r="4.5" fill="var(--terracotta)" stroke="var(--brown-ink)" stroke-width="0.8" />
             </svg>
           </div>
-          <div class="project-card-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--blush-mid);"></div>
-          <div class="project-illustration-box">
-            <!-- Music player outline -->
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            </svg>
+
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ Spotify Clone</h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
+            Responsive music streaming UI in React — playlists, player controls, dynamic components.
+          </p>
+
+          <!-- Specimen Cardboard Tag -->
+          <div class="specimen-tag">
+            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 01</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
+              <span class="project-tag">React</span>
+              <span class="project-tag">CSS3</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
           </div>
-          <h3>♡ Spotify Clone</h3>
-          <p>Responsive music streaming UI in React — playlists, player controls, dynamic components.</p>
-          <div class="project-tags">
-            <span class="project-tag">React</span>
-            <span class="project-tag">CSS3</span>
-            <span class="project-tag">JavaScript</span>
-          </div>
-          <div class="project-link-label">view project →</div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- Project 2 Specimen Sheet -->
         <div class="project-card" data-category="frontend uiux">
-          <div class="project-illustration-box">
-            <!-- shopping bag outline -->
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <path d="M16 10a4 4 0 0 1-8 0"/>
+          <!-- Glass Vial with stem -->
+          <div class="glass-vial-wrapper">
+            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork -->
+              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
+              <!-- Vial Neck -->
+              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
+              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
+              <!-- Pressed Flower inside -->
+              <path d="M 20,90 Q 21,42 20,28" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
+              <path d="M 20,48 Q 28,44 26,38 Z" fill="var(--leaf-green)" />
+              <circle cx="20" cy="28" r="4.5" fill="var(--blush-mid)" stroke="var(--brown-ink)" stroke-width="0.8" />
             </svg>
           </div>
-          <h3>✦ Aurelia E-Commerce</h3>
-          <p>Modern shopping platform with product listing, cart, and smooth checkout flow.</p>
-          <div class="project-tags">
-            <span class="project-tag">React</span>
-            <span class="project-tag">Responsive</span>
-            <span class="project-tag">Frontend</span>
+
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">✦ Aurelia E-Commerce</h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
+            Modern shopping platform with product listing, cart, and smooth checkout flow.
+          </p>
+
+          <!-- Specimen Cardboard Tag -->
+          <div class="specimen-tag">
+            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 02</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Responsive</span>
+              <span class="project-tag">Frontend</span>
+            </div>
+            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
           </div>
-          <div class="project-link-label">view project →</div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 3 Specimen Sheet -->
         <div class="project-card" data-category="frontend">
-          <div class="project-illustration-box">
-            <!-- Film reel / stream outline -->
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="4"/>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
-              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+          <!-- Glass Vial with stem -->
+          <div class="glass-vial-wrapper">
+            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork -->
+              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
+              <!-- Vial Neck -->
+              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
+              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
+              <!-- Pressed Flower inside -->
+              <path d="M 20,90 Q 20,40 22,25" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
+              <path d="M 22,45 Q 12,40 15,35 Z" fill="var(--leaf-green)" />
+              <circle cx="22" cy="25" r="4.5" fill="var(--lavender-deep)" stroke="var(--brown-ink)" stroke-width="0.8" />
             </svg>
           </div>
-          <h3>♡ K-Flix</h3>
-          <p>K-Drama discovery site with genre filters and streaming-style show detail pages.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">JavaScript</span>
+
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ K-Flix</h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
+            K-Drama discovery site with genre filters and streaming-style show detail pages.
+          </p>
+
+          <!-- Specimen Cardboard Tag -->
+          <div class="specimen-tag">
+            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 03</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
           </div>
-          <div class="project-link-label">view project →</div>
         </div>
 
-        <!-- Project 4 -->
+        <!-- Project 4 Specimen Sheet -->
         <div class="project-card" data-category="frontend ai">
-          <div class="project-illustration-box">
-            <!-- satellite/world tracker outline -->
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          <!-- Glass Vial with stem -->
+          <div class="glass-vial-wrapper">
+            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork -->
+              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
+              <!-- Vial Neck -->
+              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
+              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
+              <!-- Pressed Flower inside -->
+              <path d="M 20,90 Q 18,45 20,30" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
+              <path d="M 20,50 Q 28,45 28,40 Z" fill="var(--leaf-green)" />
+              <circle cx="20" cy="30" r="4.5" fill="var(--yellow-tape)" stroke="var(--brown-ink)" stroke-width="0.8" />
             </svg>
           </div>
-          <h3>✦ ISS & News Dashboard</h3>
-          <p>Real-time ISS tracker with live APIs and an integrated AI chatbot interface.</p>
-          <div class="project-tags">
-            <span class="project-tag">APIs</span>
-            <span class="project-tag">JavaScript</span>
-            <span class="project-tag">AI</span>
+
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">✦ ISS & News Dashboard</h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
+            Real-time ISS tracker with live APIs and an integrated AI chatbot interface.
+          </p>
+
+          <!-- Specimen Cardboard Tag -->
+          <div class="specimen-tag">
+            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 04</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
+              <span class="project-tag">APIs</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">AI</span>
+            </div>
+            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
           </div>
-          <div class="project-link-label">view project →</div>
         </div>
 
-        <!-- Project 5 -->
+        <!-- Project 5 Specimen Sheet -->
         <div class="project-card" data-category="ai">
-          <div class="project-illustration-box">
-            <!-- pipeline automated workflow outline -->
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
+          <!-- Glass Vial with stem -->
+          <div class="glass-vial-wrapper">
+            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork -->
+              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
+              <!-- Vial Neck -->
+              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
+              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
+              <!-- Pressed Flower inside -->
+              <path d="M 20,90 Q 22,48 21,35" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
+              <path d="M 21,55 Q 12,50 15,45 Z" fill="var(--leaf-green)" />
+              <circle cx="21" cy="35" r="4.5" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="0.8" />
             </svg>
           </div>
-          <h3>♡ AI Newsletter Automation</h3>
-          <p>Automated pipeline — collects news, writes AI summaries, sends via Gmail.</p>
-          <div class="project-tags">
-            <span class="project-tag">n8n</span>
-            <span class="project-tag">AI</span>
-            <span class="project-tag">Automation</span>
+
+          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ AI Newsletter Automation</h3>
+          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
+            Automated pipeline — collects news, writes AI summaries, sends via Gmail.
+          </p>
+
+          <!-- Specimen Cardboard Tag -->
+          <div class="specimen-tag">
+            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 05</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
+              <span class="project-tag">n8n</span>
+              <span class="project-tag">AI</span>
+              <span class="project-tag">Automation</span>
+            </div>
+            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
           </div>
-          <div class="project-link-label">view project →</div>
         </div>
 
       </div>
@@ -2344,54 +2872,53 @@
         <p>the story till now ✦</p>
       </div>
 
-      <!-- timeline -->
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-        
-        <!-- Experience Entry 1 -->
-        <div class="timeline-entry">
-          <div class="timeline-badge">24–26</div>
-          <div class="timeline-card">
-            <!-- Vintage Scalloped Postage Stamp -->
-            <div class="postage-stamp">
-              <svg viewBox="0 0 44 52" width="100%" height="100%">
-                <path d="M 4 4 L 40 4 A 2 2 0 0 0 40 8 A 2 2 0 0 0 40 12 A 2 2 0 0 0 40 16 A 2 2 0 0 0 40 20 A 2 2 0 0 0 40 24 A 2 2 0 0 0 40 28 A 2 2 0 0 0 40 32 A 2 2 0 0 0 40 36 A 2 2 0 0 0 40 40 A 2 2 0 0 0 40 44 A 2 2 0 0 0 40 48 L 4 48 A 2 2 0 0 0 4 44 A 2 2 0 0 0 4 40 A 2 2 0 0 0 4 36 A 2 2 0 0 0 4 32 A 2 2 0 0 0 4 28 A 2 2 0 0 0 4 24 A 2 2 0 0 0 4 20 A 2 2 0 0 0 4 16 A 2 2 0 0 0 4 12 A 2 2 0 0 0 4 8 Z" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="1.8" />
-                <circle cx="22" cy="22" r="7" fill="var(--blush-mid)" stroke="var(--brown-ink)" stroke-width="1.2" />
-                <path d="M22,22 L22,34 M17,29 Q22,25 27,29" stroke="var(--sage-mid)" stroke-width="1.5" fill="none" />
-                <path d="M8,12 Q22,4 36,12 M6,16 Q22,8 38,16" fill="none" stroke="rgba(92, 61, 46, 0.3)" stroke-width="1.2" stroke-linecap="round" />
-              </svg>
-            </div>
-            <div class="timeline-card-header">
-              <div class="timeline-card-title">
-                <h3>FlyRank</h3>
-                <p>AI Engineer Intern ♡</p>
-              </div>
-              <span class="status-badge">● currently here</span>
-            </div>
-            <ul class="timeline-bullets">
-              <li>Built AI-driven automation pipelines for the engineering team</li>
-              <li>Integrated AI models into production workflows</li>
-              <li>Shipped AI-powered features with cross-functional teams</li>
+      <!-- Interactive Tree growth rings layout -->
+      <div class="experience-container-botanical">
+        <!-- Tree Trunk Slice panel -->
+        <div class="tree-slice-panel">
+          <svg class="tree-slice-svg" viewBox="0 0 300 300" width="280" height="280" style="filter: drop-shadow(3px 4px 6px rgba(92, 61, 46, 0.2));">
+            <!-- Bark outer boundary -->
+            <path d="M150,10 C220,10 290,80 290,150 C290,220 220,290 150,290 C80,290 10,220 10,150 C10,80 80,10 150,10 Z" fill="#8b5a2b" stroke="var(--brown-ink)" stroke-width="8" />
+            <!-- Inner wood fill -->
+            <path d="M150,14 C216,14 286,84 286,150 C286,216 216,286 150,286 C84,286 14,216 14,150 C14,84 84,14 150,14 Z" fill="#f4ebd0" stroke="var(--brown-ink)" stroke-width="2" />
+            
+            <!-- Growth rings (interactive circles) -->
+            <!-- 2026 Ring -->
+            <circle cx="150" cy="150" r="115" class="tree-ring-path" data-year="2026" />
+            <!-- 2025 Ring -->
+            <circle cx="150" cy="150" r="85" class="tree-ring-path" data-year="2025" />
+            <!-- 2024 Ring -->
+            <circle cx="150" cy="150" r="55" class="tree-ring-path" data-year="2024" />
+            <!-- 2023 Center/Pith -->
+            <circle cx="150" cy="150" r="25" class="tree-ring-path" data-year="2023" />
+            
+            <!-- Wood cracks / rays radiating from center -->
+            <path d="M150,150 L260,190" class="tree-crack" />
+            <path d="M150,150 L60,110" class="tree-crack" />
+            <path d="M150,150 L110,240" class="tree-crack" />
+            <path d="M150,150 L190,60" class="tree-crack" />
+
+            <!-- Year labels on rings -->
+            <text x="150" y="260" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2026</text>
+            <text x="150" y="228" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2025</text>
+            <text x="150" y="196" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2024</text>
+            <text x="150" y="166" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2023</text>
+          </svg>
+        </div>
+
+        <!-- Clipboard Notepad detail display -->
+        <div class="experience-clipboard">
+          <div class="clipboard-clip"></div>
+          <div class="clipboard-content-area">
+            <h3>FlyRank</h3>
+            <div class="clipboard-meta">AI Engineer Intern (2024 - Present) ♡</div>
+            <ul>
+              <li>Built AI-driven automation pipelines using LLMs and n8n</li>
+              <li>Integrated model features into production codebase</li>
+              <li>Shipped high-fidelity React interfaces with modern styling</li>
             </ul>
           </div>
         </div>
-
-      </div>
-
-      <!-- Hackathon highlight box -->
-      <div class="hackathon-card">
-        <!-- Scalloped Stamp -->
-        <div class="postage-stamp" style="top: 15px; left: 15px; transform: rotate(-8deg);">
-          <svg viewBox="0 0 44 52" width="100%" height="100%">
-            <path d="M 4 4 L 40 4 A 2 2 0 0 0 40 8 A 2 2 0 0 0 40 12 A 2 2 0 0 0 40 16 A 2 2 0 0 0 40 20 A 2 2 0 0 0 40 24 A 2 2 0 0 0 40 28 A 2 2 0 0 0 40 32 A 2 2 0 0 0 40 36 A 2 2 0 0 0 40 40 A 2 2 0 0 0 40 44 A 2 2 0 0 0 40 48 L 4 48 A 2 2 0 0 0 4 44 A 2 2 0 0 0 4 40 A 2 2 0 0 0 4 36 A 2 2 0 0 0 4 32 A 2 2 0 0 0 4 28 A 2 2 0 0 0 4 24 A 2 2 0 0 0 4 20 A 2 2 0 0 0 4 16 A 2 2 0 0 0 4 12 A 2 2 0 0 0 4 8 Z" fill="var(--yellow-tape)" stroke="var(--brown-ink)" stroke-width="1.8" />
-            <polygon points="22,12 25,18 32,19 27,24 28,30 22,27 16,30 17,24 12,19 19,18" fill="var(--cream)" stroke="var(--brown-ink)" stroke-width="1" />
-            <path d="M8,12 Q22,4 36,12" fill="none" stroke="rgba(92, 61, 46, 0.3)" stroke-width="1.2" />
-          </svg>
-        </div>
-        <div class="gold-star-sticker" style="right: 15px; left: auto;" aria-hidden="true">✦</div>
-        <span class="hackathon-label">achievement unlocked ✦</span>
-        <h3>Ctrl+Space Hackathon</h3>
-        <p>Built creative tech solutions under time pressure — frontend development + AI automation.</p>
       </div>
 
     </div>
@@ -2477,16 +3004,37 @@
   <section id="contact" class="scroll-reveal">
     <div class="max-width-wrapper">
       
-      <!-- Invitation style card -->
-      <div class="contact-card">
-        <!-- Decorative Paperclip -->
-        <div class="paperclip" style="right: 40px; transform: rotate(-10deg); top: -14px;">
-          <svg viewBox="0 0 32 48" width="100%" height="100%">
-            <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
+      <!-- Invitation style envelope card -->
+      <div class="contact-card" style="background-color: var(--cream); overflow: visible;">
+        <!-- Envelope Flap SVG/Border -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 100px; overflow: hidden; pointer-events: none; border-radius: 8px 8px 0 0;">
+          <svg viewBox="0 0 680 100" width="100%" height="100%" fill="none" preserveAspectRatio="none">
+            <!-- Flap shape -->
+            <polygon points="0,0 680,0 340,90" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="2" />
           </svg>
         </div>
-        <div class="contact-card-inner">
+
+        <!-- Pinned Dried Rose + Safety Pin representation -->
+        <div style="position: absolute; top: -35px; right: 40px; width: 60px; height: 120px; z-index: 10; transform: rotate(15deg);">
+          <svg viewBox="0 0 60 120" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 3px rgba(92, 61, 46, 0.18));">
+            <!-- Stem -->
+            <path d="M 30,110 L 30,35" stroke="var(--brown-ink)" stroke-width="2" stroke-linecap="round" />
+            <!-- Stem thorns/leaves -->
+            <path d="M 30,80 Q 20,75 16,70" stroke="var(--brown-ink)" stroke-width="1.5" />
+            <path d="M 16,70 Q 25,65 30,80 Z" fill="var(--leaf-green)" />
+            <path d="M 30,60 Q 40,55 44,50" stroke="var(--brown-ink)" stroke-width="1.5" />
+            <path d="M 44,50 Q 35,45 30,60 Z" fill="var(--leaf-green)" />
+            <!-- Pressed Rose Head -->
+            <path d="M 15,35 Q 30,10 45,35 Q 35,40 30,25 Q 25,40 15,35 Z" fill="var(--terracotta)" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- Safety Pin pinning it -->
+            <g transform="rotate(-30, 30, 75)">
+              <rect x="25" y="55" width="10" height="40" rx="5" stroke="var(--brown-ink)" stroke-width="1.5" fill="#a0a0a0" opacity="0.9" />
+              <line x1="30" y1="58" x2="30" y2="92" stroke="var(--brown-ink)" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+
+        <div class="contact-card-inner" style="z-index: 5; position: relative;">
           
           <h4>want to work together?</h4>
           <h3>let's make something</h3>
@@ -2731,6 +3279,134 @@
 
     // (initCanvas, initPolaroidCamera, and initCoffeeCup removed as hero was simplified)
 
+    // ==========================================================================
+    // 🌿 BOTANICAL INTERACTIVE WIDGET LOGIC
+    // ==========================================================================
+
+    // 1. Flower Press Interactive Slider Drawer
+    const pressScrews = document.querySelectorAll('.press-screw');
+    const pressSheets = document.querySelectorAll('.press-sheet');
+    const pressTags = document.querySelectorAll('.press-sheet-tag');
+    let activePressIndex = 0;
+
+    function setPressSheetActive(index) {
+      // Spin screws as tactile feedback
+      pressScrews.forEach(screw => {
+        screw.classList.add('spinning');
+        setTimeout(() => screw.classList.remove('spinning'), 600);
+      });
+
+      // Show/Hide sheets
+      pressSheets.forEach((sheet, i) => {
+        if (i === index) {
+          sheet.classList.add('active');
+        } else {
+          sheet.classList.remove('active');
+        }
+      });
+      activePressIndex = index;
+    }
+
+    // Clicking wing-nuts cycles pages
+    pressScrews.forEach(screw => {
+      screw.addEventListener('click', () => {
+        const nextIdx = (activePressIndex + 1) % pressSheets.length;
+        setPressSheetActive(nextIdx);
+      });
+    });
+
+    // Clicking tabs goes directly to sheet
+    pressTags.forEach((tag, idx) => {
+      tag.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setPressSheetActive(idx);
+      });
+    });
+
+
+    // 2. Concentric Tree Rings Growth Timeline Clipboard
+    const ringPaths = document.querySelectorAll('.tree-ring-path');
+    const clipboardTitle = document.querySelector('.clipboard-content-area h3');
+    const clipboardMeta = document.querySelector('.clipboard-content-area .clipboard-meta');
+    const clipboardList = document.querySelector('.clipboard-content-area ul');
+
+    const experienceTimelineData = {
+      "2026": {
+        title: "FlyRank",
+        meta: "AI Engineer Intern (2024 - Present) ♡",
+        bullets: [
+          "Built AI-driven automation pipelines using LLMs and n8n",
+          "Integrated intelligent agent model structures into product core codebases",
+          "Shipped high-fidelity React interfaces and custom motion curves"
+        ]
+      },
+      "2025": {
+        title: "Ctrl+Space Hackathon",
+        meta: "Creative Tech & Build (2025) ✦",
+        bullets: [
+          "Pioneered AI-driven interactive web portals under time constraints",
+          "Crafted complex motion animations, physics models, and micro-interactions",
+          "Collaborated in a high-fidelity prototype awarded for creative design"
+        ]
+      },
+      "2024": {
+        title: "Newton School of Tech",
+        meta: "CS Student (2024 - Present) ♡",
+        bullets: [
+          "Dived into Frontend architecture, React design principles, and browser rendering internals",
+          "Created high-fidelity UI replicas and complex layout integrations",
+          "Built several full-stack utility widgets and state-management widgets"
+        ]
+      },
+      "2023": {
+        title: "The Seed Origin",
+        meta: "First Steps into Code (2023) ✦",
+        bullets: [
+          "Initiated styling and vector drawing experiments",
+          "Learned foundational responsive layouts, CSS grid flex rules, and triggers",
+          "Fell in love with crafting creative and visually premium user interfaces"
+        ]
+      }
+    };
+
+    function selectExperienceYear(year) {
+      // Highlight ring
+      ringPaths.forEach(path => {
+        if (path.getAttribute('data-year') === year) {
+          path.classList.add('active');
+        } else {
+          path.classList.remove('active');
+        }
+      });
+
+      // Update clipboard notepad
+      const data = experienceTimelineData[year];
+      if (data) {
+        const area = document.querySelector('.clipboard-content-area');
+        area.style.opacity = '0';
+        area.style.transform = 'translateY(5px)';
+        area.style.transition = 'all 0.3s ease';
+
+        setTimeout(() => {
+          clipboardTitle.textContent = data.title;
+          clipboardMeta.textContent = data.meta;
+          clipboardList.innerHTML = data.bullets.map(bullet => `<li>${bullet}</li>`).join('');
+          area.style.opacity = '1';
+          area.style.transform = 'translateY(0)';
+        }, 300);
+      }
+    }
+
+    ringPaths.forEach(path => {
+      path.addEventListener('click', () => {
+        const year = path.getAttribute('data-year');
+        selectExperienceYear(year);
+      });
+    });
+
+    // Initialize default active year
+    selectExperienceYear("2026");
+
     // Flower petal mouse trail particle effect
     function initMouseTrail() {
       let lastSpawn = 0;
@@ -2776,7 +3452,7 @@
         }, 1500);
       }
     }
-    
+
     initDraggables();
     initMouseTrail();
     
