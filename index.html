@@ -9,44 +9,33 @@
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts: DM Serif Display (Elegant Serif), Caveat (Realistic Handwriting), Sacramento (Calligraphy Script), Outfit (Clean Body Text) -->
+  <!-- Google Fonts: Cormorant Garamond (Storybook Serif), Caveat (Handwritten), Lato (Clean Sans Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Caveat:wght@400;700&family=Sacramento&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Caveat:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS VARIABLES - Cottagecore Stationery Scrapbook Aesthetic */
+    /* CSS VARIABLES - Dreamy Fairytale Storybook Aesthetic */
     :root {
-      --cream:        #faf7f2;       /* Warm linen background */
-      --blush-light:  #fce8f4;       /* Soft pink surfaces */
-      --blush-mid:    #f5b8d8;       /* Pink accents */
-      --blush-deep:   #d4789a;       /* Pink headings/borders */
-      --lavender:     #e8e0f8;       /* Lavender surfaces */
-      --lavender-mid: #c4b0e8;       /* Lavender accents */
-      --lavender-deep:#8b72c8;       /* Lavender text/borders */
-      --sage:         #d4e8d0;       /* Sage green washi tape */
-      --sage-mid:     #9aba94;       /* Sage accents */
-      --brown-ink:    #5c3d2e;       /* Main body text, like ink */
-      --brown-muted:  #9a7868;       /* Muted labels */
-      --yellow-tape:  #f5e6a0;       /* Yellow washi tape */
-      --white:        #ffffff;       /* Pure white sheets */
+      --sky:           #f0f4ff;       /* misty sky background */
+      --cloud:         #ffffff;       /* pure white clouds */
+      --mist:          #e8eef8;       /* soft mist layer */
+      --blush:         #fce4ec;       /* petal pink */
+      --petal:         #f8bbd0;       /* deeper petal */
+      --lilac:         #e1d5f0;       /* soft lilac */
+      --lilac-deep:    #b39ddb;       /* deeper lilac for accents */
+      --mint:          #dff2eb;       /* soft mint */
+      --mint-deep:     #80cbc4;       /* deeper mint */
+      --butter:        #fff9e6;       /* warm cream/butter */
+      --gold:          #f9c74f;       /* lantern gold */
+      --ink:           #4a3f6b;       /* deep purple-ink for text */
+      --ink-muted:     #8f85a8;       /* muted ink for body */
       
-      /* New Scrapbook Palette Elements */
-      --forest-green: #2e4f3f;       /* Dark Green Banner Fills */
-      --dusty-rose:   #dca7a7;       /* Dusty Rose sheets */
-      --peach-blush:  #f9e5db;       /* Peach sheet highlights */
-      --scrapbook-shadow: 5px 5px 0px var(--brown-ink);
-      
-      /* Botanical Herbarium Elements */
-      --leaf-green:   #3d5a45;       /* Deep leaf green */
-      --terracotta:   #c67d6c;       /* Terracotta clay */
-      --wood-brown:   #8b5a2b;       /* Wood panels */
-      --metal-silver: #a0a0a0;       /* Wing nuts */
-      
-      --font-title:   'DM Serif Display', serif;
+      --font-title:   'Cormorant Garamond', serif;
       --font-accent:  'Caveat', cursive;
-      --font-cursive: 'Sacramento', cursive;
-      --font-body:    'Outfit', sans-serif;
+      --font-body:    'Lato', sans-serif;
+      
+      --storybook-shadow: 5px 5px 0px var(--ink);
     }
 
     /* GLOBAL RESET & STYLES */
@@ -1667,1413 +1656,710 @@
       }
     }
 
-    /* Top Navigation Banner */
-    .top-nav {
+
+
+    /* Ghibli Style Layout & Overhaul */
+    html {
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+    body {
+      min-height: 100vh;
+      position: relative;
+      background: linear-gradient(to bottom, #dce8f8 0%, #f0f4ff 100%);
+      line-height: 1.6;
+    }
+
+    .clouds-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 80px;
-      z-index: 1000;
-      background-color: transparent;
-      border-bottom: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .top-nav.scrolled {
-      height: 65px;
-      background-color: rgba(255, 251, 245, 0.4);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 30px rgba(92, 61, 46, 0.03);
-      border-bottom: 1px solid rgba(92, 61, 46, 0.08);
-    }
-    .nav-container {
-      max-width: 1100px;
       height: 100%;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-    .nav-logo:hover {
-      transform: scale(1.05);
-    }
-    .logo-svg {
-      flex-shrink: 0;
-      animation: wiggle-slow 6s ease-in-out infinite alternate;
-    }
-    .logo-name {
-      font-family: var(--font-cursive);
-      font-size: 2.5rem;
-      color: var(--brown-ink);
-      font-weight: normal;
-      line-height: 1;
-      margin-top: -4px;
-    }
-    @keyframes wiggle-slow {
-      0% { transform: rotate(-3deg); }
-      100% { transform: rotate(3deg); }
-    }
-    
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-    .nav-link {
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--brown-ink);
-      position: relative;
-      padding: 4px 0;
-      transition: color 0.2s ease;
-      text-decoration: none;
-    }
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--blush-deep);
-      transition: width 0.25s ease;
-      border-radius: 2px;
-    }
-    .nav-link:hover {
-      color: var(--blush-deep);
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    /* Mobile Navigation */
-    .mobile-nav-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 24px;
-      height: 18px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1001;
-    }
-    .mobile-nav-toggle span {
-      width: 100%;
-      height: 2px;
-      background-color: var(--brown-ink);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    
-    @media (max-width: 768px) {
-      .mobile-nav-toggle {
-        display: flex;
-      }
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 260px;
-        height: 100vh;
-        background-color: var(--cream);
-        border-left: 2.5px solid var(--brown-ink);
-        box-shadow: -10px 0 30px rgba(92, 61, 46, 0.1);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-        z-index: 1000;
-      }
-      .nav-links.active {
-        right: 0;
-      }
-      .mobile-nav-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      .mobile-nav-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-      .mobile-nav-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-      }
-    }
-
-    /* ==========================================================================
-       🌿 BOTANICAL HERBARIUM COMPONENT STYLES
-       ========================================================================== */
-
-    /* Twig Frame and Butterfly styles */
-    .twig-frame {
-      filter: drop-shadow(1px 2px 2px rgba(92, 61, 46, 0.12));
-    }
-    .botanical-butterfly {
-      position: absolute;
-      top: -24px;
-      right: 15px;
-      width: 32px;
-      height: 32px;
-      z-index: 10;
-      transform-style: preserve-3d;
-      transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       pointer-events: none;
-    }
-    .butterfly-body {
-      position: absolute;
-      width: 2px;
-      height: 18px;
-      background-color: var(--brown-ink);
-      top: 7px;
-      left: 15px;
-      border-radius: 1px;
-    }
-    .butterfly-wing {
-      position: absolute;
-      width: 14px;
-      height: 16px;
-      border: 1.2px solid var(--brown-ink);
-      background-color: rgba(198, 125, 108, 0.85); /* terracotta translucent wing */
-      border-radius: 50% 50% 20% 50%;
-      top: 6px;
-      transform-origin: right center;
-    }
-    .wing-left {
-      left: 1px;
-      transform-origin: right center;
-      animation: wing-flap-left 0.15s ease-in-out infinite alternate;
-    }
-    .wing-right {
-      left: 17px;
-      transform-origin: left center;
-      border-radius: 50% 50% 50% 20%;
-      animation: wing-flap-right 0.15s ease-in-out infinite alternate;
-    }
-    @keyframes wing-flap-left {
-      0% { transform: rotateY(0deg); }
-      100% { transform: rotateY(70deg); }
-    }
-    @keyframes wing-flap-right {
-      0% { transform: rotateY(0deg); }
-      100% { transform: rotateY(-70deg); }
-    }
-    
-    .name-box:hover .botanical-butterfly {
-      transform: translate(220px, -200px) rotate(-15deg) scale(0.6);
-      opacity: 0;
-    }
-
-    /* Interactive Flower Press Widget */
-    .flower-press {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      height: 480px;
-      background-color: var(--wood-brown);
-      border: 3.5px solid var(--brown-ink);
-      border-radius: 12px;
-      box-shadow: 6px 6px 0px var(--brown-ink);
-      padding: 2.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: visible;
-      user-select: none;
-    }
-    .flower-press::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1.5px dashed rgba(255,255,255,0.2);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-    .press-label {
-      background-color: var(--cream);
-      border: 2px solid var(--brown-ink);
-      padding: 0.5rem 1.2rem;
-      transform: rotate(-1.5deg);
-      box-shadow: 3px 3px 0px var(--brown-ink);
-      z-index: 10;
-      margin-top: 1rem;
-    }
-    .press-label h3 {
-      font-family: var(--font-title);
-      font-size: 1.15rem;
-      color: var(--brown-ink);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .press-screws-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 20;
-    }
-    .press-screw {
-      position: absolute;
-      pointer-events: auto;
-      cursor: pointer;
-      width: 32px;
-      height: 32px;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .press-screw:hover {
-      transform: scale(1.1);
-    }
-    .press-screw.spinning {
-      animation: screw-spin 0.6s ease-out;
-    }
-    @keyframes screw-spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .screw-tl { top: 12px; left: 12px; }
-    .screw-tr { top: 12px; right: 12px; }
-    .screw-bl { bottom: 12px; left: 12px; }
-    .screw-br { bottom: 12px; right: 12px; }
-
-    /* Flower Press Pages stack & slider drawer */
-    .press-sheets-container {
-      position: absolute;
-      inset: 15px;
-      z-index: 5;
-      overflow: visible;
-    }
-    .press-sheet {
-      position: absolute;
-      inset: 0;
-      background-color: var(--cream);
-      border: 2.5px solid var(--brown-ink);
-      border-radius: 6px;
-      padding: 2.5rem 2rem;
-      box-shadow: 4px 4px 0px var(--brown-ink);
-      transform-origin: left center;
-      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-      opacity: 0;
-      transform: scale(0.92) translateX(0);
-      pointer-events: none;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-    }
-    .press-sheet.active {
-      opacity: 1;
-      transform: scale(1) translateX(105%);
-      pointer-events: auto;
-      z-index: 15;
-    }
-    @media (max-width: 900px) {
-      .press-sheet.active {
-        transform: scale(1) translateY(105%);
-      }
-    }
-    .press-sheet h3 {
-      font-family: var(--font-accent);
-      font-size: 2.2rem;
-      color: var(--terracotta);
-      margin-bottom: 1.2rem;
-      text-align: center;
-    }
-    .press-sheet p {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--brown-ink);
-      text-align: justify;
-      margin-bottom: 1rem;
-    }
-    .press-sheet-tag {
-      position: absolute;
-      right: -25px;
-      top: 40px;
-      background-color: var(--terracotta);
-      color: var(--white);
-      font-family: var(--font-accent);
-      font-size: 1.1rem;
-      padding: 4px 12px;
-      border: 1.8px solid var(--brown-ink);
-      border-radius: 0 4px 4px 0;
-      transform: rotate(90deg);
-      transform-origin: left top;
-      cursor: pointer;
-      z-index: 18;
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-      transition: background-color 0.2s ease;
-    }
-    .press-sheet-tag:hover {
-      background-color: var(--leaf-green);
-    }
-    .press-sheet:nth-child(2) .press-sheet-tag {
-      top: 140px;
-      background-color: var(--leaf-green);
-    }
-    .press-sheet:nth-child(2) .press-sheet-tag:hover {
-      background-color: var(--terracotta);
-    }
-    .press-sheet:nth-child(3) .press-sheet-tag {
-      top: 240px;
-      background-color: var(--lavender-deep);
-    }
-    .press-sheet:nth-child(3) .press-sheet-tag:hover {
-      background-color: var(--terracotta);
-    }
-    
-    /* Seed Packets Toolkit styles */
-    .toolkit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .toolkit-card {
-      position: relative;
-      background-color: #f4ebd0; /* kraft paper */
-      border: 2.5px solid var(--brown-ink);
-      box-shadow: var(--scrapbook-shadow);
-      border-radius: 6px;
-      padding: 1.5rem 1.2rem;
-      height: 330px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
+      z-index: 0;
       overflow: hidden;
-      transition: all 0.3s ease;
     }
-    .seed-header-label {
-      background-color: var(--terracotta);
-      color: var(--white);
-      font-family: var(--font-title);
-      font-size: 0.85rem;
-      padding: 2px 10px;
-      border: 1.5px solid var(--brown-ink);
-      border-radius: 3px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      z-index: 10;
-      box-shadow: 1px 1px 0px var(--brown-ink);
-    }
-    .seed-illus {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 1rem;
-      z-index: 10;
-      filter: drop-shadow(1px 2px 1px rgba(92, 61, 46, 0.1));
-    }
-    .seed-packet-title {
-      font-family: var(--font-title);
-      font-size: 1.3rem;
-      color: var(--brown-ink);
-      text-align: center;
-      margin-bottom: 1rem;
-      z-index: 10;
-    }
-    /* Seed insert card */
-    .seed-insert-card {
+    .drifting-cloud {
       position: absolute;
-      top: 175px;
-      left: 10px;
-      right: 10px;
-      background-color: var(--cream);
-      border: 2px solid var(--brown-ink);
-      border-radius: 4px;
-      padding: 1rem 0.8rem;
-      box-shadow: 2px 2px 0px rgba(92,61,46,0.15);
-      transition: top 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-      z-index: 5;
-      height: 190px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background-color: var(--cloud);
+      filter: blur(45px);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: drift 80s linear infinite;
     }
-    .toolkit-card:hover .seed-insert-card {
-      top: 50px;
-    }
-    .seed-skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-      margin-top: 5px;
-    }
+    .cloud-1 { width: 420px; height: 190px; top: 15%; left: -420px; animation-duration: 95s; animation-delay: -10s; }
+    .cloud-2 { width: 520px; height: 230px; top: 45%; left: -520px; animation-duration: 115s; animation-delay: -45s; }
+    .cloud-3 { width: 370px; height: 170px; top: 75%; left: -370px; animation-duration: 85s; animation-delay: -20s; }
+    @keyframes drift { 0% { transform: translateX(0); } 100% { transform: translateX(calc(100vw + 600px)); } }
 
-    /* Specimen Sheet Projects */
-    .project-card {
-      background-color: var(--cream);
-      border: 2px solid var(--brown-ink);
-      outline: 1.2px solid var(--brown-ink);
-      outline-offset: -6px;
-      padding: 2.2rem 1.8rem;
-      position: relative;
-      border-radius: 6px;
-      box-shadow: var(--scrapbook-shadow);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .project-card::before {
-      content: "";
-      position: absolute;
-      top: 8px; left: 8px; right: 8px; bottom: 8px;
-      border: 1px dashed rgba(92, 61, 46, 0.15);
-      pointer-events: none;
-    }
-    .glass-vial-wrapper {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .glass-vial {
-      filter: drop-shadow(2px 3px 2px rgba(92, 61, 46, 0.15));
-      transform: rotate(5deg);
-      transition: transform 0.3s ease;
-    }
-    .project-card:hover .glass-vial {
-      transform: rotate(-5deg) translateY(-2px);
-    }
-    .specimen-tag {
-      background-color: #f4ebd0; /* cardboard paper */
-      border: 1.5px solid var(--brown-ink);
-      border-radius: 4px;
-      padding: 0.5rem;
-      margin-top: 1.2rem;
-      position: relative;
-      font-family: var(--font-accent);
-      font-size: 1.15rem;
-      color: var(--brown-ink);
-      box-shadow: 2px 2px 0px rgba(92,61,46,0.1);
-      transform: rotate(-1deg);
-      transition: transform 0.2s ease;
-    }
-    .project-card:hover .specimen-tag {
-      transform: rotate(1deg) scale(1.02);
-    }
-    .specimen-tag::before {
-      content: "";
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      border: 1.2px solid var(--brown-ink);
-      border-radius: 50%;
-      background-color: var(--cream);
-    }
+    .sparkles-container { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .sparkle { position: absolute; color: var(--petal); opacity: 0; font-size: 1.15rem; animation: float-up 12s linear infinite; }
+    .flower-petal-trail { position: absolute; pointer-events: none; z-index: 99; animation: trail-drift 1.5s ease-out forwards; opacity: 1; }
+    @keyframes trail-drift { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--drift-x), -60px) rotate(var(--rotate-deg)); opacity: 0; } }
+    @keyframes float-up { 0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.4; } 80% { opacity: 0.4; } 100% { transform: translateY(-5vh) translateX(50px) rotate(360deg); opacity: 0; } }
+
+    .top-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background-color: rgba(240, 244, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1.5px dashed var(--lilac-deep); transition: all 0.3s ease; }
+    .top-nav.scrolled { background-color: rgba(255, 255, 255, 0.85); box-shadow: 0 4px 20px rgba(74, 63, 107, 0.05); }
+    .nav-container { max-width: 1000px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-family: var(--font-title); font-size: 1.8rem; color: var(--ink); }
+    .nav-links { display: flex; gap: 1.8rem; }
+    .nav-link { font-family: var(--font-accent); font-size: 1.4rem; color: var(--ink-muted); text-decoration: none; transition: all 0.2s ease; }
+    .nav-link:hover { color: var(--petal); transform: translateY(-2px); }
     
-    /* Interactive tree rings experience styles */
-    .experience-container-botanical {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-    @media (max-width: 850px) {
-      .experience-container-botanical {
-        grid-template-columns: 1fr;
-      }
-    }
-    .tree-slice-panel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .tree-ring-path {
-      cursor: pointer;
-      stroke: var(--brown-ink);
-      stroke-width: 1.5;
-      fill: none;
-      transition: all 0.25s ease;
-    }
-    .tree-ring-path:hover {
-      stroke: var(--terracotta);
-      stroke-width: 3.5;
-    }
-    .tree-ring-path.active {
-      stroke: var(--leaf-green);
-      stroke-width: 4.5;
-    }
-    .tree-crack {
-      stroke: var(--brown-ink);
-      stroke-width: 1.2;
-      stroke-linecap: round;
-      opacity: 0.65;
-    }
-    .experience-clipboard {
-      background-color: var(--cream);
-      border: 3px solid var(--brown-ink);
-      border-radius: 8px;
-      box-shadow: var(--scrapbook-shadow);
-      padding: 2.5rem 2rem;
-      position: relative;
-      min-height: 250px;
-    }
-    .clipboard-clip {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 30px;
-      background-color: #a0a0a0;
-      border: 2px solid var(--brown-ink);
-      border-radius: 4px;
-      z-index: 10;
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-    }
-    .clipboard-clip::after {
-      content: "";
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 12px;
-      height: 12px;
-      background-color: #606060;
-      border-radius: 50%;
-    }
-    .clipboard-content-area h3 {
-      font-family: var(--font-title);
-      font-size: 1.6rem;
-      color: var(--leaf-green);
-      margin-bottom: 0.2rem;
-    }
-    .clipboard-content-area .clipboard-meta {
-      font-family: var(--font-accent);
-      font-size: 1.2rem;
-      color: var(--terracotta);
-      margin-bottom: 1.2rem;
-    }
-    .clipboard-content-area ul {
-      margin-left: 1.2rem;
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      color: var(--brown-ink);
-    }
-    .clipboard-content-area li {
-      margin-bottom: 0.6rem;
-    }
+    .max-width-wrapper { max-width: 950px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
+    section { padding: 6rem 0 4rem; position: relative; }
+    .chapter-label { text-align: center; font-family: var(--font-accent); font-size: 1.4rem; color: var(--ink-muted); margin-bottom: 0.8rem; letter-spacing: 0.5px; }
+    .storybook-header { text-align: center; font-family: var(--font-title); font-size: 3rem; color: var(--ink); font-weight: 600; margin-bottom: 0.4rem; }
+    .storybook-subheader { text-align: center; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted); margin-bottom: 3.5rem; }
+    .watercolour-underline { display: block; margin: 0.5rem auto 0; width: 140px; height: 10px; stroke: var(--petal); stroke-width: 3.5; stroke-linecap: round; fill: none; }
+
+    #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 5rem; }
+    .hero-content { display: flex; flex-direction: column; align-items: center; z-index: 5; }
+    .swaying-lantern-container { position: absolute; top: -20px; left: 10%; z-index: 10; pointer-events: none; }
+    .swaying-lantern { width: 36px; height: 90px; transform-origin: top center; animation: sway-lantern 3.5s ease-in-out infinite alternate; }
+    @keyframes sway-lantern { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+    .scroll-hint { margin-top: 3.5rem; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; animation: float-hint 2s ease-in-out infinite; cursor: pointer; }
+    @keyframes float-hint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    .character-card { background-color: var(--butter); border: 1.8px solid var(--lilac-deep); border-radius: 20px; padding: 2.5rem 1.8rem; box-shadow: var(--storybook-shadow); position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .journal-entry { background-color: var(--cloud); border: 1.8px solid var(--ink); border-radius: 8px; padding: 3rem 2.5rem; box-shadow: var(--storybook-shadow); position: relative; background-image: linear-gradient(rgba(179, 157, 219, 0.08) 1px, transparent 1px); background-size: 100% 28px; line-height: 28px; }
+    .spell-card { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 6px; padding: 2.2rem 1.5rem 1.8rem; position: relative; box-shadow: var(--storybook-shadow); display: flex; flex-direction: column; align-items: center; transition: transform 0.25s ease; clip-path: polygon(0% 0%, 100% 0%, 100% 97%, 97% 96%, 94% 97%, 91% 96%, 88% 97%, 85% 96%, 82% 97%, 79% 96%, 76% 97%, 73% 96%, 70% 97%, 67% 96%, 64% 97%, 61% 96%, 58% 97%, 55% 96%, 52% 97%, 49% 96%, 46% 97%, 43% 96%, 40% 97%, 37% 96%, 34% 97%, 31% 96%, 28% 97%, 25% 96%, 22% 97%, 19% 96%, 16% 97%, 13% 96%, 10% 97%, 7% 96%, 4% 97%, 0% 95%); }
+    .adventure-scroll { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 12px; padding: 1.8rem; box-shadow: var(--storybook-shadow); position: relative; display: flex; flex-direction: column; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .quest-card { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 12px; padding: 2.2rem; box-shadow: var(--storybook-shadow); max-width: 600px; margin-left: 2rem; position: relative; }
+    .achievement-card { background-color: var(--butter); border: 2px solid var(--gold); border-radius: 12px; padding: 2.2rem; box-shadow: 0 0 20px rgba(249, 199, 79, 0.15), var(--storybook-shadow); max-width: 600px; margin-left: 2rem; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .contact-spread { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 16px; box-shadow: var(--storybook-shadow); padding: 3.5rem 2.5rem; text-align: center; position: relative; margin-top: 1rem; }
+    .wax-sealed-btn { display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--lilac-deep); color: var(--cloud); font-family: var(--font-title); font-size: 1.45rem; padding: 0.8rem 2.5rem; border: 1.8px solid var(--ink); border-radius: 30px; text-decoration: none; box-shadow: var(--storybook-shadow); transition: all 0.3s ease; cursor: pointer; }
+    .wax-sealed-btn:hover { background-color: var(--petal); transform: translateY(-2px); box-shadow: 6px 6px 0px var(--ink); }
+
+    .scroll-reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+    .reveal-active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
+
+  <!-- Floating Atmospheric Background Elements -->
+  <div class="clouds-container" aria-hidden="true">
+    <div class="drifting-cloud cloud-1"></div>
+    <div class="drifting-cloud cloud-2"></div>
+    <div class="drifting-cloud cloud-3"></div>
+  </div>
+  <div class="sparkles-container" aria-hidden="true">
+    <div class="sparkle" style="top: 20%; left: 15%; animation-delay: 0s;">✦</div>
+    <div class="sparkle" style="top: 40%; left: 80%; animation-delay: 2s;">✨</div>
+    <div class="sparkle" style="top: 60%; left: 10%; animation-delay: 4s;">✦</div>
+    <div class="sparkle" style="top: 80%; left: 85%; animation-delay: 1s;">✨</div>
+    <div class="sparkle" style="top: 15%; left: 70%; animation-delay: 3s;">✦</div>
+    <div class="sparkle" style="top: 50%; left: 40%; animation-delay: 5s;">✨</div>
+  </div>
 
   <!-- Top Navigation Banner -->
   <nav class="top-nav">
     <div class="nav-container">
       <a href="#hero" class="nav-logo">
-        <svg class="logo-svg" viewBox="0 0 60 60" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <mask id="stamp-mask">
-              <rect x="10" y="6" width="40" height="48" rx="2" fill="#ffffff" />
-              <circle cx="15" cy="6" r="2" fill="#000000" />
-              <circle cx="20" cy="6" r="2" fill="#000000" />
-              <circle cx="25" cy="6" r="2" fill="#000000" />
-              <circle cx="30" cy="6" r="2" fill="#000000" />
-              <circle cx="35" cy="6" r="2" fill="#000000" />
-              <circle cx="40" cy="6" r="2" fill="#000000" />
-              <circle cx="45" cy="6" r="2" fill="#000000" />
-              <circle cx="15" cy="54" r="2" fill="#000000" />
-              <circle cx="20" cy="54" r="2" fill="#000000" />
-              <circle cx="25" cy="54" r="2" fill="#000000" />
-              <circle cx="30" cy="54" r="2" fill="#000000" />
-              <circle cx="35" cy="54" r="2" fill="#000000" />
-              <circle cx="40" cy="54" r="2" fill="#000000" />
-              <circle cx="45" cy="54" r="2" fill="#000000" />
-              <circle cx="10" cy="12" r="2" fill="#000000" />
-              <circle cx="10" cy="18" r="2" fill="#000000" />
-              <circle cx="10" cy="24" r="2" fill="#000000" />
-              <circle cx="10" cy="30" r="2" fill="#000000" />
-              <circle cx="10" cy="36" r="2" fill="#000000" />
-              <circle cx="10" cy="42" r="2" fill="#000000" />
-              <circle cx="10" cy="48" r="2" fill="#000000" />
-              <circle cx="50" cy="12" r="2" fill="#000000" />
-              <circle cx="50" cy="18" r="2" fill="#000000" />
-              <circle cx="50" cy="24" r="2" fill="#000000" />
-              <circle cx="50" cy="30" r="2" fill="#000000" />
-              <circle cx="50" cy="36" r="2" fill="#000000" />
-              <circle cx="50" cy="42" r="2" fill="#000000" />
-              <circle cx="50" cy="48" r="2" fill="#000000" />
-            </mask>
-          </defs>
-          <rect x="10" y="6" width="40" height="48" rx="2" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="1.8" mask="url(#stamp-mask)" />
-          <rect x="14" y="10" width="32" height="40" rx="1" stroke="var(--blush-deep)" stroke-width="1.2" stroke-dasharray="2,2" mask="url(#stamp-mask)" />
-          <path d="M 30,42 Q 30,33 32,24" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" fill="none" />
-          <path d="M 31,35 Q 22,32 19,26 Q 26,28 31,32 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1" />
-          <path d="M 31,37 Q 38,36 40,30 Q 35,31 31,35 Z" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="1" />
-          <path d="M 22,22 C 20,15 28,13 30,21 C 32,13 40,15 38,22 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linejoin="round" />
-          <path d="M 30,23 C 26,17 24,25 30,27 C 36,25 34,17 30,23 Z" fill="#fff" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linejoin="round" />
-          <circle cx="30" cy="20" r="2" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="2">
+          <path d="M4 28c4-1 10-1 12-4 2 3 8 3 12 4V6c-4-1-10-1-12 2-2-3-8-3-12-2z" fill="var(--blush)" />
+          <path d="M16 8v16" />
         </svg>
-        <span class="logo-name">Kritika</span>
+        <span style="font-family: var(--font-accent); font-weight: bold; color: var(--ink);">Kritika</span>
       </a>
-      <button class="mobile-nav-toggle" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <div class="nav-links">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#techstack" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#about" class="nav-link">Chapter 1</a>
+        <a href="#techstack" class="nav-link">Chapter 2</a>
+        <a href="#projects" class="nav-link">Chapter 3</a>
+        <a href="#experience" class="nav-link">Chapter 4</a>
+        <a href="#contact" class="nav-link">The End</a>
       </div>
     </div>
   </nav>
 
-  <!-- Animated Watercolor Background Blobs -->
-  <div class="bg-watercolor-blob blob-1"></div>
-  <div class="bg-watercolor-blob blob-2"></div>
-  <div class="bg-watercolor-blob blob-3"></div>
-  <div class="bg-watercolor-blob blob-4"></div>
+  <!-- 1. HERO SECTION (THE COVER) -->
+  <section id="hero">
+    <div class="swaying-lantern-container" aria-hidden="true">
+      <svg class="swaying-lantern" viewBox="0 0 36 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="18" y1="0" x2="18" y2="40" stroke="var(--ink)" stroke-width="1.5" />
+        <rect x="10" y="40" width="16" height="24" rx="3" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.8" />
+        <circle cx="18" cy="52" r="5" fill="var(--gold)" filter="drop-shadow(0 0 8px var(--gold))" />
+        <path d="M10 64 L18 78 L26 64 Z" fill="var(--ink)" />
+      </svg>
+    </div>
 
-  <!-- Floating Botanical Sketches in Background -->
-  <div class="bg-botanical-sketch sketch-1">
-    <svg viewBox="0 0 100 100" width="120" height="120">
-      <path d="M10,90 Q30,60 50,40 T90,10 M50,40 Q40,30 30,35 Q40,45 50,40 M70,20 Q60,10 50,15 Q60,25 70,20" fill="none" stroke="var(--sage-mid)" stroke-width="1.5" opacity="0.3" stroke-linecap="round" />
-    </svg>
-  </div>
-  <div class="bg-botanical-sketch sketch-2">
-    <svg viewBox="0 0 100 100" width="140" height="140">
-      <path d="M90,90 Q60,60 10,10 M35,35 Q20,30 15,40 Q25,45 35,35 M60,60 Q45,50 40,60 Q50,65 60,60" fill="none" stroke="var(--sage-mid)" stroke-width="1.5" opacity="0.25" stroke-linecap="round" />
-    </svg>
-  </div>
-  <div class="bg-botanical-sketch sketch-3">
-    <svg viewBox="0 0 100 100" width="100" height="100">
-      <circle cx="50" cy="50" r="10" fill="none" stroke="var(--blush-deep)" stroke-width="1.2" opacity="0.2" />
-      <path d="M50,40 C45,30 55,30 50,40 M50,60 C45,70 55,70 50,60 M40,50 C30,45 30,55 40,50 M60,50 C70,45 70,55 60,50" fill="none" stroke="var(--blush-deep)" stroke-width="1.2" opacity="0.2" />
-    </svg>
-  </div>
-
-  <!-- SCREEN FLASH INTERACTIVE DECORATION -->
-  <div id="screen-flash"></div>
-
-  <!-- BACKGROUND DECORATIVE FLOAT STARS -->
-  <div class="float-stars">
-    <div class="float-star-item" style="top: 15%; left: 8%;">✦</div>
-    <div class="float-star-item" style="top: 25%; right: 10%;">✦</div>
-    <div class="float-star-item" style="top: 45%; left: 12%;">✦</div>
-    <div class="float-star-item" style="top: 60%; right: 8%;">✦</div>
-    <div class="float-star-item" style="top: 75%; left: 10%;">✦</div>
-    <div class="float-star-item" style="top: 85%; right: 12%;">✦</div>
-  </div>
-
-  <!-- 1. HERO SECTION -->
-  <header id="hero" class="ruled-section">
-    <div class="max-width-wrapper hero-content" style="position: relative;">
+    <div class="max-width-wrapper hero-content">
+      <span style="font-family: var(--font-accent); font-size: 1.45rem; color: var(--ink-muted); margin-bottom: 0.5rem; display: block;">once upon a time, a developer...</span>
       
-      <!-- Name Card Box (Borderless, with twig frame and butterfly) -->
-      <div class="name-box" style="z-index: 5; border: none; background: transparent; box-shadow: none; position: relative;">
-        <!-- 3D Fluttering Butterfly -->
-        <div class="botanical-butterfly">
-          <div class="butterfly-wing wing-left"></div>
-          <div class="butterfly-wing wing-right"></div>
-          <div class="butterfly-body"></div>
-        </div>
+      <h1 style="font-family: var(--font-title); font-size: 4.8rem; font-weight: 700; color: var(--ink); line-height: 1.1;">Kritika Khatri</h1>
+      
+      <svg class="watercolour-underline" viewBox="0 0 140 10" aria-hidden="true">
+        <path d="M10,5 C30,2 60,8 90,4 C110,2 125,7 130,5" fill="none" stroke="var(--petal)" stroke-width="3.5" stroke-linecap="round" />
+      </svg>
 
-        <!-- Twig Frame Vector Drawing wrapping name -->
-        <div class="twig-frame-container" style="position: relative; display: inline-block; padding: 2rem 3rem;">
-          <svg class="twig-frame" viewBox="0 0 320 220" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Intersecting circle/oval twig rings -->
-            <ellipse cx="160" cy="110" rx="140" ry="90" stroke="var(--brown-ink)" stroke-width="1.8" opacity="0.75" stroke-dasharray="12,10" />
-            <ellipse cx="160" cy="110" rx="136" ry="86" stroke="var(--brown-ink)" stroke-width="1.2" opacity="0.6" />
-            <ellipse cx="162" cy="108" rx="144" ry="94" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linecap="round" />
-            <!-- Hand-drawn leaf twigs branching off -->
-            <path d="M 280,70 C 295,60 300,65 295,75" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
-            <path d="M 270,60 Q 285,45 288,52 C 278,58 270,60 270,60" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
-            <path d="M 40,150 Q 25,165 22,158 C 32,152 40,150 40,150" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
-            <path d="M 50,160 C 35,170 30,165 35,155" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
-            <path d="M 160,20 Q 175,5 180,12 C 170,18 160,20 160,20" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
-            <path d="M 130,204 Q 115,215 110,208 C 120,202 130,204 130,204" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1" />
-          </svg>
-          <h1 style="position: relative; z-index: 2; margin: 0; font-family: var(--font-title); font-size: 3.2rem; color: var(--brown-ink); letter-spacing: 0.5px;">Kritika Khatri</h1>
-        </div>
-      </div>
+      <p style="font-family: var(--font-accent); font-size: 1.55rem; color: var(--ink-muted); margin-top: 1rem; max-width: 600px;">
+        building frontend worlds, intelligent agent systems, and beautiful digital storybooks
+      </p>
 
-      <!-- Scroll down hint -->
-      <div class="scroll-hint" style="z-index: 5;">scroll ↓</div>
+      <!-- Custom illustration of girl at laptop -->
+      <svg class="girl-illustration" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cloud backing -->
+        <ellipse cx="140" cy="180" rx="90" ry="25" fill="var(--cloud)" opacity="0.95" />
+        
+        <!-- Floating objects -->
+        <!-- Tiny book -->
+        <path d="M60 70c4-1 10-1 12-2 2 1 8 1 12 2v-8c-4-1-10-1-12 1-2-2-8-2-12-1z" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.2" />
+        <path d="M72 61v8" stroke="var(--ink)" stroke-width="1.2" />
+        <!-- Cup -->
+        <rect x="200" y="125" width="12" height="12" rx="2" fill="var(--mint)" stroke="var(--ink)" stroke-width="1.2" />
+        <path d="M212 128c2 0 3 1 3 3s-1 3-3 3" stroke="var(--ink)" stroke-width="1.2" />
+        <!-- Star -->
+        <path d="M75 125l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z" fill="var(--gold)" />
+        <!-- Floating pencil -->
+        <path d="M205 70l12-12c1 1 2 2 1 3l-12 12z" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.2" />
 
-      <!-- Peeking Interactive Cat surrounded by grass & ferns -->
-      <div id="peeking-cat">
-        <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Grass Blades and Ferns peeking out -->
-          <path d="M 10,100 Q 5,60 14,40 Q 18,65 24,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
-          <path d="M 22,100 Q 32,50 38,35 Q 36,65 28,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
-          <path d="M 188,100 Q 195,60 186,40 Q 183,65 178,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
-          <path d="M 176,100 Q 166,55 158,35 Q 162,65 168,100 Z" fill="var(--leaf-green)" stroke="var(--brown-ink)" stroke-width="1.2" />
-          <path d="M 5,100 Q -5,75 -12,55 M -2,85 Q -10,80 -8,75" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
-          <path d="M -5,75 Q -15,70 -12,65" stroke="var(--brown-ink)" stroke-width="1.2" fill="var(--leaf-green)" />
-          
-          <!-- Cat Head Silhouette -->
-          <path d="M 20,100 C 20,70 40,48 50,48 L 62,15 C 64,10 68,13 70,25 L 76,45 C 84,42 92,40 100,40 C 108,40 116,42 124,45 L 130,25 C 132,13 136,10 138,15 L 150,48 C 160,48 180,70 180,100 Z" fill="#1c1c1c" stroke="var(--brown-ink)" stroke-width="2.5" stroke-linejoin="round" />
-          <!-- Golden Eyes -->
-          <circle cx="78" cy="65" r="16" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="2.5" />
-          <circle cx="122" cy="65" r="16" fill="#fcf0be" stroke="var(--brown-ink)" stroke-width="2.5" />
-          <!-- Pupils + highlights -->
-          <g id="pupil-left">
-            <circle cx="78" cy="65" r="8" fill="#1e130c" />
-            <circle cx="75" cy="62" r="2.5" fill="#ffffff" />
-          </g>
-          <g id="pupil-right">
-            <circle cx="122" cy="65" r="8" fill="#1e130c" />
-            <circle cx="119" cy="62" r="2.5" fill="#ffffff" />
-          </g>
+        <!-- Desk -->
+        <rect x="90" y="145" width="100" height="8" rx="2" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.5" />
+        <path d="M100 153c0 8 10 15 20 15m40-15c0 8-10 15-20 15" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" />
+
+        <!-- Laptop -->
+        <rect x="125" y="125" width="30" height="20" rx="2" fill="var(--mist)" stroke="var(--ink)" stroke-width="1.5" />
+        <polygon points="120,123 160,123 185,145 95,145" fill="var(--blush)" opacity="0.3" />
+        <line x1="125" y1="140" x2="155" y2="140" stroke="var(--ink)" stroke-width="1.5" />
+        <circle cx="140" cy="133" r="2.5" fill="var(--gold)" />
+
+        <!-- Character -->
+        <circle cx="140" cy="85" r="14" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.5" />
+        <circle cx="140" cy="68" r="7" fill="var(--ink)" />
+        <path d="M128 80c4-6 10-6 12-4c2-2 8-2 12 4" stroke="var(--ink)" stroke-width="1.5" fill="var(--ink)" />
+        <path d="M128 99c0-6 8-10 12-10s12 4 12 10l-4 25h-16z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.5" />
+        <path d="M132 108c4 4 8 8 12 6c4 2 8-2 10-6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+      </svg>
+
+      <a href="#about" class="scroll-hint">
+        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="var(--ink-muted)" stroke-width="2">
+          <path d="M16 4v24M8 20l8 8 8-8" />
+        </svg>
+        <span>turn the page ↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. ABOUT ME SECTION (CHAPTER ONE) -->
+  <section id="about" class="scroll-reveal">
+    <div class="max-width-wrapper">
+      <div class="chapter-label">· Chapter One ·</div>
+      <h2 class="storybook-header">The Protagonist</h2>
+      <div class="storybook-subheader">introducing our curious builder</div>
+
+      <div class="storybook-divider" aria-hidden="true">
+        <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M10,10 Q50,0 90,10 T170,10 T250,10 T330,10 T390,10" />
+          <circle cx="50" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
+          <circle cx="130" cy="15" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
+          <circle cx="210" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
+          <circle cx="290" cy="15" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
+          <circle cx="370" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
         </svg>
       </div>
 
-    </div>
-  </header>
-
-  <!-- 2. ABOUT ME SECTION -->
-  <section id="about" class="ruled-section scroll-reveal">
-    <div class="max-width-wrapper">
-      
       <div class="about-grid">
-        
-        <!-- Left: Flower Press Widget -->
-        <div class="flower-press-wrapper" style="position: relative; z-index: 10;">
-          <div class="flower-press">
-            <!-- screws at corners -->
-            <div class="press-screws-container">
-              <img class="press-screw screw-tl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
-              <img class="press-screw screw-tr" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
-              <img class="press-screw screw-bl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
-              <img class="press-screw screw-br" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23a0a0a0' stroke='%235c3d2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23606060'/%3E%3Cpath d='M8 16h16M16 8v16' stroke='%235c3d2e' stroke-width='2'/%3E%3C/svg%3E" alt="Wing nut">
-            </div>
+        <!-- Left: Character Sheet Card -->
+        <div class="character-card">
+          <div class="character-card-decor" aria-hidden="true"></div>
+          
+          <svg class="girl-reading" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="90" cy="155" rx="60" ry="12" fill="var(--mist)" opacity="0.8" />
+            <circle cx="90" cy="60" r="14" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.5" />
+            <circle cx="90" cy="43" r="7" fill="var(--ink)" />
+            <path d="M78 74c0-6 8-10 12-10s12 4 12 10l-2 30h-20z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.5" />
+            <path d="M70 145c10-10 30-10 40 0" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" />
+            <path d="M75 147c10-5 25-5 35 0" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round" />
+            <path d="M76 112c3-1 7-1 9-2c2 1 6 1 9 2v-8c-3-1-7-1-9 1c-2-2-6-2-9-1z" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
+            <path d="M85 103v8" stroke="var(--ink)" stroke-width="1.2" />
+            <circle cx="76" cy="110" r="3" fill="var(--blush)" stroke="var(--ink)" stroke-width="1" />
+            <circle cx="94" cy="110" r="3" fill="var(--blush)" stroke="var(--ink)" stroke-width="1" />
+          </svg>
 
-            <!-- central label -->
-            <div class="press-label">
-              <h3>Flower Press</h3>
-            </div>
-
-            <!-- Sheets slider container -->
-            <div class="press-sheets-container">
-              
-              <!-- Sheet 1 -->
-              <div class="press-sheet active">
-                <div class="press-sheet-tag">The Naturalist</div>
-                <h3>The Naturalist</h3>
-                <p>
-                  I'm a B.Tech Computer Science student at Newton School of Technology, currently working as an AI Engineer Intern at FlyRank. I operate at the intersection of frontend mechanics, intelligent agents, and aesthetic UI/UX systems.
-                </p>
-                <p>
-                  For me, web development isn't just about rendering data; it's about composing an immersive experience.
-                </p>
-              </div>
-
-              <!-- Sheet 2 -->
-              <div class="press-sheet">
-                <div class="press-sheet-tag">Core Traits</div>
-                <h3>Core Traits</h3>
-                <p>
-                  <strong>Intuitive UX:</strong> Interactions should feel natural and tactile, like turning a page or spinning a screw.
-                </p>
-                <p>
-                  <strong>AI Symbiosis:</strong> Automating repetitive logic so that we can focus on building highly customized, creative digital art.
-                </p>
-                <p>
-                  <strong>Attention to Detail:</strong> Every font-face choice, drop-shadow, and micro-animation is selected to evoke a premium feel.
-                </p>
-              </div>
-
-              <!-- Sheet 3 -->
-              <div class="press-sheet">
-                <div class="press-sheet-tag">Field Notes</div>
-                <h3>Field Notes</h3>
-                <p>
-                  When I'm not writing code or building automated LLM agents, you can find me:
-                </p>
-                <ul style="margin-left: 1.2rem; line-height: 1.6; font-family: var(--font-body); font-size: 1rem; color: var(--brown-ink);">
-                  <li>Exploring vintage sketching and hand-lettering</li>
-                  <li>Designing high-end layouts in Figma</li>
-                  <li>Analyzing motion curves in After Effects</li>
-                  <li>Documenting my tech exploration in public</li>
-                </ul>
-              </div>
-
-            </div>
+          <h3>Kritika Khatri</h3>
+          <p style="font-family: var(--font-accent); font-size: 1.15rem; color: var(--ink-muted); margin-bottom: 1.2rem;">Computer Science Undergrad</p>
+          
+          <div class="traits-list">
+            <span class="trait-badge">✦ Curious</span>
+            <span class="trait-badge">✿ Builder</span>
+            <span class="trait-badge">✦ Design-Led</span>
+            <span class="trait-badge">✿ Fast Learner</span>
           </div>
         </div>
 
-        <!-- Right: Notebook letter description -->
+        <!-- Right: Notebook Ruled Sheet Bio -->
         <div class="journal-entry">
-          <div class="paperclip">
-            <svg viewBox="0 0 32 48" width="100%" height="100%">
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#a0a0a0" stroke-width="2.5" stroke-linecap="round" />
-              <path d="M10,38 L10,14 C10,9 14,5 18,5 C22,5 26,9 26,14 L26,34 C26,40 21,44 16,44 C11,44 6,40 6,34 L6,18 C6,15 8.5,13 11,13 C13.5,13 16,15 16,18 L16,34" fill="none" stroke="#707070" stroke-width="1.2" stroke-linecap="round" />
-            </svg>
+          <h3>The Story So Far...</h3>
+          <p>
+            <span class="drop-cap">I</span>'m a developer who views code as a canvas and web layouts as stories waiting to unfold. Based in Pune, India, I build interfaces that bridge visual aesthetics with clean technology internals. I enjoy experimenting with AI agent structures and creative responsive designs.
+          </p>
+          <p>
+            When I'm not writing layouts, you'll find me learning about automation tools, researching AI-driven workflows, or drinking warm chai.
+          </p>
+          <span class="journal-signature">Signed, Kritika Khatri</span>
+
+          <div class="social-chips">
+            <a href="https://github.com/kritikhatri" target="_blank" class="social-chip">
+              <i class="fab fa-github"></i> github
+            </a>
+            <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank" class="social-chip">
+              <i class="fab fa-linkedin"></i> linkedin
+            </a>
           </div>
-          <h3>dear visitor ♡</h3>
-          <p>
-            Welcome to my herbarium! Spin the wing-nuts or tap the tabs on the flower press to reveal my background, core traits, and field notes.
-          </p>
-          <p>
-            I'm 20, building fast, and learning out loud. I believe code should not just perform optimally, but should also look and feel like art.
-          </p>
-          <span class="journal-signature">— Kritika, writing code & pressing flowers ✦</span>
         </div>
-
       </div>
-
     </div>
   </section>
 
-  <!-- Section Divider (Yellow washi tape at -2deg) -->
-  <div class="washi-divider yellow washi-tape washi-tape-torn-horizontal"></div>
-
-  <!-- 3. TECH STACK (TOOLKIT) SECTION -->
+  <!-- 3. TECH STACK SECTION (CHAPTER TWO) -->
   <section id="techstack" class="scroll-reveal">
     <div class="max-width-wrapper">
-      
-      <!-- Section Header -->
-      <div class="section-header-wrap">
-        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--sage-mid);"></div>
-        <h2>my toolkit ♡</h2>
-        <p>things I know & love</p>
+
+      <div class="storybook-divider" aria-hidden="true">
+        <svg viewBox="0 0 400 25" width="100%" height="25" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M10,15 Q60,5 110,15 T210,15 T310,15 T390,15" />
+          <path d="M90,10 A4,4 0 0,1 98,10 L98,15 L90,15 Z" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
+          <rect x="93" y="15" width="2" height="4" fill="var(--butter)" stroke="var(--ink)" stroke-width="0.8" />
+          <path d="M250,10 A4,4 0 0,1 258,10 L258,15 L250,15 Z" fill="var(--lilac-deep)" stroke="var(--ink)" stroke-width="1" />
+          <rect x="253" y="15" width="2" height="4" fill="var(--butter)" stroke="var(--ink)" stroke-width="0.8" />
+          <path d="M170,3l2 2 2-2-2-2z" fill="var(--gold)" />
+          <path d="M330,3l2 2 2-2-2-2z" fill="var(--gold)" />
+        </svg>
       </div>
 
-      <!-- 2x2 grid of pockets -->
-      <div class="toolkit-grid">
-        
-        <!-- Frontend Herbs seed packet -->
-        <div class="toolkit-card">
-          <div class="seed-header-label">Seed Co.</div>
-          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 32,58 Q 32,32 32,8" stroke-width="2.5" />
-            <path d="M 32,45 Q 48,40 50,30 Q 38,32 32,45 Z" fill="var(--leaf-green)" />
-            <path d="M 32,35 Q 16,30 14,20 Q 26,22 32,35 Z" fill="var(--leaf-green)" />
-            <path d="M 32,22 Q 48,15 45,5 Q 35,8 32,22 Z" fill="var(--leaf-green)" />
-          </svg>
-          <h3 class="seed-packet-title">Frontend Herbs</h3>
-          <div class="seed-insert-card">
-            <span class="seed-header-label" style="background-color: var(--leaf-green); font-size: 0.7rem; margin-bottom: 0.5rem;">Herbs List</span>
-            <div class="seed-skills-list">
-              <span class="skill-pill">HTML5</span>
-              <span class="skill-pill">CSS3</span>
-              <span class="skill-pill">JavaScript</span>
-              <span class="skill-pill">React</span>
-              <span class="skill-pill">Tailwind</span>
-            </div>
+      <div class="spell-grid">
+        <!-- Card 1: Frontend -->
+        <div class="spell-card">
+          <div class="bookmark-ribbon"></div>
+          <div class="spell-header">
+            <svg class="spell-icon" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--ink)" stroke-width="2" />
+              <path d="M6 21h12m-6-4v4" />
+            </svg>
+            <h3>Frontend Herbs</h3>
+          </div>
+          <div class="ingredient-list">
+            <span class="ingredient-label">HTML5 & CSS3</span>
+            <span class="ingredient-label">React.js</span>
+            <span class="ingredient-label">Tailwind CSS</span>
+            <span class="ingredient-label">JavaScript</span>
           </div>
         </div>
 
-        <!-- AI Blooms seed packet -->
-        <div class="toolkit-card">
-          <div class="seed-header-label">Seed Co.</div>
-          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 32,58 Q 32,35 32,24 M 20,45 Q 32,42 32,58" stroke-width="2" />
-            <circle cx="32" cy="20" r="10" fill="var(--blush-mid)" />
-            <path d="M 28,15 L 36,25 M 36,15 L 28,25" stroke="var(--brown-ink)" stroke-width="1.5"/>
-          </svg>
-          <h3 class="seed-packet-title">AI Blooms</h3>
-          <div class="seed-insert-card">
-            <span class="seed-header-label" style="background-color: var(--terracotta); font-size: 0.7rem; margin-bottom: 0.5rem;">Blooms List</span>
-            <div class="seed-skills-list">
-              <span class="skill-pill">n8n</span>
-              <span class="skill-pill">LLM Integration</span>
-              <span class="skill-pill">Prompt Eng.</span>
-              <span class="skill-pill">AI Agents</span>
-            </div>
+        <!-- Card 2: AI & Auto -->
+        <div class="spell-card ai">
+          <div class="bookmark-ribbon"></div>
+          <div class="spell-header">
+            <svg class="spell-icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" stroke="var(--ink)" stroke-width="2" />
+              <path d="M9 12h6m-3-3v6" />
+            </svg>
+            <h3>AI & Automation</h3>
+          </div>
+          <div class="ingredient-list">
+            <span class="ingredient-label">n8n Workflows</span>
+            <span class="ingredient-label">LLMs & Prompting</span>
+            <span class="ingredient-label">Node.js Basics</span>
+            <span class="ingredient-label">Python Basics</span>
           </div>
         </div>
 
-        <!-- Design Vines seed packet -->
-        <div class="toolkit-card">
-          <div class="seed-header-label">Seed Co.</div>
-          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 20,58 Q 40,40 32,15 T 48,5" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 35,32 Q 48,35 48,25 Q 38,22 35,32 Z" fill="var(--sage-mid)" />
-            <path d="M 28,45 Q 12,42 16,32 Q 26,35 28,45 Z" fill="var(--sage-mid)" />
-          </svg>
-          <h3 class="seed-packet-title">Design Vines</h3>
-          <div class="seed-insert-card">
-            <span class="seed-header-label" style="background-color: var(--sage-mid); font-size: 0.7rem; margin-bottom: 0.5rem;">Vines List</span>
-            <div class="seed-skills-list">
-              <span class="skill-pill">Figma</span>
-              <span class="skill-pill">Prototyping</span>
-              <span class="skill-pill">Responsive Design</span>
-              <span class="skill-pill">Wireframing</span>
-            </div>
+        <!-- Card 3: Design -->
+        <div class="spell-card design">
+          <div class="bookmark-ribbon"></div>
+          <div class="spell-header">
+            <svg class="spell-icon" viewBox="0 0 24 24">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="var(--ink)" stroke-width="2" />
+              <path d="M7.5 10.5C8.32843 10.5 9 9.82843 9 9C9 8.17157 8.32843 7.5 7.5 7.5C6.67157 7.5 6 8.17157 6 9C6 9.82843 6.67157 10.5 7.5 10.5Z" fill="var(--ink)" />
+              <path d="M16.5 10.5C17.3284 10.5 18 9.82843 18 9C18 8.17157 17.3284 7.5 16.5 7.5C15.6716 7.5 15 8.17157 15 9C15 9.82843 15.6716 10.5 16.5 10.5Z" fill="var(--ink)" />
+            </svg>
+            <h3>UI/UX Crafts</h3>
+          </div>
+          <div class="ingredient-list">
+            <span class="ingredient-label">Figma Drafts</span>
+            <span class="ingredient-label">Prototyping</span>
+            <span class="ingredient-label">Wireframing</span>
+            <span class="ingredient-label">Color Theory</span>
           </div>
         </div>
 
-        <!-- Motion Sprouts seed packet -->
-        <div class="toolkit-card">
-          <div class="seed-header-label">Seed Co.</div>
-          <svg class="seed-illus" viewBox="0 0 64 64" fill="none" stroke="var(--brown-ink)" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 32,58 C 32,45 32,35 32,25" stroke-width="2.5" />
-            <path d="M 32,25 C 22,20 12,30 32,25 C 52,20 42,30 32,25 Z" fill="var(--yellow-tape)" />
-            <circle cx="32" cy="18" r="3" fill="var(--terracotta)" />
-          </svg>
-          <h3 class="seed-packet-title">Motion Sprouts</h3>
-          <div class="seed-insert-card">
-            <span class="seed-header-label" style="background-color: var(--terracotta); font-size: 0.7rem; margin-bottom: 0.5rem;">Sprouts List</span>
-            <div class="seed-skills-list">
-              <span class="skill-pill">After Effects</span>
-              <span class="skill-pill">Motion Graphics</span>
-              <span class="skill-pill">SVG Animation</span>
-            </div>
+        <!-- Card 4: Motion -->
+        <div class="spell-card motion">
+          <div class="bookmark-ribbon"></div>
+          <div class="spell-header">
+            <svg class="spell-icon" viewBox="0 0 24 24">
+              <path d="M21 5H3v14h18V5z" stroke="var(--ink)" stroke-width="2" />
+              <path d="M10 9l5 3-5 3V9z" fill="var(--ink)" />
+            </svg>
+            <h3>Motion Charms</h3>
+          </div>
+          <div class="ingredient-list">
+            <span class="ingredient-label">CSS Keyframes</span>
+            <span class="ingredient-label">SVG Animation</span>
+            <span class="ingredient-label">Transitions</span>
+            <span class="ingredient-label">Micro-effects</span>
           </div>
         </div>
-
       </div>
 
-    </div>
-
-    <!-- Infinite scrolling marquee strip divider -->
-    <div class="marquee-tape washi-tape washi-tape-torn-horizontal" aria-label="Scrolling toolkit list">
-      <div class="marquee-inner">
-        <span>&nbsp;♡ React &nbsp;♡ Figma &nbsp;♡ n8n &nbsp;♡ JavaScript &nbsp;♡ After Effects &nbsp;♡ HTML5 &nbsp;♡ CSS3 &nbsp;♡ Prompt Engineering &nbsp;♡ Figma &nbsp;</span>
-        <span>&nbsp;♡ React &nbsp;♡ Figma &nbsp;♡ n8n &nbsp;♡ JavaScript &nbsp;♡ After Effects &nbsp;♡ HTML5 &nbsp;♡ CSS3 &nbsp;♡ Prompt Engineering &nbsp;♡ Figma &nbsp;</span>
+      <div style="text-align: center; margin-top: 2.5rem; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted);">
+        * and learning new enchants every single sunrise... *
       </div>
     </div>
   </section>
 
-  <!-- Decorative Spacers -->
-  <div class="spacer-decorations" aria-hidden="true">
-    <span>✦</span>
-    <span>♡</span>
-    <span>✦</span>
-  </div>
-
-  <!-- 4. PROJECTS (Spread Pinned Cards) SECTION -->
-  <section id="projects" class="ruled-section scroll-reveal">
+  <!-- 4. PROJECTS SECTION (CHAPTER THREE) -->
+  <section id="projects" class="scroll-reveal">
     <div class="max-width-wrapper">
-      
-      <!-- Section Header -->
-      <div class="section-header-wrap">
-        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--lavender-mid);"></div>
-        <h2>things I've built ✦</h2>
-        <p>projects & experiments</p>
+      <div class="chapter-label">· Chapter Three ·</div>
+      <h2 class="storybook-header">The Adventures</h2>
+      <div class="storybook-subheader">tales of interfaces built & deployed</div>
+
+      <div class="storybook-divider" aria-hidden="true">
+        <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M10,10 Q50,18 90,10 T170,10 T250,10 T330,10 T390,10" />
+          <path d="M90,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
+          <path d="M210,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
+          <path d="M330,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
+        </svg>
       </div>
 
-      <!-- Filter tabs sticking out from top -->
+      <!-- Projects filter ribbon menu tabs -->
       <div class="project-filter-container">
-        <button class="filter-tab active" onclick="filterProjects('all')">all</button>
-        <button class="filter-tab" onclick="filterProjects('frontend')">frontend</button>
-        <button class="filter-tab" onclick="filterProjects('ai')">ai & auto</button>
-        <button class="filter-tab" onclick="filterProjects('uiux')">ui/ux</button>
+        <button class="filter-tab active" onclick="filterProjects('all')">All</button>
+        <button class="filter-tab" onclick="filterProjects('frontend')">Frontend</button>
+        <button class="filter-tab" onclick="filterProjects('ai')">AI & Auto</button>
+        <button class="filter-tab" onclick="filterProjects('uiux')">UI/UX</button>
       </div>
 
-      <!-- Staggered Projects Grid -->
       <div class="projects-grid">
-        
-        <!-- Project 1 Specimen Sheet -->
-        <div class="project-card" data-category="frontend">
-          <!-- Glass Vial with stem -->
-          <div class="glass-vial-wrapper">
-            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cork -->
-              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
-              <!-- Vial Neck -->
-              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
-              <!-- Glass Highlights -->
-              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
-              <!-- Pressed Flower inside -->
-              <path d="M 20,90 Q 20,40 22,25" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M 22,45 Q 12,40 15,35 Z" fill="var(--leaf-green)" />
-              <circle cx="22" cy="25" r="4.5" fill="var(--terracotta)" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <!-- Adventure 1: Spotify -->
+        <div class="adventure-scroll" data-category="frontend uiux">
+          <div class="project-illus-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="24" fill="var(--mint)" />
+              <path d="M18 36c0-8 6-14 14-14s14 6 14 14" />
+              <rect x="14" y="32" width="6" height="10" rx="2" fill="var(--ink)" />
+              <rect x="44" y="32" width="6" height="10" rx="2" fill="var(--ink)" />
+              <path d="M30 25v10" />
+              <circle cx="27" cy="35" r="3" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.2" />
             </svg>
           </div>
-
-          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ Spotify Clone</h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
-            Responsive music streaming UI in React — playlists, player controls, dynamic components.
+          <span class="scroll-tag">Adventure #01</span>
+          <h3>Spotify Playlist Cover Creator</h3>
+          <p>
+            An interface where music meets customization. Pick vibes, apply colors, select hand-drawn layouts, and compile playlist covers.
           </p>
-
-          <!-- Specimen Cardboard Tag -->
-          <div class="specimen-tag">
-            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 01</span>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
-              <span class="project-tag">React</span>
-              <span class="project-tag">CSS3</span>
-              <span class="project-tag">JavaScript</span>
-            </div>
-            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
+          <div class="adventure-tags">
+            <span class="adventure-tag">React</span>
+            <span class="adventure-tag">CSS3</span>
+            <span class="adventure-tag">Tailwind</span>
           </div>
+          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
 
-        <!-- Project 2 Specimen Sheet -->
-        <div class="project-card" data-category="frontend uiux">
-          <!-- Glass Vial with stem -->
-          <div class="glass-vial-wrapper">
-            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cork -->
-              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
-              <!-- Vial Neck -->
-              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
-              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
-              <!-- Pressed Flower inside -->
-              <path d="M 20,90 Q 21,42 20,28" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M 20,48 Q 28,44 26,38 Z" fill="var(--leaf-green)" />
-              <circle cx="20" cy="28" r="4.5" fill="var(--blush-mid)" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <!-- Adventure 2: Aurelia -->
+        <div class="adventure-scroll" data-category="frontend uiux">
+          <div class="project-illus-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="24" fill="var(--blush)" />
+              <path d="M22 24h20v24H22z" fill="var(--butter)" />
+              <path d="M27 24c0-4 2-7 5-7s5 3 5 7" />
+              <circle cx="32" cy="36" r="2.5" fill="var(--gold)" />
+              <circle cx="29" cy="34" r="1.5" fill="var(--petal)" />
+              <circle cx="35" cy="34" r="1.5" fill="var(--petal)" />
             </svg>
           </div>
-
-          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">✦ Aurelia E-Commerce</h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
-            Modern shopping platform with product listing, cart, and smooth checkout flow.
+          <span class="scroll-tag">Adventure #02</span>
+          <h3>Aurelia E-Commerce</h3>
+          <p>
+            Modern shopping catalog platform with detailed transitions, smooth slide-out cart drawers, and responsive product sheets.
           </p>
-
-          <!-- Specimen Cardboard Tag -->
-          <div class="specimen-tag">
-            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 02</span>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
-              <span class="project-tag">React</span>
-              <span class="project-tag">Responsive</span>
-              <span class="project-tag">Frontend</span>
-            </div>
-            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
+          <div class="adventure-tags">
+            <span class="adventure-tag">React</span>
+            <span class="adventure-tag">State Mgmt</span>
+            <span class="adventure-tag">UX Flow</span>
           </div>
+          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
 
-        <!-- Project 3 Specimen Sheet -->
-        <div class="project-card" data-category="frontend">
-          <!-- Glass Vial with stem -->
-          <div class="glass-vial-wrapper">
-            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cork -->
-              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
-              <!-- Vial Neck -->
-              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
-              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
-              <!-- Pressed Flower inside -->
-              <path d="M 20,90 Q 20,40 22,25" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M 22,45 Q 12,40 15,35 Z" fill="var(--leaf-green)" />
-              <circle cx="22" cy="25" r="4.5" fill="var(--lavender-deep)" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <!-- Adventure 3: K-Flix -->
+        <div class="adventure-scroll" data-category="frontend">
+          <div class="project-illus-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="24" fill="var(--lilac)" />
+              <rect x="18" y="24" width="28" height="20" rx="3" fill="var(--butter)" />
+              <rect x="21" y="27" width="16" height="14" rx="1" fill="var(--sky)" />
+              <path d="M28 24l-6-6m8 6l6-6" />
+              <circle cx="41" cy="30" r="1.5" fill="var(--ink)" />
             </svg>
           </div>
-
-          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ K-Flix</h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
-            K-Drama discovery site with genre filters and streaming-style show detail pages.
+          <span class="scroll-tag">Adventure #03</span>
+          <h3>K-Flix Discovery</h3>
+          <p>
+            Curated database of Korean shows, featuring custom search parameters, genre cards, and responsive streaming grids.
           </p>
-
-          <!-- Specimen Cardboard Tag -->
-          <div class="specimen-tag">
-            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 03</span>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
-              <span class="project-tag">HTML</span>
-              <span class="project-tag">CSS</span>
-              <span class="project-tag">JavaScript</span>
-            </div>
-            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
+          <div class="adventure-tags">
+            <span class="adventure-tag">HTML</span>
+            <span class="adventure-tag">CSS3</span>
+            <span class="adventure-tag">JavaScript</span>
           </div>
+          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
 
-        <!-- Project 4 Specimen Sheet -->
-        <div class="project-card" data-category="frontend ai">
-          <!-- Glass Vial with stem -->
-          <div class="glass-vial-wrapper">
-            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cork -->
-              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
-              <!-- Vial Neck -->
-              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
-              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
-              <!-- Pressed Flower inside -->
-              <path d="M 20,90 Q 18,45 20,30" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M 20,50 Q 28,45 28,40 Z" fill="var(--leaf-green)" />
-              <circle cx="20" cy="30" r="4.5" fill="var(--yellow-tape)" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <!-- Adventure 4: ISS Dashboard -->
+        <div class="adventure-scroll" data-category="frontend ai">
+          <div class="project-illus-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="24" fill="var(--mist)" />
+              <circle cx="32" cy="32" r="12" fill="var(--sky)" />
+              <path d="M24 30c3 1 5-2 8-2s5 3 8 1" />
+              <path d="M16 16c6 0 10 4 10 10" stroke-dasharray="3,3" />
+              <rect x="12" y="10" width="8" height="12" rx="1" fill="var(--gold)" transform="rotate(30 16 16)" />
             </svg>
           </div>
-
-          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">✦ ISS & News Dashboard</h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
-            Real-time ISS tracker with live APIs and an integrated AI chatbot interface.
+          <span class="scroll-tag">Adventure #04</span>
+          <h3>ISS & News Dashboard</h3>
+          <p>
+            Real-time space station position tracking dashboard utilizing live APIs, alongside space news summaries generated by AI.
           </p>
-
-          <!-- Specimen Cardboard Tag -->
-          <div class="specimen-tag">
-            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 04</span>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
-              <span class="project-tag">APIs</span>
-              <span class="project-tag">JavaScript</span>
-              <span class="project-tag">AI</span>
-            </div>
-            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
+          <div class="adventure-tags">
+            <span class="adventure-tag">APIs</span>
+            <span class="adventure-tag">AI Chat</span>
+            <span class="adventure-tag">CSS Grid</span>
           </div>
+          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
 
-        <!-- Project 5 Specimen Sheet -->
-        <div class="project-card" data-category="ai">
-          <!-- Glass Vial with stem -->
-          <div class="glass-vial-wrapper">
-            <svg class="glass-vial" viewBox="0 0 40 100" width="30" height="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Cork -->
-              <rect x="13" y="2" width="14" height="10" rx="1.5" fill="#c29b70" stroke="var(--brown-ink)" stroke-width="1.2" />
-              <!-- Vial Neck -->
-              <path d="M 12,12 L 28,12 L 28,22 L 34,26 L 34,92 A 4 4 0 0 1 30,96 L 10,96 A 4 4 0 0 1 6,92 L 6,26 L 12,22 Z" stroke="var(--brown-ink)" stroke-width="1.5" />
-              <path d="M 9,30 Q 9,90 11,92" stroke="#fff" stroke-width="1" opacity="0.6" stroke-linecap="round" />
-              <!-- Pressed Flower inside -->
-              <path d="M 20,90 Q 22,48 21,35" stroke="var(--brown-ink)" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M 21,55 Q 12,50 15,45 Z" fill="var(--leaf-green)" />
-              <circle cx="21" cy="35" r="4.5" fill="var(--sage-mid)" stroke="var(--brown-ink)" stroke-width="0.8" />
+        <!-- Adventure 5: AI Newsletter -->
+        <div class="adventure-scroll" data-category="ai">
+          <div class="project-illus-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="32" cy="32" r="24" fill="var(--butter)" />
+              <rect x="18" y="24" width="28" height="18" rx="2" fill="var(--cloud)" />
+              <path d="M18 24l14 10 14-10" />
+              <path d="M46 16l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
             </svg>
           </div>
-
-          <h3 style="font-family: var(--font-title); font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--brown-ink);">♡ AI Newsletter Automation</h3>
-          <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--brown-ink); flex-grow: 1;">
-            Automated pipeline — collects news, writes AI summaries, sends via Gmail.
+          <span class="scroll-tag">Adventure #05</span>
+          <h3>AI Newsletter & Telegram Bot</h3>
+          <p>
+            Autonomous pipeline that fetches TechCrunch and HackerNews feeds, filters updates using LLMs, and drafts Telegram digests.
           </p>
-
-          <!-- Specimen Cardboard Tag -->
-          <div class="specimen-tag">
-            <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; color: var(--brown-muted); display: block; margin-top: 5px;">Specimen No. 05</span>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px;">
-              <span class="project-tag">n8n</span>
-              <span class="project-tag">AI</span>
-              <span class="project-tag">Automation</span>
-            </div>
-            <a href="https://github.com/kritikhatri" target="_blank" style="display: block; margin-top: 10px; font-family: var(--font-accent); color: var(--terracotta); text-decoration: none; font-weight: bold;">examine specimen →</a>
+          <div class="adventure-tags">
+            <span class="adventure-tag">n8n</span>
+            <span class="adventure-tag">OpenAI</span>
+            <span class="adventure-tag">Telegram</span>
           </div>
+          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- Section Divider (Sage green tape at 2deg) -->
   <div class="washi-divider sage washi-tape washi-tape-torn-horizontal"></div>
 
-  <!-- 5. EXPERIENCE (Timeline Spread) SECTION -->
+  <!-- 5. EXPERIENCE SECTION (CHAPTER FOUR) -->
   <section id="experience" class="scroll-reveal">
     <div class="max-width-wrapper">
-      
-      <!-- Section Header -->
-      <div class="section-header-wrap">
-        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--blush-mid);"></div>
-        <h2>my journey so far</h2>
-        <p>the story till now ✦</p>
+      <div class="chapter-label">· Chapter Four ·</div>
+      <h2 class="storybook-header">The Quest Log</h2>
+      <div class="storybook-subheader">quests completed and ongoing milestones</div>
+
+      <div class="storybook-divider" aria-hidden="true">
+        <svg viewBox="0 0 60 40" width="60" height="40" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 34c10-2 20-2 24 2 4-4 14-4 24-2V6C44 4 34 4 30 8c-4-4-14-4-24-2z" fill="var(--butter)" />
+          <path d="M30 8v26" />
+        </svg>
       </div>
 
-      <!-- Interactive Tree growth rings layout -->
-      <div class="experience-container-botanical">
-        <!-- Tree Trunk Slice panel -->
-        <div class="tree-slice-panel">
-          <svg class="tree-slice-svg" viewBox="0 0 300 300" width="280" height="280" style="filter: drop-shadow(3px 4px 6px rgba(92, 61, 46, 0.2));">
-            <!-- Bark outer boundary -->
-            <path d="M150,10 C220,10 290,80 290,150 C290,220 220,290 150,290 C80,290 10,220 10,150 C10,80 80,10 150,10 Z" fill="#8b5a2b" stroke="var(--brown-ink)" stroke-width="8" />
-            <!-- Inner wood fill -->
-            <path d="M150,14 C216,14 286,84 286,150 C286,216 216,286 150,286 C84,286 14,216 14,150 C14,84 84,14 150,14 Z" fill="#f4ebd0" stroke="var(--brown-ink)" stroke-width="2" />
-            
-            <!-- Growth rings (interactive circles) -->
-            <!-- 2026 Ring -->
-            <circle cx="150" cy="150" r="115" class="tree-ring-path" data-year="2026" />
-            <!-- 2025 Ring -->
-            <circle cx="150" cy="150" r="85" class="tree-ring-path" data-year="2025" />
-            <!-- 2024 Ring -->
-            <circle cx="150" cy="150" r="55" class="tree-ring-path" data-year="2024" />
-            <!-- 2023 Center/Pith -->
-            <circle cx="150" cy="150" r="25" class="tree-ring-path" data-year="2023" />
-            
-            <!-- Wood cracks / rays radiating from center -->
-            <path d="M150,150 L260,190" class="tree-crack" />
-            <path d="M150,150 L60,110" class="tree-crack" />
-            <path d="M150,150 L110,240" class="tree-crack" />
-            <path d="M150,150 L190,60" class="tree-crack" />
+      <div class="quest-timeline-wrapper">
+        <!-- Footprint path SVG -->
+        <svg class="quest-winding-path" viewBox="0 0 40 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20,0 Q 30,100 10,200 T 20,400" stroke="var(--lilac-deep)" stroke-width="3" stroke-dasharray="6,8" stroke-linecap="round" />
+          <circle cx="23" cy="40" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="17" cy="65" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="13" cy="110" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="27" cy="135" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="23" cy="220" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="14" cy="250" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="16" cy="310" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+          <circle cx="24" cy="340" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
+        </svg>
 
-            <!-- Year labels on rings -->
-            <text x="150" y="260" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2026</text>
-            <text x="150" y="228" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2025</text>
-            <text x="150" y="196" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2024</text>
-            <text x="150" y="166" fill="var(--brown-ink)" font-family="var(--font-accent)" font-size="13" font-weight="bold" text-anchor="middle" style="pointer-events: none;">2023</text>
-          </svg>
-        </div>
-
-        <!-- Clipboard Notepad detail display -->
-        <div class="experience-clipboard">
-          <div class="clipboard-clip"></div>
-          <div class="clipboard-content-area">
+        <div class="quest-cards-container">
+          <!-- Quest 1: FlyRank -->
+          <div class="quest-card">
+            <div class="quest-ribbon">ongoing quest ✦</div>
+            
             <h3>FlyRank</h3>
-            <div class="clipboard-meta">AI Engineer Intern (2024 - Present) ♡</div>
-            <ul>
-              <li>Built AI-driven automation pipelines using LLMs and n8n</li>
-              <li>Integrated model features into production codebase</li>
-              <li>Shipped high-fidelity React interfaces with modern styling</li>
+            <div class="quest-role">AI Automation Intern</div>
+            <div class="quest-time">2026 - Present</div>
+
+            <ul class="quest-objectives">
+              <li>Building modular AI agent structures and prompt chains.</li>
+              <li>Implementing automated data-mining workflows in n8n.</li>
+              <li>Developing high-performance frontend catalogs in React.</li>
             </ul>
+
+            <svg class="quest-corner-lantern" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="10" width="12" height="18" rx="2" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
+              <circle cx="12" cy="19" r="4" fill="var(--gold)" />
+              <line x1="12" y1="0" x2="12" y2="10" stroke="var(--ink)" stroke-width="1.2" />
+            </svg>
+          </div>
+
+          <!-- Quest 2: Hackathon -->
+          <div class="achievement-card">
+            <span class="achievement-star">★</span>
+            <div class="achievement-tag">milestone reached</div>
+            <h3>Ctrl+Space Hackathon</h3>
+            <p>
+              Collaborated in a design-led team to build an AI-powered responsive storytelling portal under strict time limits, winning awards for creative implementation.
+            </p>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- Decorative Spacers -->
-  <div class="spacer-decorations" aria-hidden="true">
-    <span>♡</span>
-    <span>✦</span>
-    <span>♡</span>
-  </div>
 
-  <!-- 6. STATS (Habit Tracker HUD) SECTION -->
-  <section id="stats" class="ruled-section scroll-reveal">
-    <div class="max-width-wrapper">
-      
-      <!-- Section Header -->
-      <div class="section-header-wrap">
-        <div class="section-header-pin-tape washi-tape washi-tape-torn-horizontal" style="background-color: var(--yellow-tape);"></div>
-        <h2>find me here ✦</h2>
+
+      <div class="chapter-label">· Chapter Five ·</div>
+      <h2 class="storybook-header">Worlds I Inhabit</h2>
+      <div class="storybook-subheader">explore my repositories and social updates</div>
+
+      <!-- Planetary orbits / Stats -->
+      <div class="worlds-container">
+        <div class="bird-bubble-wrapper">
+          <!-- Cute bird holding card vector -->
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="12" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
+            <!-- Beak -->
+            <polygon points="30,18 36,20 30,22" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
+            <!-- Eye -->
+            <circle cx="24" cy="16" r="1.5" fill="var(--ink)" />
+            <!-- Wing -->
+            <path d="M14,20c0-4 4-6 6-2s-2 6-6 4" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
+          </svg>
+          <div class="bird-bubble">
+            writing about AI & automation now — come read!
+          </div>
+        </div>
+
+        <!-- Github World -->
+        <a href="https://github.com/kritikhatri" target="_blank" class="world-card github" style="text-decoration: none;">
+          <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8">
+            <circle cx="32" cy="32" r="22" fill="var(--butter)" stroke-dasharray="4,4" />
+            <!-- Core Planet -->
+            <circle cx="32" cy="32" r="12" fill="var(--lilac-deep)" />
+            <!-- Code icon inside planet -->
+            <path d="M29 30l-3 2 3 2m6-4l3 2-3 2" stroke="var(--cloud)" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <h3>GitHub World</h3>
+          <div class="world-stats">15+ Repos</div>
+          <p>where code compiles & branches sprout</p>
+        </a>
+
+        <!-- LinkedIn World -->
+        <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank" class="world-card linkedin" style="text-decoration: none;">
+          <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8">
+            <!-- Orbiting circle path -->
+            <circle cx="32" cy="32" r="22" fill="var(--butter)" stroke-dasharray="4,4" />
+            <!-- Compass needle -->
+            <polygon points="32,20 35,32 32,44 29,32" fill="var(--petal)" />
+            <circle cx="32" cy="32" r="3" fill="var(--ink)" />
+          </svg>
+          <h3>LinkedIn World</h3>
+          <div class="world-stats">Connections</div>
+          <p>where builders align and quests emerge</p>
+        </a>
       </div>
 
-      <div class="stats-container">
-        
-        <!-- GitHub tracker -->
-        <div class="tracker-card github">
-          <h3>GitHub</h3>
-          <span class="tracker-handle">@kritikakhatri</span>
-          
-          <div class="tracker-stats">
-            10+ <span>projects</span> &middot; 8+ <span>repos</span>
-          </div>
-
-          <!-- Contribution Grid representation -->
-          <div class="contribution-grid" aria-label="Contribution Activity Grid Mockup">
-            <div class="contrib-square filled"></div>
-            <div class="contrib-square empty"></div>
-            <div class="contrib-square filled"></div>
-            <div class="contrib-square filled"></div>
-            <div class="contrib-square empty"></div>
-            <div class="contrib-square filled"></div>
-            <div class="contrib-square filled"></div>
-            <div class="contrib-square empty"></div>
-          </div>
-
-          <p class="bottom-note">where the builds live ♡</p>
-        </div>
-
-        <!-- LinkedIn tracker -->
-        <div class="tracker-card linkedin">
-          <h3>LinkedIn</h3>
-          <span class="tracker-handle">/in/kritika-khatri</span>
-
-          <div class="tracker-stats">
-            Growing &middot; Consistent
-          </div>
-          
-          <div class="contribution-grid" style="opacity: 0.7;" aria-hidden="true">
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-            <div class="contrib-square empty"></div>
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-            <div class="contrib-square empty"></div>
-            <div class="contrib-square filled" style="background-color: var(--lavender-deep);"></div>
-          </div>
-
-          <p class="bottom-note">sharing the journey ✦</p>
-        </div>
-
-        <!-- Floating Yellow Post-It Note -->
-        <div class="sticky-note">
-          <div>✦ just started writing about AI & automation!</div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 7. CONTACT SECTION -->
-  <section id="contact" class="scroll-reveal">
-    <div class="max-width-wrapper">
-      
-      <!-- Invitation style envelope card -->
-      <div class="contact-card" style="background-color: var(--cream); overflow: visible;">
-        <!-- Envelope Flap SVG/Border -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; height: 100px; overflow: hidden; pointer-events: none; border-radius: 8px 8px 0 0;">
-          <svg viewBox="0 0 680 100" width="100%" height="100%" fill="none" preserveAspectRatio="none">
-            <!-- Flap shape -->
-            <polygon points="0,0 680,0 340,90" fill="var(--peach-blush)" stroke="var(--brown-ink)" stroke-width="2" />
+      <div style="margin: 6rem 0 3rem;">
+        <div class="chapter-label">· The End ·</div>
+        <div class="storybook-divider" aria-hidden="true">
+          <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10,10 Q50,0 90,10 T170,10 T250,10 T330,10 T390,10" />
+            <circle cx="200" cy="10" r="4" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
           </svg>
         </div>
-
-        <!-- Pinned Dried Rose + Safety Pin representation -->
-        <div style="position: absolute; top: -35px; right: 40px; width: 60px; height: 120px; z-index: 10; transform: rotate(15deg);">
-          <svg viewBox="0 0 60 120" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(2px 3px 3px rgba(92, 61, 46, 0.18));">
-            <!-- Stem -->
-            <path d="M 30,110 L 30,35" stroke="var(--brown-ink)" stroke-width="2" stroke-linecap="round" />
-            <!-- Stem thorns/leaves -->
-            <path d="M 30,80 Q 20,75 16,70" stroke="var(--brown-ink)" stroke-width="1.5" />
-            <path d="M 16,70 Q 25,65 30,80 Z" fill="var(--leaf-green)" />
-            <path d="M 30,60 Q 40,55 44,50" stroke="var(--brown-ink)" stroke-width="1.5" />
-            <path d="M 44,50 Q 35,45 30,60 Z" fill="var(--leaf-green)" />
-            <!-- Pressed Rose Head -->
-            <path d="M 15,35 Q 30,10 45,35 Q 35,40 30,25 Q 25,40 15,35 Z" fill="var(--terracotta)" stroke="var(--brown-ink)" stroke-width="1.5" stroke-linejoin="round" />
-            <!-- Safety Pin pinning it -->
-            <g transform="rotate(-30, 30, 75)">
-              <rect x="25" y="55" width="10" height="40" rx="5" stroke="var(--brown-ink)" stroke-width="1.5" fill="#a0a0a0" opacity="0.9" />
-              <line x1="30" y1="58" x2="30" y2="92" stroke="var(--brown-ink)" stroke-width="2" />
-            </g>
-          </svg>
-        </div>
-
-        <div class="contact-card-inner" style="z-index: 5; position: relative;">
-          
-          <h4>want to work together?</h4>
-          <h3>let's make something</h3>
-          <span class="beautiful-word">beautiful. ♡</span>
-
-          <!-- Collab tags -->
-          <div class="collab-stickers">
-            <span class="collab-sticker">[ frontend projects ]</span>
-            <span class="collab-sticker">[ ai builds ]</span>
-            <span class="collab-sticker">[ ui/ux design ]</span>
-            <span class="collab-sticker">[ automation ]</span>
-            <span class="collab-sticker">[ internships ]</span>
-          </div>
-
-          <!-- CTA email button -->
-          <a href="mailto:kritikakhatri014@gmail.com" class="cta-button">
-            ✉ kritikakhatri014@gmail.com
-          </a>
-
-          <!-- Social link pairs -->
-          <div class="contact-socials">
-            <a href="https://github.com/kritikhatri" target="_blank" class="contact-social-link">
-              <i class="fa-brands fa-github"></i> GitHub
-            </a>
-            <a href="https://linkedin.com/in/kritika-khatri" target="_blank" class="contact-social-link">
-              <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
-          </div>
-
-        </div>
       </div>
 
+      <!-- Contact wax letter spread -->
+      <div class="contact-spread">
+        <svg class="contact-birds-banner" viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left bird -->
+          <circle cx="35" cy="30" r="10" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
+          <polygon points="25,28 19,30 25,32" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
+          <!-- Right bird -->
+          <circle cx="105" cy="30" r="10" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
+          <polygon points="115,28 121,30 115,32" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
+          <!-- Ribbon banner -->
+          <path d="M40 30h60" stroke="var(--ink)" stroke-width="2" />
+          <path d="M50 25l-5 5 5 5h40l-5-5 5-5z" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
+          <text x="70" y="32" font-family="var(--font-accent)" font-size="9" fill="var(--ink)" text-anchor="middle">let's create</text>
+        </svg>
+
+        <h3>Let's Build Something</h3>
+        <span class="magical-words">Magical Together</span>
+
+        <p>
+          I am always open to exploring summer internships, collaborating on open-source builds, or simply discussing frontend designs and AI applications.
+        </p>
+
+        <div class="collab-tags">
+          <span class="collab-tag">✦ Internships</span>
+          <span class="collab-tag">✿ React Projects</span>
+          <span class="collab-tag">✦ Automation Pipelines</span>
+          <span class="collab-tag">✿ Creative UI/UX</span>
+        </div>
+
+        <a href="mailto:kritikakhatri45@gmail.com" class="wax-sealed-btn">
+          <!-- Wax seal envelope icon -->
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <path d="M22 6l-10 7L2 6" />
+          </svg>
+          send a letter
+        </a>
+
+        <div class="contact-socials-bottom">
+          <a href="https://github.com/kritikhatri" target="_blank">github ✦</a>
+          <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank">linkedin ✿</a>
+          <a href="mailto:kritikakhatri45@gmail.com">email ✦</a>
+        </div>
+
+        <!-- SVG Girl walking away with lantern -->
+        <svg class="closing-girl-illustration" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Horizon line -->
+          <line x1="10" y1="85" x2="130" y2="85" stroke="var(--ink)" stroke-dasharray="3,3" />
+          <!-- Mist circles -->
+          <circle cx="70" cy="85" r="30" fill="var(--mist)" opacity="0.6" filter="blur(4px)" />
+          <!-- Girl walking away -->
+          <!-- Head -->
+          <circle cx="70" cy="45" r="9" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.2" />
+          <circle cx="70" cy="38" r="5" fill="var(--ink)" />
+          <!-- Torso -->
+          <path d="M63 54c0-4 5-7 7-7s7 3 7 7l-1 18h-12z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.2" />
+          <!-- Feet walking -->
+          <line x1="66" y1="72" x2="64" y2="82" stroke="var(--ink)" stroke-width="1.5" />
+          <line x1="74" y1="72" x2="76" y2="80" stroke="var(--ink)" stroke-width="1.5" />
+          <!-- Swinging lantern held in hand -->
+          <path d="M75 58 Q85 58 84 66" stroke="var(--ink)" stroke-width="1.2" fill="none" />
+          <rect x="81" y="66" width="6" height="10" rx="1.5" fill="var(--butter)" stroke="var(--ink)" stroke-width="1" />
+          <circle cx="84" cy="71" r="2" fill="var(--gold)" />
+        </svg>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-text">
-      made with ♡ by kritika &middot; pune, india &middot; 2025
+    <div>
+      · the end · crafted with storybook charm by kritika khatri · pune, india · 2025 ·
     </div>
   </footer>
 
@@ -3083,17 +2369,19 @@
       // Toggle active states on tabs
       const tabs = document.querySelectorAll('.filter-tab');
       tabs.forEach(tab => {
-        if (tab.textContent.trim().toLowerCase().includes(category.replace('ai', 'ai & auto'))) {
+        if (tab.textContent.trim().toLowerCase() === category.toLowerCase()) {
+          tab.classList.add('active');
+        } else if (category === 'ai' && tab.textContent.trim().toLowerCase().includes('ai')) {
           tab.classList.add('active');
         } else {
           tab.classList.remove('active');
         }
       });
       
-      const cards = document.querySelectorAll('.project-card');
+      const cards = document.querySelectorAll('.adventure-scroll');
       cards.forEach(card => {
-        const categories = card.getAttribute('data-category').split(' ');
-        if (category === 'all' || categories.includes(category)) {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat.includes(category)) {
           card.style.display = 'flex';
           setTimeout(() => {
             card.style.opacity = '1';
@@ -3122,344 +2410,6 @@
       observer.observe(el);
     });
 
-    // Immersive scroll-zoom and sticker-burst
-    const heroSection = document.getElementById('hero');
-    const scrollHint = heroSection.querySelector('.scroll-hint');
-    const nameBox = heroSection.querySelector('.name-box');
-    
-    // Peeking Cat elements
-    const peekingCat = document.getElementById('peeking-cat');
-    const pupilLeft = document.getElementById('pupil-left');
-    const pupilRight = document.getElementById('pupil-right');
-
-    // Interactive 3D mouse parallax and scroll lerping
-    let targetScroll = 0;
-    let currentScroll = 0;
-    let targetTiltX = 0;
-    let targetTiltY = 0;
-    let currentTiltX = 0;
-    let currentTiltY = 0;
-    let inHeroView = true;
-
-    // Track mouse position over the hero section for 3D tilt
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      const maxTilt = 10; // max tilt degrees
-      targetTiltX = -(y / (rect.height / 2)) * maxTilt;
-      targetTiltY = (x / (rect.width / 2)) * maxTilt;
-    });
-
-    heroSection.addEventListener('mouseleave', () => {
-      targetTiltX = 0;
-      targetTiltY = 0;
-    });
-
-    const heroViewObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        inHeroView = entry.isIntersecting;
-      });
-    }, { threshold: 0.05 });
-    heroViewObserver.observe(heroSection);
-
-    // (measureFlies removed as stickers were cleaned up)
-
-    function updateScrollProgress() {
-      const rect = heroSection.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const total = rect.height - vh;
-      if (total <= 0) {
-        targetScroll = 0;
-        return;
-      }
-      targetScroll = Math.min(1, Math.max(0, -rect.top / total));
-    }
-
-    // Unified animation render loop running at high performance
-    function renderHero() {
-      if (inHeroView) {
-        // Smoothly interpolate (lerp) values
-        currentScroll += (targetScroll - currentScroll) * 0.12;
-        currentTiltX += (targetTiltX - currentTiltX) * 0.08;
-        currentTiltY += (targetTiltY - currentTiltY) * 0.08;
-
-        const p = currentScroll;
-        
-        // Fade out non-fly elements gently near the bottom of scroll
-        const fadeProgress = Math.min(1, Math.max(0, (p - 0.6) / 0.4));
-        const textOpacity = 1 - fadeProgress;
-
-        // Name Card Box 3D Parallax Tilt
-        if (nameBox) {
-          nameBox.style.opacity = textOpacity;
-          nameBox.style.transform = `scale(${1 - p * 0.03}) translateY(${-p * 15}px) rotateX(${currentTiltX * 0.5}deg) rotateY(${currentTiltY * 0.5}deg)`;
-        }
-
-        // Scroll Hint
-        if (scrollHint) {
-          scrollHint.style.opacity = Math.max(0, 1 - p * 5);
-        }
-
-        // Peeking Cat Scroll Animation and Eye Tracking
-        if (peekingCat) {
-          peekingCat.style.transform = `translateX(-50%) translateY(${p * 390}px)`;
-          peekingCat.style.opacity = textOpacity;
-        }
-        if (pupilLeft && pupilRight) {
-          const dx = currentTiltY * 0.45;
-          const dy = -currentTiltX * 0.45;
-          pupilLeft.style.transform = `translate(${dx}px, ${dy}px)`;
-          pupilRight.style.transform = `translate(${dx}px, ${dy}px)`;
-        }
-      }
-      
-      requestAnimationFrame(renderHero);
-    }
-    
-    // Start unified loop
-    renderHero();
-
-    // Tactile Drag & Drop mechanics
-    function initDraggables() {
-      const draggables = document.querySelectorAll('.draggable');
-      
-      draggables.forEach(el => {
-        let isDragging = false;
-        let startX = 0, startY = 0;
-        let currentX = parseFloat(el.getAttribute('data-drag-x')) || 0;
-        let currentY = parseFloat(el.getAttribute('data-drag-y')) || 0;
-        
-        const dragStart = (e) => {
-          if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-          
-          isDragging = true;
-          el.style.zIndex = 100;
-          
-          const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
-          const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
-          
-          startX = clientX - currentX;
-          startY = clientY - currentY;
-          
-          document.body.style.userSelect = 'none';
-        };
-        
-        const dragMove = (e) => {
-          if (!isDragging) return;
-          
-          const clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
-          const clientY = e.type.startsWith('touch') ? e.touches[0].clientY : e.clientY;
-          
-          currentX = clientX - startX;
-          currentY = clientY - startY;
-          
-          el.setAttribute('data-drag-x', currentX);
-          el.setAttribute('data-drag-y', currentY);
-        };
-        
-        const dragEnd = () => {
-          if (!isDragging) return;
-          isDragging = false;
-          el.style.zIndex = el.classList.contains('sticker-chip') ? 10 : 12;
-          document.body.style.userSelect = 'auto';
-        };
-        
-        el.addEventListener('mousedown', dragStart);
-        el.addEventListener('touchstart', dragStart, { passive: true });
-        
-        window.addEventListener('mousemove', dragMove);
-        window.addEventListener('touchmove', dragMove, { passive: true });
-        
-        window.addEventListener('mouseup', dragEnd);
-        window.addEventListener('touchend', dragEnd);
-      });
-    }
-
-    // (initCanvas, initPolaroidCamera, and initCoffeeCup removed as hero was simplified)
-
-    // ==========================================================================
-    // 🌿 BOTANICAL INTERACTIVE WIDGET LOGIC
-    // ==========================================================================
-
-    // 1. Flower Press Interactive Slider Drawer
-    const pressScrews = document.querySelectorAll('.press-screw');
-    const pressSheets = document.querySelectorAll('.press-sheet');
-    const pressTags = document.querySelectorAll('.press-sheet-tag');
-    let activePressIndex = 0;
-
-    function setPressSheetActive(index) {
-      // Spin screws as tactile feedback
-      pressScrews.forEach(screw => {
-        screw.classList.add('spinning');
-        setTimeout(() => screw.classList.remove('spinning'), 600);
-      });
-
-      // Show/Hide sheets
-      pressSheets.forEach((sheet, i) => {
-        if (i === index) {
-          sheet.classList.add('active');
-        } else {
-          sheet.classList.remove('active');
-        }
-      });
-      activePressIndex = index;
-    }
-
-    // Clicking wing-nuts cycles pages
-    pressScrews.forEach(screw => {
-      screw.addEventListener('click', () => {
-        const nextIdx = (activePressIndex + 1) % pressSheets.length;
-        setPressSheetActive(nextIdx);
-      });
-    });
-
-    // Clicking tabs goes directly to sheet
-    pressTags.forEach((tag, idx) => {
-      tag.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setPressSheetActive(idx);
-      });
-    });
-
-
-    // 2. Concentric Tree Rings Growth Timeline Clipboard
-    const ringPaths = document.querySelectorAll('.tree-ring-path');
-    const clipboardTitle = document.querySelector('.clipboard-content-area h3');
-    const clipboardMeta = document.querySelector('.clipboard-content-area .clipboard-meta');
-    const clipboardList = document.querySelector('.clipboard-content-area ul');
-
-    const experienceTimelineData = {
-      "2026": {
-        title: "FlyRank",
-        meta: "AI Engineer Intern (2024 - Present) ♡",
-        bullets: [
-          "Built AI-driven automation pipelines using LLMs and n8n",
-          "Integrated intelligent agent model structures into product core codebases",
-          "Shipped high-fidelity React interfaces and custom motion curves"
-        ]
-      },
-      "2025": {
-        title: "Ctrl+Space Hackathon",
-        meta: "Creative Tech & Build (2025) ✦",
-        bullets: [
-          "Pioneered AI-driven interactive web portals under time constraints",
-          "Crafted complex motion animations, physics models, and micro-interactions",
-          "Collaborated in a high-fidelity prototype awarded for creative design"
-        ]
-      },
-      "2024": {
-        title: "Newton School of Tech",
-        meta: "CS Student (2024 - Present) ♡",
-        bullets: [
-          "Dived into Frontend architecture, React design principles, and browser rendering internals",
-          "Created high-fidelity UI replicas and complex layout integrations",
-          "Built several full-stack utility widgets and state-management widgets"
-        ]
-      },
-      "2023": {
-        title: "The Seed Origin",
-        meta: "First Steps into Code (2023) ✦",
-        bullets: [
-          "Initiated styling and vector drawing experiments",
-          "Learned foundational responsive layouts, CSS grid flex rules, and triggers",
-          "Fell in love with crafting creative and visually premium user interfaces"
-        ]
-      }
-    };
-
-    function selectExperienceYear(year) {
-      // Highlight ring
-      ringPaths.forEach(path => {
-        if (path.getAttribute('data-year') === year) {
-          path.classList.add('active');
-        } else {
-          path.classList.remove('active');
-        }
-      });
-
-      // Update clipboard notepad
-      const data = experienceTimelineData[year];
-      if (data) {
-        const area = document.querySelector('.clipboard-content-area');
-        area.style.opacity = '0';
-        area.style.transform = 'translateY(5px)';
-        area.style.transition = 'all 0.3s ease';
-
-        setTimeout(() => {
-          clipboardTitle.textContent = data.title;
-          clipboardMeta.textContent = data.meta;
-          clipboardList.innerHTML = data.bullets.map(bullet => `<li>${bullet}</li>`).join('');
-          area.style.opacity = '1';
-          area.style.transform = 'translateY(0)';
-        }, 300);
-      }
-    }
-
-    ringPaths.forEach(path => {
-      path.addEventListener('click', () => {
-        const year = path.getAttribute('data-year');
-        selectExperienceYear(year);
-      });
-    });
-
-    // Initialize default active year
-    selectExperienceYear("2026");
-
-    // Flower petal mouse trail particle effect
-    function initMouseTrail() {
-      let lastSpawn = 0;
-      
-      heroSection.addEventListener('mousemove', (e) => {
-        const now = Date.now();
-        if (now - lastSpawn < 80) return; // spawn every 80ms max
-        lastSpawn = now;
-        
-        const rect = heroSection.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        createPetal(x, y);
-      });
-      
-      function createPetal(x, y) {
-        const petal = document.createElement('div');
-        petal.className = 'flower-petal-trail';
-        
-        const colors = ['#fce8f4', '#f5b8d8', '#e8e0f8', '#d4e8d0'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        const flowers = ['🌸', '❀', '✿', '🌸'];
-        const randomFlower = flowers[Math.floor(Math.random() * flowers.length)];
-        
-        petal.textContent = randomFlower;
-        petal.style.left = `${x}px`;
-        petal.style.top = `${y}px`;
-        petal.style.color = randomColor;
-        petal.style.fontSize = `${10 + Math.random() * 12}px`;
-        
-        const driftX = (Math.random() - 0.5) * 60;
-        const rotate = (Math.random() - 0.5) * 360;
-        
-        petal.style.setProperty('--drift-x', `${driftX}px`);
-        petal.style.setProperty('--rotate-deg', `${rotate}deg`);
-        
-        heroSection.appendChild(petal);
-        
-        setTimeout(() => {
-          petal.remove();
-        }, 1500);
-      }
-    }
-
-    initDraggables();
-    initMouseTrail();
-    
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    window.addEventListener('resize', () => {
-      updateScrollProgress();
-    });
     // Sticky navigation scroll state
     const topNav = document.querySelector('.top-nav');
     window.addEventListener('scroll', () => {
@@ -3470,22 +2420,56 @@
       }
     }, { passive: true });
 
-    // Mobile nav toggle
-    const mobileToggle = document.querySelector('.mobile-nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (mobileToggle && navLinks) {
-      mobileToggle.addEventListener('click', () => {
-        mobileToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    // Magical sparkles mouse trail particle effect
+    function initMouseTrail() {
+      const heroSection = document.getElementById('hero');
+      if (!heroSection) return;
+      
+      let lastSpawn = 0;
+      
+      heroSection.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSpawn < 70) return; // spawn every 70ms max
+        lastSpawn = now;
+        
+        const rect = heroSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        createSparkle(x, y);
       });
-      // Close menu when clicking link
-      navLinks.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileToggle.classList.remove('active');
-          navLinks.classList.remove('active');
-        });
-      });
+      
+      function createSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'flower-petal-trail';
+        
+        const colors = ['#fce4ec', '#f8bbd0', '#e1d5f0', '#fff9e6'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        const sparkles = ['✦', '✨', '✿', '🌸'];
+        const randomSymbol = sparkles[Math.floor(Math.random() * sparkles.length)];
+        
+        sparkle.textContent = randomSymbol;
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+        sparkle.style.color = randomColor;
+        sparkle.style.fontSize = `${12 + Math.random() * 12}px`;
+        
+        const driftX = (Math.random() - 0.5) * 60;
+        const rotate = (Math.random() - 0.5) * 360;
+        
+        sparkle.style.setProperty('--drift-x', `${driftX}px`);
+        sparkle.style.setProperty('--rotate-deg', `${rotate}deg`);
+        
+        heroSection.appendChild(sparkle);
+        
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1500);
+      }
     }
+
+    initMouseTrail();
   </script>
 </body>
 </html>
