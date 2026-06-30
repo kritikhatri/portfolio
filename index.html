@@ -9,33 +9,26 @@
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts: Cormorant Garamond (Storybook Serif), Caveat (Handwritten), Lato (Clean Sans Body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Caveat:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Pixelify Sans & VT323 for retro text -->
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 
-  <style>
-    /* CSS VARIABLES - Dreamy Fairytale Storybook Aesthetic */
+    <style>
+    /* CSS VARIABLES - Retro 90s OS Desktop Aesthetic */
     :root {
-      --sky:           #f0f4ff;       /* misty sky background */
-      --cloud:         #ffffff;       /* pure white clouds */
-      --mist:          #e8eef8;       /* soft mist layer */
-      --blush:         #fce4ec;       /* petal pink */
-      --petal:         #f8bbd0;       /* deeper petal */
-      --lilac:         #e1d5f0;       /* soft lilac */
-      --lilac-deep:    #b39ddb;       /* deeper lilac for accents */
-      --mint:          #dff2eb;       /* soft mint */
-      --mint-deep:     #80cbc4;       /* deeper mint */
-      --butter:        #fff9e6;       /* warm cream/butter */
-      --gold:          #f9c74f;       /* lantern gold */
-      --ink:           #4a3f6b;       /* deep purple-ink for text */
-      --ink-muted:     #8f85a8;       /* muted ink for body */
+      --desktop-bg:    #008080;       /* Classic Win95 Teal */
+      --win-face:      #c0c0c0;       /* Window gray */
+      --win-shadow:    #808080;       /* Dark shadow */
+      --win-light:     #ffffff;       /* Light bevel highlight */
+      --win-border:    #000000;       /* Solid border black */
+      --active-title:  #000080;       /* Active titlebar blue */
+      --active-title-grad: #1084d0;  /* Active titlebar blue gradient end */
+      --inactive-title: #808080;     /* Inactive titlebar gray */
+      --win-text:      #000000;       /* Text color */
+      --win-text-light: #ffffff;      /* White titlebar text */
       
-      --font-title:   'Cormorant Garamond', serif;
-      --font-accent:  'Caveat', cursive;
-      --font-body:    'Lato', sans-serif;
-      
-      --storybook-shadow: 5px 5px 0px var(--ink);
+      --font-pixel:    'Pixelify Sans', monospace;
+      --font-monospace: 'VT323', monospace;
+      --font-system:   'MS Sans Serif', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     /* GLOBAL RESET & STYLES */
@@ -45,2431 +38,1548 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--cream);
-      color: var(--brown-ink);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-    }
-
-    /* Subtle Paper Texture Background */
     body {
-      min-height: 100vh;
-      position: relative;
-      background-color: var(--cream);
-      background-image: 
-        radial-gradient(rgba(92, 61, 46, 0.04) 1px, transparent 0),
-        radial-gradient(rgba(92, 61, 46, 0.03) 1px, transparent 0);
-      background-size: 10px 10px, 14px 14px;
-      background-position: 0 0, 5px 5px;
-    }
-
-
-
-    /* Ruled paper background lines on sections */
-    .ruled-section {
-      position: relative;
-    }
-
-    .max-width-wrapper {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    section {
-      padding: 5rem 0;
-      position: relative;
-    }
-
-    a {
-      color: var(--lavender-deep);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    a:hover {
-      color: var(--blush-deep);
-    }
-
-    /* SECTION HEADER STYLE - High Contrast Scrapbook Banner Card */
-    .section-header-wrap {
-      text-align: center;
-      position: relative;
-      margin: 1.5rem auto 4.5rem;
-      padding: 0.8rem 2.2rem;
-      background-color: var(--forest-green);
-      border: 2.5px solid var(--brown-ink);
-      box-shadow: 4px 4px 0px var(--brown-ink);
-      display: table;
-      transform: rotate(-1.5deg);
-    }
-    .section-header-wrap:nth-of-type(even) {
-      background-color: var(--blush-deep);
-      transform: rotate(1deg);
-    }
-    .section-header-wrap h2 {
-      font-family: var(--font-title);
-      font-size: 2.3rem;
-      color: var(--cream);
-      font-weight: 400;
-      letter-spacing: 1px;
-      display: inline-block;
-      text-transform: uppercase;
-    }
-    .section-header-wrap p {
-      font-family: var(--font-cursive);
-      font-size: 1.15rem;
-      color: var(--yellow-tape);
-      margin-top: 0.2rem;
-    }
-    .section-header-pin-tape {
-      position: absolute;
-      top: -24px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 100px;
-      height: 20px;
-      opacity: 0.85;
-      z-index: 2;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-
-    /* WASHI TAPE - Torn horizontal edges */
-    .washi-tape {
-      position: relative;
-    }
-    .washi-tape-torn-horizontal {
-      clip-path: polygon(
-        0% 12%, 1.5% 0%, 98.5% 0%, 100% 12%, 99% 25%, 100% 40%, 98.5% 55%, 100% 70%, 99% 85%, 100% 100%, 98.5% 95%, 1.5% 100%, 0% 90%, 1% 75%, 0% 60%, 1.5% 45%, 0% 30%, 1% 15%
-      );
-    }
-
-    /* WASHI TAPE SECTON DIVIDERS */
-    .washi-divider {
-      width: 80%;
-      max-width: 750px;
-      height: 22px;
-      margin: 2rem auto;
-      opacity: 0.8;
-      box-shadow: 1px 2px 4px rgba(92, 61, 46, 0.04);
-    }
-    .washi-divider.blush {
-      background-color: var(--blush-mid);
-      transform: rotate(1.2deg);
-    }
-    .washi-divider.lavender {
-      background-color: var(--lavender-mid);
-      transform: rotate(-1.5deg);
-    }
-    .washi-divider.sage {
-      background-color: var(--sage-mid);
-      transform: rotate(1.8deg);
-    }
-    .washi-divider.yellow {
-      background-color: var(--yellow-tape);
-      transform: rotate(-1.2deg);
-    }
-
-    /* SCATTERED FLOWER / DINGBAT DECORATIONS */
-    .spacer-decorations {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      font-family: var(--font-accent);
-      font-size: 1.6rem;
-      color: var(--blush-mid);
-      margin: 1rem 0;
-      user-select: none;
-    }
-    .spacer-decorations span {
-      animation: gentle-float 4s ease-in-out infinite alternate;
-    }
-    .spacer-decorations span:nth-child(2) {
-      animation-delay: 1.5s;
-      color: var(--lavender-mid);
-    }
-    .spacer-decorations span:nth-child(3) {
-      animation-delay: 3s;
-      color: var(--sage-mid);
-    }
-
-    @keyframes gentle-float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-5px); }
-    }
-
-    /* 1. HERO SECTION (Immersive Scroll Sticky) */
-    #hero {
-      height: 180vh;
-      position: relative;
-      background-color: #ffaeb5; /* Softer, sweet pastel pink */
-    }
-    .hero-content {
-      position: sticky;
-      top: 0;
+      background-color: var(--desktop-bg);
+      font-family: var(--font-system);
+      color: var(--win-text);
+      overflow: hidden;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      width: 100%;
-      text-align: center;
-      padding: 2rem 0;
-      perspective: 1200px;
-      transform-style: preserve-3d;
-    }
-    
-    /* Peeking Kitty styling */
-    #peeking-cat {
-      position: absolute;
-      bottom: -22px;
-      left: 50%;
-      transform: translateX(-50%) translateY(0);
-      width: 700px;
-      max-width: 90vw;
-      height: 350px;
-      max-height: 45vw;
-      z-index: 6;
-      pointer-events: none;
-      transform-origin: bottom center;
-      will-change: transform, opacity;
-      transition: opacity 0.15s ease;
-    }
-    #peeking-cat svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    
-    /* Flying stickers scroll-burst effect */
-    .fly {
-      position: absolute;
-      will-change: transform, opacity;
-      opacity: 0;
-      z-index: 10;
-      pointer-events: none;
-    }
-    .sticker-chip.fly {
-      pointer-events: auto; /* enable links/hover after burst */
-    }
-    .sticker-deco {
-      filter: drop-shadow(2px 3px 6px rgba(92, 61, 46, 0.06));
-    }
-
-    .draggable {
+      width: 100vw;
+      position: relative;
       user-select: none;
-      touch-action: none;
-    }
-    
-    /* Screen Flash */
-    #screen-flash {
-      position: fixed;
-      inset: 0;
-      background-color: #fff;
-      opacity: 0;
-      z-index: 9999;
-      pointer-events: none;
-      transition: opacity 0.15s ease-out;
-    }
-    #screen-flash.flash-active {
-      opacity: 0.95;
-      transition: none;
-    }
-    
-    /* Coffee Steam animation */
-    @keyframes steam-rise {
-      0% { transform: translateY(0) scaleY(1) scaleX(1); opacity: 0.3; }
-      50% { transform: translateY(-6px) scaleY(1.2) scaleX(1.1); opacity: 0.8; }
-      100% { transform: translateY(-12px) scaleY(1) scaleX(1); opacity: 0.3; }
-    }
-    .steam-path {
-      animation: steam-rise 2s ease-in-out infinite;
-      transform-origin: bottom center;
-    }
-    .steam-path:nth-child(2) {
-      animation-delay: 1s;
-    }
-    
-    /* Polaroid Develop Animation Pulse */
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
+      -webkit-user-select: none;
     }
 
-    /* Falling flower petal mouse trail */
-    .flower-petal-trail {
-      position: absolute;
-      pointer-events: none;
-      z-index: 2;
-      animation: drift-and-fade 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      user-select: none;
-    }
-    
-    @keyframes drift-and-fade {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translate(var(--drift-x), 45px) rotate(var(--rotate-deg));
-        opacity: 0;
-      }
-    }
-
-    /* Hero washi tape pattern */
-    .hero-top-tape {
-      width: 250px;
-      height: 28px;
-      margin: 0 auto 2.5rem;
-      transform: rotate(3deg);
-      box-shadow: 1px 2px 4px rgba(0,0,0,0.05);
-      background-color: var(--lavender);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.149-10.009-8.972-12-3.568z' fill='%238b72c8' opacity='0.25'/%3E%3C/svg%3E");
-      background-size: 16px 16px;
-    }
-    /* Interactive Wax-Sealed Envelope */
-    .envelope-container {
-      position: relative;
-      width: 250px;
-      height: 180px;
-      margin: 0 auto 2.5rem;
-      perspective: 1000px;
-      cursor: pointer;
-      z-index: 5;
-      transform: rotateX(15deg) rotateY(-10deg) rotateZ(-2deg);
-      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-    }
-    .envelope-container:hover {
-      transform: rotateX(5deg) rotateY(0deg) rotateZ(0deg) translateY(-8px);
-    }
-
-    /* Envelope Body Components */
-    .envelope-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-    }
-    
-    .envelope-back {
+    /* Desktop background pattern */
+    .desktop-bg-pattern {
       position: absolute;
       inset: 0;
-      background-color: #f7ede2; /* kraft paper color */
-      border: 1.5px solid var(--brown-ink);
-      border-radius: 4px;
-      box-shadow: 3px 5px 15px rgba(92, 61, 46, 0.08);
       z-index: 1;
-    }
-    
-    /* Decorative envelope liner */
-    .envelope-liner {
-      position: absolute;
-      inset: 6px;
-      background-color: var(--blush-light);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.149-10.009-8.972-12-3.568z' fill='%23f5b8d8' opacity='0.3'/%3E%3C/svg%3E");
-      background-size: 24px 24px;
-      border-radius: 2px;
-      opacity: 0.85;
-    }
-
-    /* Lined Letter inside envelope */
-    .envelope-letter {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 5px;
-      height: 165px;
-      background-color: var(--white);
-      border: 1.5px solid var(--blush-light);
-      border-radius: 4px;
-      padding: 10px 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      z-index: 2;
-      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      transform: translateY(0px);
-      /* Lined Paper style */
-      background-image: linear-gradient(to bottom, var(--blush-light) 1px, transparent 1px);
-      background-size: 100% 22px;
-      line-height: 22px;
-      box-sizing: border-box;
-      transform-style: preserve-3d;
-      perspective: 600px;
-    }
-    
-    .envelope-container:hover .envelope-letter {
-      transform: translateY(-90px);
-      box-shadow: 0 8px 20px rgba(92, 61, 46, 0.12);
-    }
-    
-    .envelope-letter-content {
-      font-family: var(--font-accent);
-      text-align: center;
-      color: var(--brown-ink);
-      transform-style: preserve-3d;
-    }
-
-    /* 3D Pop-up scene styles */
-    .popup-3d-container {
-      position: relative;
-      width: 100%;
-      height: 75px;
-      margin: 4px auto;
-      transform-style: preserve-3d;
-    }
-    .popup-layer {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      transform-origin: bottom center;
-      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.2), opacity 0.6s ease;
-      pointer-events: none;
-      opacity: 0;
-    }
-    .layer-bg {
-      bottom: 12px;
-      transform: rotateX(-90deg) translateZ(0);
-      z-index: 1;
-    }
-    .layer-mid {
-      bottom: 4px;
-      transform: rotateX(-90deg) translateZ(0);
-      z-index: 2;
-    }
-    .layer-fg {
-      bottom: 0px;
-      transform: rotateX(-90deg) translateZ(0);
-      z-index: 3;
-    }
-    
-    /* Pop-up triggers on envelope hover */
-    .envelope-container:hover .layer-bg {
-      transform: rotateX(0deg) translateZ(8px);
-      opacity: 1;
-    }
-    .envelope-container:hover .layer-mid {
-      transform: rotateX(0deg) translateZ(20px);
-      opacity: 1;
-    }
-    .envelope-container:hover .layer-fg {
-      transform: rotateX(0deg) translateZ(32px);
-      opacity: 1;
-    }
-    
-    /* Front cover flaps */
-    .envelope-front {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      pointer-events: none; /* Let hovers pass to container */
-    }
-
-    /* Top Flap folds down */
-    .envelope-flap {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 90px;
-      transform-origin: top center;
-      transform: rotateX(0deg);
-      transition: transform 0.5s ease;
-      z-index: 4;
-    }
-    
-    .envelope-container:hover .envelope-flap {
-      transform: rotateX(180deg);
-      z-index: 0; /* Goes behind the letter when opened */
-    }
-
-    /* Wax seal stamp at the center intersection */
-    .wax-seal {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -20%) scale(1);
-      width: 44px;
-      height: 44px;
-      z-index: 5;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    
-    .envelope-container:hover .wax-seal {
       opacity: 0.15;
-      transform: translate(-50%, 20%) scale(0.85);
-    }
-    
-    /* Decorative Hand-drawn Box for Title */
-    .name-box {
-      position: relative;
-      padding: 1.5rem 3.5rem;
-      margin: 1.5rem auto;
-      display: inline-block;
-    }
-    .name-box h1 {
-      font-family: var(--font-title);
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--brown-ink);
-      line-height: 1.2;
-    }
-    .hero-subtitle {
-      font-family: var(--font-accent);
-      font-size: 1.8rem;
-      color: var(--brown-ink);
-      margin-bottom: 2.5rem;
-    }
-
-    /* Sticker-style Chips */
-    .hero-chips-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3.5rem;
-    }
-    .sticker-chip {
-      background-color: var(--white);
-      border: 1.5px solid var(--blush-light);
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      color: var(--brown-ink);
-      box-shadow: 2px 3px 6px rgba(92, 61, 46, 0.05);
-      transition: all 0.2s ease;
-    }
-    .sticker-chip:nth-child(1) { transform: rotate(-2deg); border-color: var(--blush-mid); }
-    .sticker-chip:nth-child(2) { transform: rotate(1.5deg); border-color: var(--lavender-mid); }
-    .sticker-chip:nth-child(3) { transform: rotate(-1deg); border-color: var(--sage-mid); }
-    .sticker-chip:hover {
-      transform: translateY(-3px) scale(1.05) rotate(0deg);
-      box-shadow: 3px 5px 10px rgba(92, 61, 46, 0.08);
-      background-color: var(--blush-light);
-    }
-
-    /* Scroll hint */
-    .scroll-hint {
-      font-family: var(--font-accent);
-      font-size: 1.3rem;
-      color: var(--brown-muted);
-      margin-top: 1rem;
-      animation: bounce 2s infinite;
-      display: inline-block;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
-      60% { transform: translateY(-4px); }
-    }
-
-    /* Tiny float stars in background */
-    .float-stars {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 0;
-    }
-    .float-star-item {
-      position: absolute;
-      font-family: var(--font-accent);
-      color: var(--lavender-mid);
-      opacity: 0.35;
-      font-size: 1.4rem;
-      user-select: none;
+      background-image: radial-gradient(var(--win-light) 1px, transparent 1px);
+      background-size: 8px 8px;
     }
 
-    /* 2. ABOUT ME SECTION */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .about-card {
-      background-color: var(--forest-green);
-      border: 2.5px solid var(--brown-ink);
-      box-shadow: var(--scrapbook-shadow);
-      border-radius: 8px;
-      padding: 2.5rem 1.5rem 1.8rem;
-      position: relative;
-      text-align: center;
-      color: var(--cream);
-    }
-    .about-card h3, .about-card .monogram-circle span {
-      color: var(--brown-ink);
-    }
-    .about-card-tape {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 90px;
-      height: 22px;
-      background-color: var(--lavender-mid);
-      opacity: 0.85;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-    }
-    .monogram-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px dashed var(--brown-ink);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto 1.5rem;
-      background-color: var(--dusty-rose);
-    }
-    .monogram-circle span {
-      font-family: var(--font-title);
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--brown-ink);
-    }
-    .about-stickers {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin: 1.5rem 0;
-    }
-    .about-sticker {
-      font-family: var(--font-accent);
-      font-size: 1.15rem;
-      color: var(--brown-ink);
-      background-color: var(--cream);
-      padding: 0.3rem 0.8rem;
-      border-radius: 12px;
-      border: 1.5px solid var(--brown-ink);
-      box-shadow: 2px 2px 0px var(--brown-ink);
-      transform: rotate(calc(var(--rot, 0) * 1deg));
-    }
-    .about-sticker:nth-child(1) { --rot: -2; }
-    .about-sticker:nth-child(2) { --rot: 2; }
-    .about-sticker:nth-child(3) { --rot: -1; }
-    .about-sticker:nth-child(4) { --rot: 3; }
-
-    /* Pure CSS Pressed Flower Drawing */
-    .pressed-flower {
-      position: relative;
-      width: 50px;
-      height: 70px;
-      margin: 1.5rem auto 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .pressed-flower .stem {
-      position: absolute;
-      bottom: 0;
-      width: 2px;
-      height: 45px;
-      background-color: var(--sage-mid);
-      border-radius: 2px;
-    }
-    .pressed-flower .leaf {
-      position: absolute;
-      background-color: var(--sage);
-      border: 1px solid var(--sage-mid);
-      border-radius: 50% 0 50% 0;
-    }
-    .pressed-flower .leaf.left {
-      width: 12px;
-      height: 7px;
-      bottom: 18px;
-      left: 15px;
-      transform: rotate(-30deg);
-    }
-    .pressed-flower .leaf.right {
-      width: 12px;
-      height: 7px;
-      bottom: 26px;
-      right: 15px;
-      transform: rotate(30deg);
-    }
-    .pressed-flower .blossom {
-      position: absolute;
-      top: 12px;
-      width: 22px;
-      height: 22px;
-    }
-    .pressed-flower .petal {
-      position: absolute;
-      width: 8px;
-      height: 14px;
-      background-color: var(--blush-mid);
-      border: 1px solid var(--blush-deep);
-      border-radius: 50%;
-      opacity: 0.8;
-      top: 4px; left: 7px;
-    }
-    .pressed-flower .petal:nth-child(1) { transform: rotate(0deg) translate(0, -5px); }
-    .pressed-flower .petal:nth-child(2) { transform: rotate(72deg) translate(0, -5px); }
-    .pressed-flower .petal:nth-child(3) { transform: rotate(144deg) translate(0, -5px); }
-    .pressed-flower .petal:nth-child(4) { transform: rotate(216deg) translate(0, -5px); }
-    .pressed-flower .petal:nth-child(5) { transform: rotate(288deg) translate(0, -5px); }
-    .pressed-flower .flower-center {
-      position: absolute;
-      top: 7px;
-      left: 7px;
-      width: 8px;
-      height: 8px;
-      background-color: var(--yellow-tape);
-      border: 1.2px solid var(--brown-ink);
-      border-radius: 50%;
-    }
-
-    .journal-entry {
-      background-color: rgba(255, 251, 245, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 8px;
-      padding: 2.5rem;
-      box-shadow: var(--scrapbook-shadow);
-      border: 2.5px solid var(--brown-ink);
-      background-image: linear-gradient(to bottom, var(--blush-light) 1px, transparent 1px);
-      background-size: 100% 28px;
-      line-height: 28px;
-      position: relative;
-    }
-    .journal-entry h3 {
-      font-family: var(--font-accent);
-      font-size: 1.8rem;
-      color: var(--blush-deep);
-      margin-bottom: 1rem;
-      line-height: 28px;
-      display: inline-block;
-    }
-    .journal-entry p {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      color: var(--brown-ink);
-      margin-bottom: 1.5rem;
-      text-align: justify;
-    }
-    .journal-signature {
-      font-family: var(--font-accent);
-      font-size: 1.5rem;
-      color: var(--lavender-deep);
-      text-align: right;
-      margin-top: 1rem;
-      display: block;
-    }
-
-    /* 3. TECH STACK SECTION */
-    .toolkit-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin-bottom: 4rem;
-    }
-    .toolkit-card {
-      background-color: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 2.5rem 1.8rem 1.8rem;
-      box-shadow: var(--scrapbook-shadow);
-      position: relative;
-      border: 2.5px solid var(--brown-ink);
-      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-    .toolkit-card-tape {
-      position: absolute;
-      top: -10px;
-      left: 30px;
-      width: 70px;
-      height: 18px;
-      opacity: 0.85;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-    }
-    .toolkit-card.frontend-card .toolkit-card-tape { background-color: var(--blush-mid); }
-    .toolkit-card.ai-card .toolkit-card-tape { background-color: var(--lavender-mid); }
-    .toolkit-card.uiux-card .toolkit-card-tape { background-color: var(--sage-mid); }
-    .toolkit-card.motion-card .toolkit-card-tape { background-color: var(--yellow-tape); }
-
-    .toolkit-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .toolkit-header svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--brown-ink);
-      flex-shrink: 0;
-    }
-    .toolkit-header h3 {
-      font-family: var(--font-title);
-      font-size: 1.25rem;
-      color: var(--brown-ink);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* Skills badges */
-    .toolkit-skills-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-    .skill-pill {
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      background-color: var(--white);
-      padding: 0.3rem 0.9rem;
-      border-radius: 20px;
-      display: inline-block;
-      box-shadow: 1.5px 2px 4px rgba(92, 61, 46, 0.05);
-      border: 1px solid transparent;
-      transition: all 0.25s ease;
-      cursor: default;
-    }
-    /* Set color mappings for skill pills based on parent category */
-    .frontend-card .skill-pill { border-color: var(--blush-mid); color: var(--blush-deep); }
-    .ai-card .skill-pill { border-color: var(--lavender-mid); color: var(--lavender-deep); }
-    .uiux-card .skill-pill { border-color: var(--sage-mid); color: var(--sage-mid); }
-    .motion-card .skill-pill { border-color: var(--yellow-tape); color: var(--brown-muted); }
-
-    /* Alternating rotations on skill pills for handwriting sticker look */
-    .skill-pill:nth-child(even) { transform: rotate(1.5deg); }
-    .skill-pill:nth-child(odd) { transform: rotate(-2deg); }
-
-    /* Interactive animations on hover */
-    .toolkit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 6px 10px 22px rgba(92, 61, 46, 0.08);
-      border-color: var(--blush-light);
-    }
-    .toolkit-card:hover .skill-pill {
-      transform: rotate(0deg) scale(1.05);
-    }
-
-    /* INFINITE SCROLLING MARQUEE DIVIDER styled as washi tape roll */
-    .marquee-tape {
-      background: repeating-linear-gradient(
-        90deg,
-        rgba(245, 184, 216, 0.8) 0px,
-        rgba(245, 184, 216, 0.8) 250px,
-        rgba(196, 176, 232, 0.8) 250px,
-        rgba(196, 176, 232, 0.8) 500px
-      );
-      border-top: 1.5px dashed rgba(255,255,255,0.4);
-      border-bottom: 1.5px dashed rgba(255,255,255,0.4);
-      color: var(--white);
-      padding: 0.6rem 0;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      box-shadow: 0 2px 6px rgba(92, 61, 46, 0.05);
-    }
-    .marquee-inner {
-      display: flex;
-      white-space: nowrap;
-      width: max-content;
-      animation: marquee-scroll 24s linear infinite;
-    }
-    .marquee-inner span {
-      font-family: var(--font-accent);
-      font-size: 1.5rem;
-      padding: 0 1rem;
-      letter-spacing: 0.5px;
-    }
-    @keyframes marquee-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* 4. PROJECTS SECTION */
-    .project-filter-container {
-      display: flex;
-      justify-content: center;
-      gap: 0.4rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-      z-index: 5;
-    }
-    .filter-tab {
-      font-family: var(--font-accent);
-      font-size: 1.3rem;
-      padding: 0.4rem 1.4rem;
-      border: 1px solid var(--blush-light);
-      border-bottom: none;
-      background-color: var(--white);
-      color: var(--brown-muted);
-      cursor: pointer;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 0;
-      transition: all 0.3s ease;
-      position: relative;
-      margin-bottom: -1px;
-      box-shadow: 0 -1px 3px rgba(0,0,0,0.02);
-    }
-    .filter-tab:hover {
-      color: var(--brown-ink);
-      background-color: var(--blush-light);
-    }
-    .filter-tab.active {
-      color: var(--brown-ink);
-      font-weight: 700;
-      border-color: var(--blush-mid);
-      z-index: 2;
-    }
-    /* Tab bookmark colors when active */
-    .filter-tab:nth-child(1).active { background-color: var(--blush-light); border-color: var(--blush-mid); }
-    .filter-tab:nth-child(2).active { background-color: var(--lavender); border-color: var(--lavender-mid); }
-    .filter-tab:nth-child(3).active { background-color: var(--sage); border-color: var(--sage-mid); }
-    .filter-tab:nth-child(4).active { background-color: var(--yellow-tape); border-color: var(--yellow-tape); }
-
-    /* Polaroid Cards Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 3rem 2rem;
-    }
-    
-    /* Polaroid style card */
-    .project-card {
-      background-color: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 1.2rem;
-      border-radius: 4px;
-      box-shadow: var(--scrapbook-shadow);
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      border: 2.5px solid var(--brown-ink);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-    /* Top corner washi tape */
-    .project-card::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 18px;
-      width: 65px;
-      height: 18px;
-      opacity: 0.8;
-      transform: rotate(-6deg);
-      z-index: 3;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-    }
-    
-    /* Alternate cards rotation */
-    .project-card:nth-child(even) { transform: rotate(-1.2deg); }
-    .project-card:nth-child(odd) { transform: rotate(1.2deg); }
-
-    /* Unique corner tape backgrounds */
-    .project-card:nth-child(4n+1)::before {
-      background-color: var(--blush-mid);
-      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
-    }
-    .project-card:nth-child(4n+2)::before {
-      background-color: var(--lavender-mid);
-      clip-path: polygon(0 10%, 1% 0, 99% 0, 100% 10%, 98% 25%, 100% 40%, 99% 55%, 100% 70%, 98% 85%, 100% 100%, 99% 95%, 1% 100%, 0 90%, 2% 75%, 0 60%, 1% 45%, 0 30%, 2% 15%);
-    }
-    .project-card:nth-child(4n+3)::before {
-      background-color: var(--sage-mid);
-      clip-path: polygon(0 5%, 2% 0, 98% 0, 100% 5%, 99% 20%, 100% 35%, 98% 50%, 100% 65%, 99% 80%, 100% 95%, 98% 100%, 2% 95%, 0 100%, 1% 85%, 0 70%, 2% 55%, 0 40%, 1% 25%);
-    }
-    .project-card:nth-child(4n+4)::before {
-      background-color: var(--yellow-tape);
-      clip-path: polygon(0 12%, 1% 0, 99% 0, 100% 12%, 98% 24%, 100% 36%, 99% 48%, 100% 60%, 98% 72%, 100% 84%, 99% 96%, 1% 100%, 0 88%, 2% 76%, 0 64%, 1% 52%, 0 40%, 2% 28%);
-    }
-
-    /* Colored Illustration box replacing screenshot */
-    .project-illustration-box {
-      width: 100%;
-      height: 130px;
-      border-radius: 4px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      border: 1px dashed var(--brown-muted);
-    }
-    .project-card:nth-child(4n+1) .project-illustration-box { background-color: var(--blush-light); }
-    .project-card:nth-child(4n+2) .project-illustration-box { background-color: var(--lavender); }
-    .project-card:nth-child(4n+3) .project-illustration-box { background-color: var(--sage); }
-    .project-card:nth-child(4n+4) .project-illustration-box { background-color: var(--yellow-tape); opacity: 0.6; }
-    
-    .project-illustration-box svg {
-      width: 44px;
-      height: 44px;
-      stroke: var(--brown-ink);
-      stroke-width: 1.3;
-      filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.05));
-    }
-
-    .project-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.25rem;
-      color: var(--brown-ink);
-      margin-bottom: 0.4rem;
-    }
-    .project-card p {
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--brown-muted);
-      line-height: 1.4;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1rem;
-    }
-    .project-tag {
-      font-family: var(--font-accent);
-      font-size: 1.1rem;
-      color: var(--brown-ink);
-      background-color: var(--cream);
-      padding: 0.1rem 0.6rem;
-      border-radius: 8px;
-      border: 1px solid var(--blush-light);
-    }
-    .project-link-label {
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      color: var(--blush-deep);
-      text-align: right;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-    
-    /* Project Hover interactions */
-    .project-card:hover {
-      transform: translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.03);
-      box-shadow: 8px 8px 0px var(--brown-ink);
-      z-index: 10;
-    }
-    .project-card:hover .project-link-label {
-      color: var(--lavender-deep);
-    }
-
-    /* 5. EXPERIENCE SECTION */
-    .timeline-container {
-      position: relative;
-      max-width: 750px;
-      margin: 3.5rem auto 0;
-      padding: 1rem 0;
-    }
-    /* Dash timelines */
-    .timeline-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 30px;
-      width: 2px;
-      border-left: 2.5px dashed var(--blush-mid);
-    }
-    .timeline-entry {
-      position: relative;
-      margin-bottom: 3.5rem;
-      padding-left: 75px;
-    }
-    .timeline-badge {
-      position: absolute;
-      left: 9px;
-      top: 15px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background-color: var(--blush-light);
-      border: 2px dashed var(--blush-deep);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: var(--font-accent);
-      font-size: 0.95rem;
-      font-weight: bold;
-      color: var(--brown-ink);
-      z-index: 2;
-      box-shadow: 1.5px 2px 4px rgba(92, 61, 46, 0.05);
-      transform: rotate(-5deg);
-    }
-    .timeline-card {
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 1.8rem;
-      border-radius: 8px;
-      box-shadow: var(--scrapbook-shadow);
-      position: relative;
-      border: 2.5px solid var(--brown-ink);
-    }
-    .timeline-card::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 30px;
-      width: 70px;
-      height: 18px;
-      background-color: var(--lavender-mid);
-      opacity: 0.8;
-      transform: rotate(2.5deg);
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
-    }
-
-    /* Inside Log Card */
-    .timeline-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .timeline-card-title h3 {
-      font-family: var(--font-title);
-      font-size: 1.3rem;
-      color: var(--brown-ink);
-      display: inline-block;
-    }
-    .timeline-card-title p {
-      font-family: var(--font-accent);
-      font-size: 1.3rem;
-      color: var(--lavender-deep);
-      margin-top: 0.1rem;
-    }
-    .status-badge {
-      font-family: var(--font-accent);
-      font-size: 1.1rem;
-      padding: 0.2rem 0.7rem;
-      background-color: var(--sage);
-      border-radius: 12px;
-      color: var(--brown-ink);
-      border: 1px dashed var(--sage-mid);
-      transform: rotate(1deg);
-      box-shadow: 1.5px 2px 4px rgba(0,0,0,0.03);
-    }
-    
-    .timeline-bullets {
-      list-style: none;
-      padding-left: 0.5rem;
-    }
-    .timeline-bullets li {
-      position: relative;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--brown-muted);
-      line-height: 1.5;
-      margin-bottom: 0.6rem;
-      padding-left: 1.2rem;
-    }
-    .timeline-bullets li::before {
-      content: "·";
-      position: absolute;
-      left: 0;
-      font-size: 1.8rem;
-      line-height: 1;
-      color: var(--blush-deep);
-      top: -2px;
-    }
-
-    /* Hackathon Highlight Card */
-    .hackathon-card {
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 2.2rem;
-      border-radius: 12px;
-      box-shadow: var(--scrapbook-shadow);
-      position: relative;
-      border: 2.5px dashed var(--brown-ink);
-      max-width: 675px;
-      margin: 4.5rem auto 0;
-      overflow: hidden;
-    }
-    .hackathon-card::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      width: 110px;
-      height: 22px;
-      background-color: var(--yellow-tape);
-      opacity: 0.9;
-      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
-    }
-    .gold-star-sticker {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 46px;
-      height: 46px;
-      background-color: var(--yellow-tape);
-      border-radius: 50%;
-      border: 1.5px dashed var(--brown-ink);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.8rem;
-      color: var(--brown-ink);
-      transform: rotate(15deg);
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-      user-select: none;
-    }
-    .hackathon-label {
-      font-family: var(--font-accent);
-      font-size: 1.1rem;
-      color: var(--brown-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .hackathon-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.6rem;
-      color: var(--brown-ink);
-      margin-bottom: 0.6rem;
-    }
-    .hackathon-card p {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      color: var(--brown-muted);
-      line-height: 1.5;
-    }
-
-    /* 6. STATS & CONTACT SECTIONS */
-    .stats-container {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin: 3.5rem auto 0;
-      max-width: 850px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-    .tracker-card {
-      background-color: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 2.2rem;
-      border-radius: 12px;
-      box-shadow: var(--scrapbook-shadow);
-      flex: 1;
-      min-width: 290px;
-      position: relative;
-      border: 2.5px solid var(--brown-ink);
-    }
-    .tracker-card::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 40px;
-      width: 75px;
-      height: 20px;
-      opacity: 0.85;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
-    }
-    .tracker-card.github::before { background-color: var(--sage-mid); }
-    .tracker-card.linkedin::before { background-color: var(--lavender-mid); }
-
-    .tracker-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      color: var(--brown-ink);
-      margin-bottom: 0.2rem;
-    }
-    .tracker-handle {
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      color: var(--brown-muted);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-    .tracker-stats {
-      font-family: var(--font-title);
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: var(--brown-ink);
-      margin: 1rem 0;
-    }
-    .tracker-stats span {
-      font-size: 1.1rem;
-      color: var(--blush-deep);
-      font-family: var(--font-accent);
-    }
-
-    /* Contribution Grid Representation */
-    .contribution-grid {
-      display: flex;
-      gap: 6px;
-      margin: 1.2rem 0;
-    }
-    .contrib-square {
+    /* Classic Scrollbar Styling */
+    ::-webkit-scrollbar {
       width: 16px;
       height: 16px;
-      border-radius: 3px;
+      background-color: #dfdfdf;
+      background-image: linear-gradient(45deg, #c0c0c0 25%, transparent 25%), 
+                    linear-gradient(-45deg, #c0c0c0 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #c0c0c0 75%), 
+                    linear-gradient(-45deg, transparent 75%, #c0c0c0 75%);
+      background-size: 4px 4px;
     }
-    .contrib-square.filled {
-      background-color: var(--sage-mid);
-      border: 1px solid var(--sage);
-    }
-    .contrib-square.empty {
-      background-color: var(--cream);
-      border: 1px dashed var(--sage-mid);
-    }
-
-    .tracker-card p.bottom-note {
-      font-family: var(--font-accent);
-      font-size: 1.3rem;
-      color: var(--brown-muted);
-      margin-top: 1.2rem;
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
     }
 
-    /* Floating Yellow Post-It Note */
-    .sticky-note {
-      background-color: #fffacd;
-      padding: 1.6rem;
-      box-shadow: var(--scrapbook-shadow);
-      width: 210px;
-      min-height: 140px;
-      transform: rotate(3deg);
-      font-family: var(--font-accent);
-      font-size: 1.4rem;
-      color: #5c3d2e;
-      border: 2px solid var(--brown-ink);
+    /* --------------------------------------------------------------------------
+       🖥️ DESKTOP ICON GRID
+       -------------------------------------------------------------------------- */
+    .desktop-grid {
       position: absolute;
-      top: -30px;
-      left: calc(50% - 105px);
-      z-index: 10;
-      text-align: center;
-      line-height: 1.4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @media (max-width: 900px) {
-      .sticky-note {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 1.5rem auto;
-        transform: rotate(1deg);
-      }
-    }
-
-    /* 7. CONTACT SECTION */
-    .contact-card {
-      max-width: 680px;
-      margin: 4rem auto 0;
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 8px;
-      box-shadow: var(--scrapbook-shadow);
-      position: relative;
-      border: 2.5px solid var(--brown-ink);
-    }
-
-    /* Paperclip decoration element */
-    .paperclip {
-      position: absolute;
-      top: -16px;
-      right: 25px;
-      width: 32px;
-      height: 48px;
-      z-index: 15;
-      pointer-events: none;
-      transform: rotate(10deg);
-      filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.12));
-    }
-
-    /* Vintage Scalloped Postage Stamp */
-    .postage-stamp {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 44px;
-      height: 52px;
+      top: 20px;
+      left: 20px;
+      bottom: 60px;
+      right: 20px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(auto-fill, 100px);
+      grid-template-columns: repeat(auto-fill, 90px);
+      gap: 15px;
       z-index: 5;
-      pointer-events: none;
-      transform: rotate(5deg);
-      filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.1));
+      pointer-events: auto;
     }
-    /* Lavender washi tape */
-    .contact-card::after {
-      content: "";
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1.5deg);
-      width: 100px;
-      height: 22px;
-      background-color: var(--lavender-mid);
-      opacity: 0.85;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
-      clip-path: polygon(0 15%, 2% 0, 98% 0, 100% 15%, 98% 30%, 100% 45%, 97% 60%, 100% 75%, 98% 90%, 100% 100%, 98% 85%, 2% 100%, 0 85%, 1% 70%, 0 55%, 2% 40%, 0 25%, 1% 10%);
-    }
-    
-    /* Floral border inside card */
-    .contact-card-inner {
-      border: 12px solid transparent;
-      border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4' fill='%23f5b8d8'/%3E%3Ccircle cx='12' cy='6' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='12' cy='18' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='6' cy='12' r='3' fill='%23fce8f4'/%3E%3Ccircle cx='18' cy='12' r='3' fill='%23fce8f4'/%3E%3C/svg%3E") 12 round;
-      padding: 3rem 2rem;
+
+    .desktop-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-    }
-
-    .contact-card-inner h4 {
-      font-family: var(--font-accent);
-      font-size: 1.5rem;
-      color: var(--brown-muted);
-      margin-bottom: 0.8rem;
-    }
-    .contact-card-inner h3 {
-      font-family: var(--font-title);
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--brown-ink);
-      line-height: 1.2;
-    }
-    .contact-card-inner .beautiful-word {
-      font-family: var(--font-accent);
-      font-size: 3rem;
-      color: var(--blush-deep);
-      display: block;
-      margin-bottom: 2rem;
-    }
-
-    /* Collab Tags Sticker pills */
-    .collab-stickers {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 3rem;
-    }
-    .collab-sticker {
-      font-family: var(--font-accent);
-      font-size: 1.25rem;
-      padding: 0.4rem 1.1rem;
-      background-color: var(--white);
-      border: 1.5px dashed var(--blush-deep);
-      border-radius: 20px;
-      color: var(--brown-ink);
-      box-shadow: 2px 2px 4px rgba(92, 61, 46, 0.03);
-    }
-    .collab-sticker:nth-child(even) { transform: rotate(-2deg); }
-    .collab-sticker:nth-child(odd) { transform: rotate(1.5deg); }
-
-    /* CTA BUTTON */
-    .cta-button {
-      display: inline-block;
-      font-family: var(--font-title);
-      font-size: 1.35rem;
-      color: var(--white);
-      background-color: var(--blush-deep);
-      border: none;
-      padding: 0.9rem 2.2rem;
-      border-radius: 4px;
+      width: 80px;
+      height: 90px;
       cursor: pointer;
+      color: var(--win-light);
       text-decoration: none;
-      box-shadow: 2px 4px 10px rgba(212, 120, 154, 0.25);
-      transition: all 0.3s ease;
-      margin-bottom: 2.2rem;
+      font-size: 0.85rem;
+      border: 1px transparent dashed;
+      padding: 4px;
+      transition: all 0.1s;
     }
-    .cta-button:hover {
-      background-color: var(--lavender-deep);
-      box-shadow: 2px 4px 12px rgba(139, 114, 200, 0.35);
-      transform: translateY(-2px);
+    .desktop-icon:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .desktop-icon:active, .desktop-icon.selected {
+      background-color: rgba(0, 0, 128, 0.5);
+      border-color: var(--win-light);
+    }
+    .desktop-icon-svg {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 6px;
+      filter: drop-shadow(1px 2px 0px rgba(0,0,0,0.5));
+    }
+    .desktop-icon-label {
+      font-family: var(--font-system);
+      line-height: 1.2;
+      word-break: break-word;
+      text-shadow: 1px 1px 1px #000;
     }
 
-    /* Social icons below CTA */
-    .contact-socials {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1rem;
+    /* --------------------------------------------------------------------------
+       💻 DRAGGABLE WINDOW SHELL
+       -------------------------------------------------------------------------- */
+    .window {
+      position: absolute;
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      box-shadow: 1px 1px 0 0 #000;
+      z-index: 10;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 280px;
+      min-height: 200px;
     }
-    .contact-social-link {
-      font-family: var(--font-accent);
-      font-size: 1.3rem;
-      color: var(--brown-muted);
+    .window.active-focus {
+      z-index: 50 !important;
+    }
+    .window.minimized {
+      display: none !important;
+    }
+    .window.maximized {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: calc(100vh - 40px) !important;
+      transform: none !important;
+    }
+
+    /* Bevel border variations */
+    .inset-bevel {
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      background-color: #fff;
+    }
+    .outset-bevel {
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+    }
+
+    /* Window Header Titlebar */
+    .window-titlebar {
+      background: linear-gradient(90deg, var(--inactive-title), #b0b0b0);
+      color: #dfdfdf;
+      padding: 3px 6px;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-    }
-    .contact-social-link:hover {
-      color: var(--blush-deep);
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 4rem 1.5rem;
-      border-top: 1px dashed var(--blush-light);
-      background-color: rgba(255, 251, 245, 0.5);
-    }
-    .footer-text {
-      font-family: var(--font-accent);
-      font-size: 1.35rem;
-      color: var(--brown-muted);
-    }
-
-    /* SCROLL REVEAL CLASS */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .scroll-reveal.reveal-active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Cool Background Watercolor Blobs */
-    .bg-watercolor-blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: -2;
-      opacity: 0.35;
-      pointer-events: none;
-      animation: float-blob 25s infinite alternate ease-in-out;
-    }
-    .blob-1 {
-      width: 400px;
-      height: 400px;
-      background-color: var(--blush-light);
-      top: -10%;
-      left: -10%;
-      animation-duration: 20s;
-    }
-    .blob-2 {
-      width: 500px;
-      height: 500px;
-      background-color: var(--lavender);
-      top: 40%;
-      right: -15%;
-      animation-duration: 28s;
-      animation-delay: -5s;
-    }
-    .blob-3 {
-      width: 450px;
-      height: 450px;
-      background-color: var(--sage);
-      bottom: -10%;
-      left: 15%;
-      animation-duration: 24s;
-      animation-delay: -10s;
-    }
-    .blob-4 {
-      width: 350px;
-      height: 350px;
-      background-color: var(--yellow-tape);
-      top: 15%;
-      left: 60%;
-      opacity: 0.25;
-      animation-duration: 22s;
-      animation-delay: -3s;
-    }
-
-    @keyframes float-blob {
-      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-      50% { transform: translate(50px, -40px) scale(1.1) rotate(180deg); }
-      100% { transform: translate(-30px, 50px) scale(0.9) rotate(360deg); }
-    }
-
-    /* Floating Botanical Sketches in Background */
-    .bg-botanical-sketch {
-      position: fixed;
-      z-index: -1;
-      pointer-events: none;
+      justify-content: space-between;
+      cursor: move;
+      font-weight: bold;
+      font-size: 0.9rem;
       user-select: none;
-      animation: float-sketch 30s infinite ease-in-out alternate;
+      -webkit-user-select: none;
     }
-    .sketch-1 {
-      top: 15%;
-      left: 5%;
-      animation-duration: 35s;
+    .window.active-focus .window-titlebar {
+      background: linear-gradient(90deg, var(--active-title), var(--active-title-grad));
+      color: var(--win-text-light);
     }
-    .sketch-2 {
-      bottom: 20%;
-      right: 5%;
-      animation-duration: 40s;
-      animation-delay: -7s;
+    .titlebar-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-system);
     }
-    .sketch-3 {
-      top: 60%;
-      left: 80%;
-      animation-duration: 32s;
-      animation-delay: -15s;
+    .titlebar-text svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
-
-    @keyframes float-sketch {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-20px, 30px) rotate(8deg); }
-      100% { transform: translate(30px, -20px) rotate(-12deg); }
+    .titlebar-controls {
+      display: flex;
+      gap: 3px;
     }
-
-    /* RESPONSIVE MEDIA QUERIES */
-    @media (max-width: 768px) {
-      .name-box h1 {
-        font-size: 2.6rem;
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-      .toolkit-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .section-header-wrap h2 {
-        font-size: 2rem;
-      }
-      .timeline-line {
-        left: 20px;
-      }
-      .timeline-entry {
-        padding-left: 55px;
-      }
-      .timeline-badge {
-        left: -1px;
-        width: 40px;
-        height: 40px;
-        font-size: 0.85rem;
-      }
-      .contact-card-inner h3 {
-        font-size: 1.8rem;
-      }
-      .contact-card-inner .beautiful-word {
-        font-size: 2.3rem;
-      }
+    .window-btn {
+      width: 16px;
+      height: 14px;
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: bold;
+      color: var(--win-text);
+      cursor: pointer;
+      line-height: 1;
+    }
+    .window-btn:active {
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding-top: 1px;
+      padding-left: 1px;
     }
 
-
-
-    /* Ghibli Style Layout & Overhaul */
-    html {
-      font-family: var(--font-body);
-      overflow-x: hidden;
+    /* Menu Bar */
+    .window-menu {
+      display: flex;
+      gap: 10px;
+      padding: 4px 8px;
+      border-bottom: 1px solid var(--win-shadow);
+      font-size: 0.85rem;
+      font-family: var(--font-system);
     }
-    body {
-      min-height: 100vh;
+    .menu-item {
+      cursor: pointer;
       position: relative;
-      background: linear-gradient(to bottom, #dce8f8 0%, #f0f4ff 100%);
-      line-height: 1.6;
+    }
+    .menu-item::first-letter {
+      text-decoration: underline;
+    }
+    .menu-item:hover {
+      background-color: var(--active-title);
+      color: var(--win-text-light);
+      padding: 0 4px;
+      margin: 0 -4px;
     }
 
-    .clouds-container {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Client Area */
+    .window-body {
+      flex: 1;
+      padding: 8px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Window StatusBar */
+    .window-statusbar {
+      border-top: 1px solid var(--win-shadow);
+      padding: 2px 6px;
+      font-size: 0.8rem;
+      font-family: var(--font-system);
+      background-color: var(--win-face);
+      display: flex;
+      gap: 10px;
+    }
+    .status-field {
+      border: 1px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding: 1px 6px;
+      flex: 1;
+    }
+    .status-field-fixed {
+      flex: 0 0 80px;
+    }
+
+    /* --------------------------------------------------------------------------
+       📑 SPECIFIC WINDOW CONTENTS
+       -------------------------------------------------------------------------- */
+    
+    /* 1. NOTEPAD BIO WINDOW */
+    .notepad-text {
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      flex: 1;
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      padding: 8px;
+      resize: none;
+      outline: none;
+      background-color: #ffffff;
+      color: #000000;
+      white-space: pre-wrap;
+      overflow-y: auto;
+    }
+
+    /* 2. SYSTEM PROPERTIES (SKILLS) WINDOW */
+    .sys-tab-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex: 1;
+    }
+    .sys-tabs-header {
+      display: flex;
+      gap: 2px;
+      padding-left: 6px;
+      z-index: 2;
+    }
+    .sys-tab-btn {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) transparent var(--win-light);
+      border-radius: 4px 4px 0 0;
+      padding: 4px 12px;
+      font-family: var(--font-system);
+      font-size: 0.85rem;
+      cursor: pointer;
+      position: relative;
+      bottom: -2px;
+    }
+    .sys-tab-btn.active {
+      background-color: var(--win-face);
+      border-bottom: 2px solid var(--win-face);
+      font-weight: bold;
+      z-index: 3;
+      padding-top: 6px;
+      bottom: -1px;
+    }
+    .sys-tab-body {
+      flex: 1;
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      padding: 15px;
+      background-color: var(--win-face);
+      z-index: 1;
+    }
+    .sys-tab-pane {
+      display: none;
+      height: 100%;
+    }
+    .sys-tab-pane.active {
+      display: block;
+    }
+    .skills-groupbox {
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding: 12px;
+      margin-bottom: 12px;
+      position: relative;
+      font-size: 0.85rem;
+    }
+    .skills-groupbox-title {
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      background-color: var(--win-face);
+      padding: 0 6px;
+      font-weight: bold;
+    }
+    .skill-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .skill-label {
+      flex: 0 0 120px;
+      font-family: var(--font-system);
+    }
+    .skill-progress-bar {
+      flex: 1;
+      height: 18px;
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      background-color: #fff;
+      padding: 1px;
+      display: flex;
+    }
+    .skill-progress-fill {
+      background-color: var(--active-title);
+      height: 100%;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.2) 4px, rgba(255,255,255,0.2) 8px);
+    }
+
+    /* 3. FILE EXPLORER PROJECTS WINDOW */
+    .explorer-layout {
+      display: flex;
+      height: 100%;
+      flex: 1;
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      background-color: #ffffff;
+    }
+    .explorer-sidebar {
+      width: 160px;
+      border-right: 2px solid var(--win-shadow);
+      background-color: var(--win-face);
+      padding: 6px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+    .tree-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 4px;
+      cursor: pointer;
+      font-family: var(--font-system);
+    }
+    .tree-item:hover, .tree-item.selected {
+      background-color: var(--active-title);
+      color: var(--win-text-light);
+    }
+    .explorer-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .explorer-pathbar {
+      padding: 4px;
+      background-color: var(--win-face);
+      border-bottom: 2px solid var(--win-shadow);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+    .explorer-path-input {
+      flex: 1;
+      padding: 2px 4px;
+      border: 1px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      background-color: #fff;
+      font-family: monospace;
+      outline: none;
+    }
+    .explorer-grid {
+      flex: 1;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 15px;
+      overflow-y: auto;
+    }
+    .folder-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px;
+    }
+    .folder-item:hover {
+      background-color: rgba(0,0,128,0.1);
+    }
+    .folder-item.selected {
+      background-color: var(--active-title);
+      color: var(--win-text-light);
+    }
+    .folder-item svg {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 4px;
+    }
+    .project-detail-view {
+      border-top: 2px solid var(--win-shadow);
+      background-color: var(--win-face);
+      padding: 10px;
+      min-height: 120px;
+      font-size: 0.85rem;
+    }
+    .project-detail-header {
+      font-weight: bold;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-run {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: #000;
+    }
+    .btn-run:active {
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+    }
+
+    /* 4. QUEST LOG EVENT VIEWER */
+    .event-viewer-grid {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex: 1;
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      background-color: #fff;
+    }
+    .event-table-header {
+      display: flex;
+      background-color: var(--win-face);
+      border-bottom: 2px solid var(--win-shadow);
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .event-header-col {
+      padding: 4px;
+      border-right: 1px solid var(--win-shadow);
+    }
+    .event-rows {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .event-row {
+      display: flex;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    .event-row:hover {
+      background-color: #f0f4ff;
+    }
+    .event-row.selected {
+      background-color: var(--active-title);
+      color: #fff;
+    }
+    .event-col {
+      padding: 6px 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .event-desc-panel {
+      border-top: 2px solid var(--win-shadow);
+      height: 110px;
+      background-color: var(--win-face);
+      padding: 8px;
+      font-size: 0.85rem;
+      overflow-y: auto;
+    }
+
+    /* 5. OUTLOOK MAIL CONTACT WINDOW */
+    .mail-composer {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      height: 100%;
+      flex: 1;
+    }
+    .mail-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+    .mail-label {
+      flex: 0 0 50px;
+      font-weight: bold;
+    }
+    .mail-input {
+      flex: 1;
+      padding: 3px 6px;
+      border: 1px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      outline: none;
+      font-family: var(--font-system);
+    }
+    .mail-body {
+      flex: 1;
+      width: 100%;
+      border: 1px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding: 8px;
+      outline: none;
+      resize: none;
+      font-family: var(--font-system);
+    }
+    .mail-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .btn-send {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      padding: 4px 16px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-send:active {
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+    }
+
+    /* --------------------------------------------------------------------------
+       🖥️ BOTTOM TASKBAR & START MENU
+       -------------------------------------------------------------------------- */
+    .taskbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background-color: var(--win-face);
+      border-top: 2px solid var(--win-light);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 2px 4px;
+      gap: 6px;
+      justify-content: space-between;
+    }
+    .taskbar-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
       overflow: hidden;
     }
-    .drifting-cloud {
-      position: absolute;
-      background-color: var(--cloud);
-      filter: blur(45px);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: drift 80s linear infinite;
+
+    /* Start Button styling */
+    .btn-start {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: var(--font-system);
+      font-weight: bold;
+      font-size: 0.9rem;
+      user-select: none;
     }
-    .cloud-1 { width: 420px; height: 190px; top: 15%; left: -420px; animation-duration: 95s; animation-delay: -10s; }
-    .cloud-2 { width: 520px; height: 230px; top: 45%; left: -520px; animation-duration: 115s; animation-delay: -45s; }
-    .cloud-3 { width: 370px; height: 170px; top: 75%; left: -370px; animation-duration: 85s; animation-delay: -20s; }
-    @keyframes drift { 0% { transform: translateX(0); } 100% { transform: translateX(calc(100vw + 600px)); } }
+    .btn-start:active, .btn-start.active {
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding-top: 3px;
+      padding-left: 9px;
+    }
+    .btn-start-logo {
+      width: 16px;
+      height: 16px;
+    }
 
-    .sparkles-container { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-    .sparkle { position: absolute; color: var(--petal); opacity: 0; font-size: 1.15rem; animation: float-up 12s linear infinite; }
-    .flower-petal-trail { position: absolute; pointer-events: none; z-index: 99; animation: trail-drift 1.5s ease-out forwards; opacity: 1; }
-    @keyframes trail-drift { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--drift-x), -60px) rotate(var(--rotate-deg)); opacity: 0; } }
-    @keyframes float-up { 0% { transform: translateY(105vh) translateX(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.4; } 80% { opacity: 0.4; } 100% { transform: translateY(-5vh) translateX(50px) rotate(360deg); opacity: 0; } }
+    /* Active window tabs in taskbar */
+    .task-tabs-container {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      flex: 1;
+      height: 100%;
+      align-items: center;
+    }
+    .task-tab {
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-system);
+      max-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .task-tab.active {
+      background-color: #dfdfdf;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      font-weight: bold;
+    }
 
-    .top-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background-color: rgba(240, 244, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1.5px dashed var(--lilac-deep); transition: all 0.3s ease; }
-    .top-nav.scrolled { background-color: rgba(255, 255, 255, 0.85); box-shadow: 0 4px 20px rgba(74, 63, 107, 0.05); }
-    .nav-container { max-width: 1000px; margin: 0 auto; padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-family: var(--font-title); font-size: 1.8rem; color: var(--ink); }
-    .nav-links { display: flex; gap: 1.8rem; }
-    .nav-link { font-family: var(--font-accent); font-size: 1.4rem; color: var(--ink-muted); text-decoration: none; transition: all 0.2s ease; }
-    .nav-link:hover { color: var(--petal); transform: translateY(-2px); }
-    
-    .max-width-wrapper { max-width: 950px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
-    section { padding: 6rem 0 4rem; position: relative; }
-    .chapter-label { text-align: center; font-family: var(--font-accent); font-size: 1.4rem; color: var(--ink-muted); margin-bottom: 0.8rem; letter-spacing: 0.5px; }
-    .storybook-header { text-align: center; font-family: var(--font-title); font-size: 3rem; color: var(--ink); font-weight: 600; margin-bottom: 0.4rem; }
-    .storybook-subheader { text-align: center; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted); margin-bottom: 3.5rem; }
-    .watercolour-underline { display: block; margin: 0.5rem auto 0; width: 140px; height: 10px; stroke: var(--petal); stroke-width: 3.5; stroke-linecap: round; fill: none; }
+    /* System tray clock */
+    .system-tray {
+      border: 2px solid;
+      border-color: var(--win-shadow) var(--win-light) var(--win-light) var(--win-shadow);
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-family: var(--font-system);
+      background-color: var(--win-face);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-    #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 5rem; }
-    .hero-content { display: flex; flex-direction: column; align-items: center; z-index: 5; }
-    .swaying-lantern-container { position: absolute; top: -20px; left: 10%; z-index: 10; pointer-events: none; }
-    .swaying-lantern { width: 36px; height: 90px; transform-origin: top center; animation: sway-lantern 3.5s ease-in-out infinite alternate; }
-    @keyframes sway-lantern { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
-    .scroll-hint { margin-top: 3.5rem; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; animation: float-hint 2s ease-in-out infinite; cursor: pointer; }
-    @keyframes float-hint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    /* Start Menu popup block */
+    .start-menu {
+      position: absolute;
+      bottom: 42px;
+      left: 4px;
+      width: 180px;
+      background-color: var(--win-face);
+      border: 2px solid;
+      border-color: var(--win-light) var(--win-shadow) var(--win-shadow) var(--win-light);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      z-index: 1001;
+      display: none;
+      flex-direction: column;
+    }
+    .start-menu-banner {
+      width: 25px;
+      background: linear-gradient(180deg, var(--active-title), var(--active-title-grad));
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      font-family: var(--font-pixel);
+      font-size: 1rem;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .start-menu-container {
+      display: flex;
+      flex: 1;
+    }
+    .start-menu-items {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2px;
+    }
+    .start-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      text-decoration: none;
+      color: var(--win-text);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .start-menu-item:hover {
+      background-color: var(--active-title);
+      color: var(--win-text-light);
+    }
+    .start-menu-divider {
+      height: 1px;
+      background-color: var(--win-shadow);
+      margin: 4px 0;
+      border-bottom: 1px solid var(--win-light);
+    }
 
-    .character-card { background-color: var(--butter); border: 1.8px solid var(--lilac-deep); border-radius: 20px; padding: 2.5rem 1.8rem; box-shadow: var(--storybook-shadow); position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .journal-entry { background-color: var(--cloud); border: 1.8px solid var(--ink); border-radius: 8px; padding: 3rem 2.5rem; box-shadow: var(--storybook-shadow); position: relative; background-image: linear-gradient(rgba(179, 157, 219, 0.08) 1px, transparent 1px); background-size: 100% 28px; line-height: 28px; }
-    .spell-card { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 6px; padding: 2.2rem 1.5rem 1.8rem; position: relative; box-shadow: var(--storybook-shadow); display: flex; flex-direction: column; align-items: center; transition: transform 0.25s ease; clip-path: polygon(0% 0%, 100% 0%, 100% 97%, 97% 96%, 94% 97%, 91% 96%, 88% 97%, 85% 96%, 82% 97%, 79% 96%, 76% 97%, 73% 96%, 70% 97%, 67% 96%, 64% 97%, 61% 96%, 58% 97%, 55% 96%, 52% 97%, 49% 96%, 46% 97%, 43% 96%, 40% 97%, 37% 96%, 34% 97%, 31% 96%, 28% 97%, 25% 96%, 22% 97%, 19% 96%, 16% 97%, 13% 96%, 10% 97%, 7% 96%, 4% 97%, 0% 95%); }
-    .adventure-scroll { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 12px; padding: 1.8rem; box-shadow: var(--storybook-shadow); position: relative; display: flex; flex-direction: column; transition: transform 0.3s ease, opacity 0.3s ease; }
-    .quest-card { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 12px; padding: 2.2rem; box-shadow: var(--storybook-shadow); max-width: 600px; margin-left: 2rem; position: relative; }
-    .achievement-card { background-color: var(--butter); border: 2px solid var(--gold); border-radius: 12px; padding: 2.2rem; box-shadow: 0 0 20px rgba(249, 199, 79, 0.15), var(--storybook-shadow); max-width: 600px; margin-left: 2rem; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .contact-spread { background-color: var(--butter); border: 1.8px solid var(--ink); border-radius: 16px; box-shadow: var(--storybook-shadow); padding: 3.5rem 2.5rem; text-align: center; position: relative; margin-top: 1rem; }
-    .wax-sealed-btn { display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--lilac-deep); color: var(--cloud); font-family: var(--font-title); font-size: 1.45rem; padding: 0.8rem 2.5rem; border: 1.8px solid var(--ink); border-radius: 30px; text-decoration: none; box-shadow: var(--storybook-shadow); transition: all 0.3s ease; cursor: pointer; }
-    .wax-sealed-btn:hover { background-color: var(--petal); transform: translateY(-2px); box-shadow: 6px 6px 0px var(--ink); }
-
-    .scroll-reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-    .reveal-active { opacity: 1; transform: translateY(0); }
+    /* --------------------------------------------------------------------------
+       📱 RESPONSIVE ADAPTATIONS
+       -------------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .desktop-grid {
+        grid-template-rows: repeat(auto-fill, 80px);
+        grid-template-columns: repeat(auto-fill, 70px);
+        gap: 10px;
+      }
+      .desktop-icon {
+        width: 70px;
+        height: 80px;
+        font-size: 0.75rem;
+      }
+      .desktop-icon-svg {
+        width: 32px;
+        height: 32px;
+      }
+      .window {
+        width: 92vw !important;
+        height: 75vh !important;
+        left: 4vw !important;
+        top: 8vh !important;
+      }
+      .explorer-sidebar {
+        width: 100px;
+        font-size: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Teal Desktop Background Pattern overlay -->
+  <div class="desktop-bg-pattern"></div>
 
-  <!-- Floating Atmospheric Background Elements -->
-  <div class="clouds-container" aria-hidden="true">
-    <div class="drifting-cloud cloud-1"></div>
-    <div class="drifting-cloud cloud-2"></div>
-    <div class="drifting-cloud cloud-3"></div>
+  <!-- 1. DESKTOP ICON SHORTCUT GRID -->
+  <div class="desktop-grid">
+    <!-- Bio.txt Icon -->
+    <div class="desktop-icon" id="icon-bio" onclick="openWindow('win-bio')">
+      <svg class="desktop-icon-svg" viewBox="0 0 32 32">
+        <rect x="6" y="2" width="20" height="28" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+        <polygon points="18,2 26,10 18,10" fill="#c0c0c0" stroke="#000000" stroke-width="2"/>
+        <line x1="10" y1="14" x2="22" y2="14" stroke="#000000" stroke-width="2"/>
+        <line x1="10" y1="18" x2="22" y2="18" stroke="#000000" stroke-width="2"/>
+        <line x1="10" y1="22" x2="18" y2="22" stroke="#000000" stroke-width="2"/>
+      </svg>
+      <span class="desktop-icon-label">Bio.txt</span>
+    </div>
+
+    <!-- Toolkit.exe Icon -->
+    <div class="desktop-icon" id="icon-skills" onclick="openWindow('win-skills')">
+      <svg class="desktop-icon-svg" viewBox="0 0 32 32">
+        <rect x="4" y="16" width="24" height="12" fill="#808080" stroke="#000000" stroke-width="2"/>
+        <path d="M10,16 L10,8 A4,4 0 0,1 22,8 L22,16" fill="none" stroke="#000000" stroke-width="2"/>
+        <rect x="14" y="2" width="4" height="6" fill="#ffff55" stroke="#000000" stroke-width="2"/>
+      </svg>
+      <span class="desktop-icon-label">Toolkit.exe</span>
+    </div>
+
+    <!-- Adventures Folder Icon -->
+    <div class="desktop-icon" id="icon-projects" onclick="openWindow('win-projects')">
+      <svg class="desktop-icon-svg" viewBox="0 0 32 32">
+        <path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000000" stroke-width="2"/>
+        <path d="M2,10 L30,10" stroke="#000000" stroke-width="2"/>
+      </svg>
+      <span class="desktop-icon-label">Adventures</span>
+    </div>
+
+    <!-- Quest_Log.log Icon -->
+    <div class="desktop-icon" id="icon-experience" onclick="openWindow('win-experience')">
+      <svg class="desktop-icon-svg" viewBox="0 0 32 32">
+        <rect x="4" y="4" width="24" height="24" rx="2" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+        <line x1="8" y1="10" x2="24" y2="10" stroke="#000080" stroke-width="2"/>
+        <line x1="8" y1="15" x2="24" y2="15" stroke="#808080" stroke-width="2"/>
+        <line x1="8" y1="20" x2="20" y2="20" stroke="#808080" stroke-width="2"/>
+      </svg>
+      <span class="desktop-icon-label">Quest_Log.log</span>
+    </div>
+
+    <!-- Mail_Me.exe Icon -->
+    <div class="desktop-icon" id="icon-contact" onclick="openWindow('win-contact')">
+      <svg class="desktop-icon-svg" viewBox="0 0 32 32">
+        <rect x="2" y="6" width="28" height="20" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+        <polygon points="2,6 16,16 30,6" fill="none" stroke="#000000" stroke-width="2"/>
+        <line x1="2" y1="26" x2="12" y2="16" stroke="#000000" stroke-width="2"/>
+        <line x1="30" y1="26" x2="20" y2="16" stroke="#000000" stroke-width="2"/>
+      </svg>
+      <span class="desktop-icon-label">Mail_Me.exe</span>
+    </div>
   </div>
-  <div class="sparkles-container" aria-hidden="true">
-    <div class="sparkle" style="top: 20%; left: 15%; animation-delay: 0s;">✦</div>
-    <div class="sparkle" style="top: 40%; left: 80%; animation-delay: 2s;">✨</div>
-    <div class="sparkle" style="top: 60%; left: 10%; animation-delay: 4s;">✦</div>
-    <div class="sparkle" style="top: 80%; left: 85%; animation-delay: 1s;">✨</div>
-    <div class="sparkle" style="top: 15%; left: 70%; animation-delay: 3s;">✦</div>
-    <div class="sparkle" style="top: 50%; left: 40%; animation-delay: 5s;">✨</div>
+
+
+  <!-- 2. DRAGGABLE WINDOWS LIST -->
+
+  <!-- Window 1: Notepad Bio.txt -->
+  <div class="window" id="win-bio" style="width: 580px; height: 420px; top: 80px; left: 100px;">
+    <div class="window-titlebar">
+      <div class="titlebar-text">
+        <svg viewBox="0 0 24 24" width="16" height="16"><rect x="4" y="2" width="16" height="20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        Bio.txt - Notepad
+      </div>
+      <div class="titlebar-controls">
+        <button class="window-btn" onclick="minimizeWindow('win-bio')">_</button>
+        <button class="window-btn" onclick="maximizeWindow('win-bio')">⬜</button>
+        <button class="window-btn" onclick="closeWindow('win-bio')">X</button>
+      </div>
+    </div>
+    <div class="window-menu">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Search</span>
+      <span class="menu-item">Help</span>
+    </div>
+    <div class="window-body">
+      <textarea class="notepad-text" readonly>
+=== USER BIO REPORT ===
+Name        : KRITIKA KHATRI
+Occupation  : AI ENGINEER INTERN & COMPUTER SCIENCE STUDENT
+Location    : PUNE, INDIA
+
+--- INTRODUCTION ---
+I am a 20-year-old developer operating at the intersection of frontend engineering, automated LLM agents, and highly interactive user interfaces. I believe building digital tools is a form of writing modern digital stories.
+
+--- CORE TRAITS & STRENGTHS ---
+[+] Fast Learner: I love diving into new APIs, framer motion configurations, and agent structures.
+[+] Design-Oriented: Every bevel border, coordinate animation, and shadow pixel matters.
+[+] System Symbiosis: Integrating LLMs, Telegram bots, and flow builders to automate tasks.
+
+--- FIELD NOTES ---
+Currently working at FlyRank on automating data structures and optimizing frontend performance. Building projects out loud!
+
+====================================
+End of Document.
+      </textarea>
+    </div>
+    <div class="window-statusbar">
+      <div class="status-field">Ln 1, Col 1</div>
+      <div class="status-field status-field-fixed">100%</div>
+      <div class="status-field status-field-fixed">Windows</div>
+    </div>
   </div>
 
-  <!-- Top Navigation Banner -->
-  <nav class="top-nav">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">
-        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="var(--ink)" stroke-width="2">
-          <path d="M4 28c4-1 10-1 12-4 2 3 8 3 12 4V6c-4-1-10-1-12 2-2-3-8-3-12-2z" fill="var(--blush)" />
-          <path d="M16 8v16" />
-        </svg>
-        <span style="font-family: var(--font-accent); font-weight: bold; color: var(--ink);">Kritika</span>
-      </a>
-      <div class="nav-links">
-        <a href="#about" class="nav-link">Chapter 1</a>
-        <a href="#techstack" class="nav-link">Chapter 2</a>
-        <a href="#projects" class="nav-link">Chapter 3</a>
-        <a href="#experience" class="nav-link">Chapter 4</a>
-        <a href="#contact" class="nav-link">The End</a>
+  <!-- Window 2: Toolkit Properties (Skills.exe) -->
+  <div class="window" id="win-skills" style="width: 520px; height: 450px; top: 120px; left: 150px;">
+    <div class="window-titlebar">
+      <div class="titlebar-text">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12,2 L2,22 L22,22 Z" fill="currentColor"/></svg>
+        System Toolkit Properties
+      </div>
+      <div class="titlebar-controls">
+        <button class="window-btn" onclick="minimizeWindow('win-skills')">_</button>
+        <button class="window-btn" onclick="maximizeWindow('win-skills')">⬜</button>
+        <button class="window-btn" onclick="closeWindow('win-skills')">X</button>
       </div>
     </div>
-  </nav>
-
-  <!-- 1. HERO SECTION (THE COVER) -->
-  <section id="hero">
-    <div class="swaying-lantern-container" aria-hidden="true">
-      <svg class="swaying-lantern" viewBox="0 0 36 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="18" y1="0" x2="18" y2="40" stroke="var(--ink)" stroke-width="1.5" />
-        <rect x="10" y="40" width="16" height="24" rx="3" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.8" />
-        <circle cx="18" cy="52" r="5" fill="var(--gold)" filter="drop-shadow(0 0 8px var(--gold))" />
-        <path d="M10 64 L18 78 L26 64 Z" fill="var(--ink)" />
-      </svg>
-    </div>
-
-    <div class="max-width-wrapper hero-content">
-      <span style="font-family: var(--font-accent); font-size: 1.45rem; color: var(--ink-muted); margin-bottom: 0.5rem; display: block;">once upon a time, a developer...</span>
-      
-      <h1 style="font-family: var(--font-title); font-size: 4.8rem; font-weight: 700; color: var(--ink); line-height: 1.1;">Kritika Khatri</h1>
-      
-      <svg class="watercolour-underline" viewBox="0 0 140 10" aria-hidden="true">
-        <path d="M10,5 C30,2 60,8 90,4 C110,2 125,7 130,5" fill="none" stroke="var(--petal)" stroke-width="3.5" stroke-linecap="round" />
-      </svg>
-
-      <p style="font-family: var(--font-accent); font-size: 1.55rem; color: var(--ink-muted); margin-top: 1rem; max-width: 600px;">
-        building frontend worlds, intelligent agent systems, and beautiful digital storybooks
-      </p>
-
-      <!-- Custom illustration of girl at laptop -->
-      <svg class="girl-illustration" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Cloud backing -->
-        <ellipse cx="140" cy="180" rx="90" ry="25" fill="var(--cloud)" opacity="0.95" />
-        
-        <!-- Floating objects -->
-        <!-- Tiny book -->
-        <path d="M60 70c4-1 10-1 12-2 2 1 8 1 12 2v-8c-4-1-10-1-12 1-2-2-8-2-12-1z" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.2" />
-        <path d="M72 61v8" stroke="var(--ink)" stroke-width="1.2" />
-        <!-- Cup -->
-        <rect x="200" y="125" width="12" height="12" rx="2" fill="var(--mint)" stroke="var(--ink)" stroke-width="1.2" />
-        <path d="M212 128c2 0 3 1 3 3s-1 3-3 3" stroke="var(--ink)" stroke-width="1.2" />
-        <!-- Star -->
-        <path d="M75 125l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z" fill="var(--gold)" />
-        <!-- Floating pencil -->
-        <path d="M205 70l12-12c1 1 2 2 1 3l-12 12z" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.2" />
-
-        <!-- Desk -->
-        <rect x="90" y="145" width="100" height="8" rx="2" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.5" />
-        <path d="M100 153c0 8 10 15 20 15m40-15c0 8-10 15-20 15" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" />
-
-        <!-- Laptop -->
-        <rect x="125" y="125" width="30" height="20" rx="2" fill="var(--mist)" stroke="var(--ink)" stroke-width="1.5" />
-        <polygon points="120,123 160,123 185,145 95,145" fill="var(--blush)" opacity="0.3" />
-        <line x1="125" y1="140" x2="155" y2="140" stroke="var(--ink)" stroke-width="1.5" />
-        <circle cx="140" cy="133" r="2.5" fill="var(--gold)" />
-
-        <!-- Character -->
-        <circle cx="140" cy="85" r="14" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.5" />
-        <circle cx="140" cy="68" r="7" fill="var(--ink)" />
-        <path d="M128 80c4-6 10-6 12-4c2-2 8-2 12 4" stroke="var(--ink)" stroke-width="1.5" fill="var(--ink)" />
-        <path d="M128 99c0-6 8-10 12-10s12 4 12 10l-4 25h-16z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.5" />
-        <path d="M132 108c4 4 8 8 12 6c4 2 8-2 10-6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" fill="none" />
-      </svg>
-
-      <a href="#about" class="scroll-hint">
-        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="var(--ink-muted)" stroke-width="2">
-          <path d="M16 4v24M8 20l8 8 8-8" />
-        </svg>
-        <span>turn the page ↓</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- 2. ABOUT ME SECTION (CHAPTER ONE) -->
-  <section id="about" class="scroll-reveal">
-    <div class="max-width-wrapper">
-      <div class="chapter-label">· Chapter One ·</div>
-      <h2 class="storybook-header">The Protagonist</h2>
-      <div class="storybook-subheader">introducing our curious builder</div>
-
-      <div class="storybook-divider" aria-hidden="true">
-        <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
-          <path d="M10,10 Q50,0 90,10 T170,10 T250,10 T330,10 T390,10" />
-          <circle cx="50" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          <circle cx="130" cy="15" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          <circle cx="210" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          <circle cx="290" cy="15" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          <circle cx="370" cy="5" r="2.5" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-        </svg>
-      </div>
-
-      <div class="about-grid">
-        <!-- Left: Character Sheet Card -->
-        <div class="character-card">
-          <div class="character-card-decor" aria-hidden="true"></div>
+    <div class="window-body">
+      <div class="sys-tab-container">
+        <div class="sys-tabs-header">
+          <button class="sys-tab-btn active" onclick="switchTab('tab-frontend', this)">Frontend</button>
+          <button class="sys-tab-btn" onclick="switchTab('tab-ai', this)">AI / Automation</button>
+          <button class="sys-tab-btn" onclick="switchTab('tab-design', this)">Design & Motion</button>
+        </div>
+        <div class="sys-tab-body">
           
-          <svg class="girl-reading" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="90" cy="155" rx="60" ry="12" fill="var(--mist)" opacity="0.8" />
-            <circle cx="90" cy="60" r="14" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.5" />
-            <circle cx="90" cy="43" r="7" fill="var(--ink)" />
-            <path d="M78 74c0-6 8-10 12-10s12 4 12 10l-2 30h-20z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.5" />
-            <path d="M70 145c10-10 30-10 40 0" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" />
-            <path d="M75 147c10-5 25-5 35 0" stroke="var(--ink)" stroke-width="1.5" fill="none" stroke-linecap="round" />
-            <path d="M76 112c3-1 7-1 9-2c2 1 6 1 9 2v-8c-3-1-7-1-9 1c-2-2-6-2-9-1z" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
-            <path d="M85 103v8" stroke="var(--ink)" stroke-width="1.2" />
-            <circle cx="76" cy="110" r="3" fill="var(--blush)" stroke="var(--ink)" stroke-width="1" />
-            <circle cx="94" cy="110" r="3" fill="var(--blush)" stroke="var(--ink)" stroke-width="1" />
-          </svg>
+          <!-- Tab 1: Frontend -->
+          <div class="sys-tab-pane active" id="tab-frontend">
+            <div class="skills-groupbox">
+              <span class="skills-groupbox-title">Client Libraries</span>
+              <div class="skill-row">
+                <span class="skill-label">HTML5 / CSS3</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 95%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">JavaScript (ES6)</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">React.js</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">Tailwind CSS</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #555;">These modules manage layout renders and state structures.</p>
+          </div>
 
-          <h3>Kritika Khatri</h3>
-          <p style="font-family: var(--font-accent); font-size: 1.15rem; color: var(--ink-muted); margin-bottom: 1.2rem;">Computer Science Undergrad</p>
-          
-          <div class="traits-list">
-            <span class="trait-badge">✦ Curious</span>
-            <span class="trait-badge">✿ Builder</span>
-            <span class="trait-badge">✦ Design-Led</span>
-            <span class="trait-badge">✿ Fast Learner</span>
+          <!-- Tab 2: AI -->
+          <div class="sys-tab-pane" id="tab-ai">
+            <div class="skills-groupbox">
+              <span class="skills-groupbox-title">Automation Stack</span>
+              <div class="skill-row">
+                <span class="skill-label">n8n Workflows</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 88%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">LLM Integrations</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">Prompt Eng.</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">Node / Python</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 70%;"></div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #555;">Responsible for background agent logic and automated feeds.</p>
           </div>
-        </div>
 
-        <!-- Right: Notebook Ruled Sheet Bio -->
-        <div class="journal-entry">
-          <h3>The Story So Far...</h3>
-          <p>
-            <span class="drop-cap">I</span>'m a developer who views code as a canvas and web layouts as stories waiting to unfold. Based in Pune, India, I build interfaces that bridge visual aesthetics with clean technology internals. I enjoy experimenting with AI agent structures and creative responsive designs.
-          </p>
-          <p>
-            When I'm not writing layouts, you'll find me learning about automation tools, researching AI-driven workflows, or drinking warm chai.
-          </p>
-          <span class="journal-signature">Signed, Kritika Khatri</span>
+          <!-- Tab 3: Design -->
+          <div class="sys-tab-pane" id="tab-design">
+            <div class="skills-groupbox">
+              <span class="skills-groupbox-title">Creative Modules</span>
+              <div class="skill-row">
+                <span class="skill-label">Figma Design</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">Wireframing</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">After Effects</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 80%;"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <span class="skill-label">SVG Animation</span>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 85%;"></div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #555;">Manages vector drawing parameters and custom timing curves.</p>
+          </div>
 
-          <div class="social-chips">
-            <a href="https://github.com/kritikhatri" target="_blank" class="social-chip">
-              <i class="fab fa-github"></i> github
-            </a>
-            <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank" class="social-chip">
-              <i class="fab fa-linkedin"></i> linkedin
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. TECH STACK SECTION (CHAPTER TWO) -->
-  <section id="techstack" class="scroll-reveal">
-    <div class="max-width-wrapper">
-
-      <div class="storybook-divider" aria-hidden="true">
-        <svg viewBox="0 0 400 25" width="100%" height="25" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
-          <path d="M10,15 Q60,5 110,15 T210,15 T310,15 T390,15" />
-          <path d="M90,10 A4,4 0 0,1 98,10 L98,15 L90,15 Z" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          <rect x="93" y="15" width="2" height="4" fill="var(--butter)" stroke="var(--ink)" stroke-width="0.8" />
-          <path d="M250,10 A4,4 0 0,1 258,10 L258,15 L250,15 Z" fill="var(--lilac-deep)" stroke="var(--ink)" stroke-width="1" />
-          <rect x="253" y="15" width="2" height="4" fill="var(--butter)" stroke="var(--ink)" stroke-width="0.8" />
-          <path d="M170,3l2 2 2-2-2-2z" fill="var(--gold)" />
-          <path d="M330,3l2 2 2-2-2-2z" fill="var(--gold)" />
-        </svg>
-      </div>
-
-      <div class="spell-grid">
-        <!-- Card 1: Frontend -->
-        <div class="spell-card">
-          <div class="bookmark-ribbon"></div>
-          <div class="spell-header">
-            <svg class="spell-icon" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2" stroke="var(--ink)" stroke-width="2" />
-              <path d="M6 21h12m-6-4v4" />
-            </svg>
-            <h3>Frontend Herbs</h3>
-          </div>
-          <div class="ingredient-list">
-            <span class="ingredient-label">HTML5 & CSS3</span>
-            <span class="ingredient-label">React.js</span>
-            <span class="ingredient-label">Tailwind CSS</span>
-            <span class="ingredient-label">JavaScript</span>
-          </div>
-        </div>
-
-        <!-- Card 2: AI & Auto -->
-        <div class="spell-card ai">
-          <div class="bookmark-ribbon"></div>
-          <div class="spell-header">
-            <svg class="spell-icon" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" stroke="var(--ink)" stroke-width="2" />
-              <path d="M9 12h6m-3-3v6" />
-            </svg>
-            <h3>AI & Automation</h3>
-          </div>
-          <div class="ingredient-list">
-            <span class="ingredient-label">n8n Workflows</span>
-            <span class="ingredient-label">LLMs & Prompting</span>
-            <span class="ingredient-label">Node.js Basics</span>
-            <span class="ingredient-label">Python Basics</span>
-          </div>
-        </div>
-
-        <!-- Card 3: Design -->
-        <div class="spell-card design">
-          <div class="bookmark-ribbon"></div>
-          <div class="spell-header">
-            <svg class="spell-icon" viewBox="0 0 24 24">
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="var(--ink)" stroke-width="2" />
-              <path d="M7.5 10.5C8.32843 10.5 9 9.82843 9 9C9 8.17157 8.32843 7.5 7.5 7.5C6.67157 7.5 6 8.17157 6 9C6 9.82843 6.67157 10.5 7.5 10.5Z" fill="var(--ink)" />
-              <path d="M16.5 10.5C17.3284 10.5 18 9.82843 18 9C18 8.17157 17.3284 7.5 16.5 7.5C15.6716 7.5 15 8.17157 15 9C15 9.82843 15.6716 10.5 16.5 10.5Z" fill="var(--ink)" />
-            </svg>
-            <h3>UI/UX Crafts</h3>
-          </div>
-          <div class="ingredient-list">
-            <span class="ingredient-label">Figma Drafts</span>
-            <span class="ingredient-label">Prototyping</span>
-            <span class="ingredient-label">Wireframing</span>
-            <span class="ingredient-label">Color Theory</span>
-          </div>
-        </div>
-
-        <!-- Card 4: Motion -->
-        <div class="spell-card motion">
-          <div class="bookmark-ribbon"></div>
-          <div class="spell-header">
-            <svg class="spell-icon" viewBox="0 0 24 24">
-              <path d="M21 5H3v14h18V5z" stroke="var(--ink)" stroke-width="2" />
-              <path d="M10 9l5 3-5 3V9z" fill="var(--ink)" />
-            </svg>
-            <h3>Motion Charms</h3>
-          </div>
-          <div class="ingredient-list">
-            <span class="ingredient-label">CSS Keyframes</span>
-            <span class="ingredient-label">SVG Animation</span>
-            <span class="ingredient-label">Transitions</span>
-            <span class="ingredient-label">Micro-effects</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 2.5rem; font-family: var(--font-accent); font-size: 1.35rem; color: var(--ink-muted);">
-        * and learning new enchants every single sunrise... *
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. PROJECTS SECTION (CHAPTER THREE) -->
-  <section id="projects" class="scroll-reveal">
-    <div class="max-width-wrapper">
-      <div class="chapter-label">· Chapter Three ·</div>
-      <h2 class="storybook-header">The Adventures</h2>
-      <div class="storybook-subheader">tales of interfaces built & deployed</div>
-
-      <div class="storybook-divider" aria-hidden="true">
-        <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
-          <path d="M10,10 Q50,18 90,10 T170,10 T250,10 T330,10 T390,10" />
-          <path d="M90,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
-          <path d="M210,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
-          <path d="M330,5l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
-        </svg>
-      </div>
-
-      <!-- Projects filter ribbon menu tabs -->
-      <div class="project-filter-container">
-        <button class="filter-tab active" onclick="filterProjects('all')">All</button>
-        <button class="filter-tab" onclick="filterProjects('frontend')">Frontend</button>
-        <button class="filter-tab" onclick="filterProjects('ai')">AI & Auto</button>
-        <button class="filter-tab" onclick="filterProjects('uiux')">UI/UX</button>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Adventure 1: Spotify -->
-        <div class="adventure-scroll" data-category="frontend uiux">
-          <div class="project-illus-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="32" cy="32" r="24" fill="var(--mint)" />
-              <path d="M18 36c0-8 6-14 14-14s14 6 14 14" />
-              <rect x="14" y="32" width="6" height="10" rx="2" fill="var(--ink)" />
-              <rect x="44" y="32" width="6" height="10" rx="2" fill="var(--ink)" />
-              <path d="M30 25v10" />
-              <circle cx="27" cy="35" r="3" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.2" />
-            </svg>
-          </div>
-          <span class="scroll-tag">Adventure #01</span>
-          <h3>Spotify Playlist Cover Creator</h3>
-          <p>
-            An interface where music meets customization. Pick vibes, apply colors, select hand-drawn layouts, and compile playlist covers.
-          </p>
-          <div class="adventure-tags">
-            <span class="adventure-tag">React</span>
-            <span class="adventure-tag">CSS3</span>
-            <span class="adventure-tag">Tailwind</span>
-          </div>
-          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
-        </div>
-
-        <!-- Adventure 2: Aurelia -->
-        <div class="adventure-scroll" data-category="frontend uiux">
-          <div class="project-illus-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="32" cy="32" r="24" fill="var(--blush)" />
-              <path d="M22 24h20v24H22z" fill="var(--butter)" />
-              <path d="M27 24c0-4 2-7 5-7s5 3 5 7" />
-              <circle cx="32" cy="36" r="2.5" fill="var(--gold)" />
-              <circle cx="29" cy="34" r="1.5" fill="var(--petal)" />
-              <circle cx="35" cy="34" r="1.5" fill="var(--petal)" />
-            </svg>
-          </div>
-          <span class="scroll-tag">Adventure #02</span>
-          <h3>Aurelia E-Commerce</h3>
-          <p>
-            Modern shopping catalog platform with detailed transitions, smooth slide-out cart drawers, and responsive product sheets.
-          </p>
-          <div class="adventure-tags">
-            <span class="adventure-tag">React</span>
-            <span class="adventure-tag">State Mgmt</span>
-            <span class="adventure-tag">UX Flow</span>
-          </div>
-          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
-        </div>
-
-        <!-- Adventure 3: K-Flix -->
-        <div class="adventure-scroll" data-category="frontend">
-          <div class="project-illus-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="32" cy="32" r="24" fill="var(--lilac)" />
-              <rect x="18" y="24" width="28" height="20" rx="3" fill="var(--butter)" />
-              <rect x="21" y="27" width="16" height="14" rx="1" fill="var(--sky)" />
-              <path d="M28 24l-6-6m8 6l6-6" />
-              <circle cx="41" cy="30" r="1.5" fill="var(--ink)" />
-            </svg>
-          </div>
-          <span class="scroll-tag">Adventure #03</span>
-          <h3>K-Flix Discovery</h3>
-          <p>
-            Curated database of Korean shows, featuring custom search parameters, genre cards, and responsive streaming grids.
-          </p>
-          <div class="adventure-tags">
-            <span class="adventure-tag">HTML</span>
-            <span class="adventure-tag">CSS3</span>
-            <span class="adventure-tag">JavaScript</span>
-          </div>
-          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
-        </div>
-
-        <!-- Adventure 4: ISS Dashboard -->
-        <div class="adventure-scroll" data-category="frontend ai">
-          <div class="project-illus-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="32" cy="32" r="24" fill="var(--mist)" />
-              <circle cx="32" cy="32" r="12" fill="var(--sky)" />
-              <path d="M24 30c3 1 5-2 8-2s5 3 8 1" />
-              <path d="M16 16c6 0 10 4 10 10" stroke-dasharray="3,3" />
-              <rect x="12" y="10" width="8" height="12" rx="1" fill="var(--gold)" transform="rotate(30 16 16)" />
-            </svg>
-          </div>
-          <span class="scroll-tag">Adventure #04</span>
-          <h3>ISS & News Dashboard</h3>
-          <p>
-            Real-time space station position tracking dashboard utilizing live APIs, alongside space news summaries generated by AI.
-          </p>
-          <div class="adventure-tags">
-            <span class="adventure-tag">APIs</span>
-            <span class="adventure-tag">AI Chat</span>
-            <span class="adventure-tag">CSS Grid</span>
-          </div>
-          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
-        </div>
-
-        <!-- Adventure 5: AI Newsletter -->
-        <div class="adventure-scroll" data-category="ai">
-          <div class="project-illus-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="32" cy="32" r="24" fill="var(--butter)" />
-              <rect x="18" y="24" width="28" height="18" rx="2" fill="var(--cloud)" />
-              <path d="M18 24l14 10 14-10" />
-              <path d="M46 16l1.5 1.5 1.5-1.5-1.5-1.5z" fill="var(--gold)" />
-            </svg>
-          </div>
-          <span class="scroll-tag">Adventure #05</span>
-          <h3>AI Newsletter & Telegram Bot</h3>
-          <p>
-            Autonomous pipeline that fetches TechCrunch and HackerNews feeds, filters updates using LLMs, and drafts Telegram digests.
-          </p>
-          <div class="adventure-tags">
-            <span class="adventure-tag">n8n</span>
-            <span class="adventure-tag">OpenAI</span>
-            <span class="adventure-tag">Telegram</span>
-          </div>
-          <a href="https://github.com/kritikhatri" target="_blank" class="adventure-link">read adventure →</a>
         </div>
       </div>
     </div>
-  </section>
+    <div class="window-statusbar">
+      <div class="status-field">Status: All modules active.</div>
+    </div>
+  </div>
 
-  <!-- Section Divider (Sage green tape at 2deg) -->
-  <div class="washi-divider sage washi-tape washi-tape-torn-horizontal"></div>
-
-  <!-- 5. EXPERIENCE SECTION (CHAPTER FOUR) -->
-  <section id="experience" class="scroll-reveal">
-    <div class="max-width-wrapper">
-      <div class="chapter-label">· Chapter Four ·</div>
-      <h2 class="storybook-header">The Quest Log</h2>
-      <div class="storybook-subheader">quests completed and ongoing milestones</div>
-
-      <div class="storybook-divider" aria-hidden="true">
-        <svg viewBox="0 0 60 40" width="60" height="40" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 34c10-2 20-2 24 2 4-4 14-4 24-2V6C44 4 34 4 30 8c-4-4-14-4-24-2z" fill="var(--butter)" />
-          <path d="M30 8v26" />
-        </svg>
+  <!-- Window 3: Explorer Adventures (Projects) -->
+  <div class="window" id="win-projects" style="width: 680px; height: 460px; top: 160px; left: 200px;">
+    <div class="window-titlebar">
+      <div class="titlebar-text">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="currentColor"/></svg>
+        C:\My_Builds\Adventures
       </div>
+      <div class="titlebar-controls">
+        <button class="window-btn" onclick="minimizeWindow('win-projects')">_</button>
+        <button class="window-btn" onclick="maximizeWindow('win-projects')">⬜</button>
+        <button class="window-btn" onclick="closeWindow('win-projects')">X</button>
+      </div>
+    </div>
+    <div class="window-menu">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Help</span>
+    </div>
+    <div class="window-body" style="padding: 0;">
+      <div class="explorer-layout">
+        <!-- Sidebar folder tree -->
+        <div class="explorer-sidebar">
+          <div class="tree-item" onclick="filterExplorer('all')">📂 C:\Adventures</div>
+          <div class="tree-item" onclick="filterExplorer('frontend')" style="padding-left: 15px;">📁 Frontend</div>
+          <div class="tree-item" onclick="filterExplorer('ai')" style="padding-left: 15px;">📁 AI & Auto</div>
+          <div class="tree-item" onclick="filterExplorer('uiux')" style="padding-left: 15px;">📁 UI/UX Designs</div>
+        </div>
 
-      <div class="quest-timeline-wrapper">
-        <!-- Footprint path SVG -->
-        <svg class="quest-winding-path" viewBox="0 0 40 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 20,0 Q 30,100 10,200 T 20,400" stroke="var(--lilac-deep)" stroke-width="3" stroke-dasharray="6,8" stroke-linecap="round" />
-          <circle cx="23" cy="40" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="17" cy="65" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="13" cy="110" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="27" cy="135" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="23" cy="220" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="14" cy="250" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="16" cy="310" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-          <circle cx="24" cy="340" r="2.5" fill="var(--ink-muted)" opacity="0.6" />
-        </svg>
-
-        <div class="quest-cards-container">
-          <!-- Quest 1: FlyRank -->
-          <div class="quest-card">
-            <div class="quest-ribbon">ongoing quest ✦</div>
+        <div class="explorer-main">
+          <div class="explorer-pathbar">
+            <span>Address:</span>
+            <input type="text" class="explorer-path-input" value="C:\My_Builds\Adventures" readonly>
+          </div>
+          <!-- Folders grid -->
+          <div class="explorer-grid" id="explorer-items">
             
-            <h3>FlyRank</h3>
-            <div class="quest-role">AI Automation Intern</div>
-            <div class="quest-time">2026 - Present</div>
+            <!-- Folder 1 -->
+            <div class="folder-item" data-category="frontend uiux" onclick="showProjectDetail('Spotify Cover Creator', 'Custom album art editor. Design covers with styling controls, gradients, and custom layouts.', ['React', 'CSS3', 'Tailwind'], 'https://github.com/kritikhatri', this)">
+              <svg viewBox="0 0 32 32"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000" stroke-width="1.8"/></svg>
+              <span>Spotify_Cover</span>
+            </div>
 
-            <ul class="quest-objectives">
-              <li>Building modular AI agent structures and prompt chains.</li>
-              <li>Implementing automated data-mining workflows in n8n.</li>
-              <li>Developing high-performance frontend catalogs in React.</li>
-            </ul>
+            <!-- Folder 2 -->
+            <div class="folder-item" data-category="frontend uiux" onclick="showProjectDetail('Aurelia Catalog', 'Modern catalogue app with slider menus, shopping features, and layout transitions.', ['React', 'State Mgmt', 'UI Flow'], 'https://github.com/kritikhatri', this)">
+              <svg viewBox="0 0 32 32"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000" stroke-width="1.8"/></svg>
+              <span>Aurelia_Store</span>
+            </div>
 
-            <svg class="quest-corner-lantern" viewBox="0 0 24 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="10" width="12" height="18" rx="2" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
-              <circle cx="12" cy="19" r="4" fill="var(--gold)" />
-              <line x1="12" y1="0" x2="12" y2="10" stroke="var(--ink)" stroke-width="1.2" />
-            </svg>
+            <!-- Folder 3 -->
+            <div class="folder-item" data-category="frontend" onclick="showProjectDetail('K-Flix Discovery', 'Korean show index directory featuring filters, details layout, and search inputs.', ['HTML5', 'CSS3', 'JavaScript'], 'https://github.com/kritikhatri', this)">
+              <svg viewBox="0 0 32 32"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000" stroke-width="1.8"/></svg>
+              <span>K-Flix</span>
+            </div>
+
+            <!-- Folder 4 -->
+            <div class="folder-item" data-category="frontend ai" onclick="showProjectDetail('ISS Tracker', 'Live Space Station coordinate tracker overlay with AI generated summaries.', ['APIs', 'AI Integration', 'CSS Grid'], 'https://github.com/kritikhatri', this)">
+              <svg viewBox="0 0 32 32"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000" stroke-width="1.8"/></svg>
+              <span>ISS_Dashboard</span>
+            </div>
+
+            <!-- Folder 5 -->
+            <div class="folder-item" data-category="ai" onclick="showProjectDetail('AI Telegram Bot', 'n8n workflow digest builder extracting feeds and compiling news briefs to Telegram.', ['n8n', 'OpenAI', 'Telegram API'], 'https://github.com/kritikhatri', this)">
+              <svg viewBox="0 0 32 32"><path d="M2,6 L10,6 L14,10 L30,10 L30,28 L2,28 Z" fill="#ffd700" stroke="#000" stroke-width="1.8"/></svg>
+              <span>AI_Bot</span>
+            </div>
+
           </div>
 
-          <!-- Quest 2: Hackathon -->
-          <div class="achievement-card">
-            <span class="achievement-star">★</span>
-            <div class="achievement-tag">milestone reached</div>
-            <h3>Ctrl+Space Hackathon</h3>
-            <p>
-              Collaborated in a design-led team to build an AI-powered responsive storytelling portal under strict time limits, winning awards for creative implementation.
-            </p>
+          <!-- Bottom detailed panel -->
+          <div class="project-detail-view" id="project-detail-pane">
+            <div style="color: #666; font-style: italic; text-align: center; margin-top: 20px;">
+              Double-click or tap any folder to inspect project specs.
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
+  <!-- Window 4: Event Viewer (Experience Log) -->
+  <div class="window" id="win-experience" style="width: 580px; height: 380px; top: 200px; left: 120px;">
+    <div class="window-titlebar">
+      <div class="titlebar-text">
+        <svg viewBox="0 0 24 24" width="16" height="16"><rect x="4" y="4" width="16" height="16" fill="currentColor"/></svg>
+        Event Viewer - [Quest_Log.log]
+      </div>
+      <div class="titlebar-controls">
+        <button class="window-btn" onclick="minimizeWindow('win-experience')">_</button>
+        <button class="window-btn" onclick="maximizeWindow('win-experience')">⬜</button>
+        <button class="window-btn" onclick="closeWindow('win-experience')">X</button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 0;">
+      <div class="event-viewer-grid">
+        <div class="event-table-header">
+          <div class="event-header-col" style="flex: 0 0 60px;">Type</div>
+          <div class="event-header-col" style="flex: 0 0 90px;">Date</div>
+          <div class="event-header-col" style="flex: 1;">Source</div>
+          <div class="event-header-col" style="flex: 0 0 80px;">Category</div>
+        </div>
+        
+        <div class="event-rows">
+          <!-- Row 1 -->
+          <div class="event-row" onclick="showEventDetails('AI Internship', '2026 - Present', 'FlyRank Automation Intern', 'Building LLM workflows and prompt chains inside n8n; structuring responsive catalog sheets.')">
+            <div class="event-col" style="flex: 0 0 60px;">ℹ️ Info</div>
+            <div class="event-col" style="flex: 0 0 90px;">2026-06</div>
+            <div class="event-col" style="flex: 1; font-weight: bold;">FlyRank - AI Intern</div>
+            <div class="event-col" style="flex: 0 0 80px;">Work</div>
+          </div>
+          
+          <!-- Row 2 -->
+          <div class="event-row" onclick="showEventDetails('Hackathon Winner', '2025-10', 'Ctrl+Space Award Milestone', 'Collaborated on a high-fidelity narrative portal builder with custom animation loops.')">
+            <div class="event-col" style="flex: 0 0 60px;">🏆 Award</div>
+            <div class="event-col" style="flex: 0 0 90px;">2025-10</div>
+            <div class="event-col" style="flex: 1; font-weight: bold;">Ctrl+Space Hackathon</div>
+            <div class="event-col" style="flex: 0 0 80px;">Quest</div>
+          </div>
 
+          <!-- Row 3 -->
+          <div class="event-row" onclick="showEventDetails('Newton School', '2024 - Present', 'Newton School of Technology', 'Undergraduate study in Computer Science. Specialized in UI/UX systems and data workflows.')">
+            <div class="event-col" style="flex: 0 0 60px;">ℹ️ Info</div>
+            <div class="event-col" style="flex: 0 0 90px;">2024-08</div>
+            <div class="event-col" style="flex: 1; font-weight: bold;">Newton School of Tech</div>
+            <div class="event-col" style="flex: 0 0 80px;">Academic</div>
+          </div>
 
-      <div class="chapter-label">· Chapter Five ·</div>
-      <h2 class="storybook-header">Worlds I Inhabit</h2>
-      <div class="storybook-subheader">explore my repositories and social updates</div>
-
-      <!-- Planetary orbits / Stats -->
-      <div class="worlds-container">
-        <div class="bird-bubble-wrapper">
-          <!-- Cute bird holding card vector -->
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="12" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
-            <!-- Beak -->
-            <polygon points="30,18 36,20 30,22" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
-            <!-- Eye -->
-            <circle cx="24" cy="16" r="1.5" fill="var(--ink)" />
-            <!-- Wing -->
-            <path d="M14,20c0-4 4-6 6-2s-2 6-6 4" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
-          </svg>
-          <div class="bird-bubble">
-            writing about AI & automation now — come read!
+          <!-- Row 4 -->
+          <div class="event-row" onclick="showEventDetails('First Code Line', '2023-01', 'Styling and script triggers initiation', 'Explored layout design parameters, rendering grids, and transition mechanics.')">
+            <div class="event-col" style="flex: 0 0 60px;">🌱 Seed</div>
+            <div class="event-col" style="flex: 0 0 90px;">2023-01</div>
+            <div class="event-col" style="flex: 1; font-weight: bold;">Initial Code Commit</div>
+            <div class="event-col" style="flex: 0 0 80px;">Build</div>
           </div>
         </div>
 
-        <!-- Github World -->
-        <a href="https://github.com/kritikhatri" target="_blank" class="world-card github" style="text-decoration: none;">
-          <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8">
-            <circle cx="32" cy="32" r="22" fill="var(--butter)" stroke-dasharray="4,4" />
-            <!-- Core Planet -->
-            <circle cx="32" cy="32" r="12" fill="var(--lilac-deep)" />
-            <!-- Code icon inside planet -->
-            <path d="M29 30l-3 2 3 2m6-4l3 2-3 2" stroke="var(--cloud)" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
-          <h3>GitHub World</h3>
-          <div class="world-stats">15+ Repos</div>
-          <p>where code compiles & branches sprout</p>
-        </a>
-
-        <!-- LinkedIn World -->
-        <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank" class="world-card linkedin" style="text-decoration: none;">
-          <svg viewBox="0 0 64 64" fill="none" stroke="var(--ink)" stroke-width="1.8">
-            <!-- Orbiting circle path -->
-            <circle cx="32" cy="32" r="22" fill="var(--butter)" stroke-dasharray="4,4" />
-            <!-- Compass needle -->
-            <polygon points="32,20 35,32 32,44 29,32" fill="var(--petal)" />
-            <circle cx="32" cy="32" r="3" fill="var(--ink)" />
-          </svg>
-          <h3>LinkedIn World</h3>
-          <div class="world-stats">Connections</div>
-          <p>where builders align and quests emerge</p>
-        </a>
-      </div>
-
-      <div style="margin: 6rem 0 3rem;">
-        <div class="chapter-label">· The End ·</div>
-        <div class="storybook-divider" aria-hidden="true">
-          <svg viewBox="0 0 400 20" width="100%" height="20" fill="none" stroke="var(--ink-muted)" stroke-width="1.5" stroke-linecap="round">
-            <path d="M10,10 Q50,0 90,10 T170,10 T250,10 T330,10 T390,10" />
-            <circle cx="200" cy="10" r="4" fill="var(--petal)" stroke="var(--ink)" stroke-width="1" />
-          </svg>
+        <div class="event-desc-panel" id="event-desc-pane">
+          <div style="color: #666; font-style: italic;">Select any log row to review event details.</div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Contact wax letter spread -->
-      <div class="contact-spread">
-        <svg class="contact-birds-banner" viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Left bird -->
-          <circle cx="35" cy="30" r="10" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
-          <polygon points="25,28 19,30 25,32" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
-          <!-- Right bird -->
-          <circle cx="105" cy="30" r="10" fill="var(--petal)" stroke="var(--ink)" stroke-width="1.5" />
-          <polygon points="115,28 121,30 115,32" fill="var(--gold)" stroke="var(--ink)" stroke-width="1" />
-          <!-- Ribbon banner -->
-          <path d="M40 30h60" stroke="var(--ink)" stroke-width="2" />
-          <path d="M50 25l-5 5 5 5h40l-5-5 5-5z" fill="var(--butter)" stroke="var(--ink)" stroke-width="1.2" />
-          <text x="70" y="32" font-family="var(--font-accent)" font-size="9" fill="var(--ink)" text-anchor="middle">let's create</text>
+  <!-- Window 5: Contact Composer (Mail_Me.exe) -->
+  <div class="window" id="win-contact" style="width: 480px; height: 360px; top: 140px; left: 80px;">
+    <div class="window-titlebar">
+      <div class="titlebar-text">
+        <svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="6" width="20" height="12" fill="currentColor"/></svg>
+        Compose Message - Outbox wizard
+      </div>
+      <div class="titlebar-controls">
+        <button class="window-btn" onclick="minimizeWindow('win-contact')">_</button>
+        <button class="window-btn" onclick="maximizeWindow('win-contact')">⬜</button>
+        <button class="window-btn" onclick="closeWindow('win-contact')">X</button>
+      </div>
+    </div>
+    <div class="window-menu">
+      <span class="menu-item">Send</span>
+      <span class="menu-item">Insert</span>
+      <span class="menu-item">Options</span>
+    </div>
+    <div class="window-body">
+      <form class="mail-composer" onsubmit="sendFakeMail(event)">
+        <div class="mail-row">
+          <span class="mail-label">To:</span>
+          <input type="text" class="mail-input" value="kritikakhatri45@gmail.com" readonly>
+        </div>
+        <div class="mail-row">
+          <span class="mail-label">From:</span>
+          <input type="email" class="mail-input" placeholder="your_email@domain.com" required id="sender-email">
+        </div>
+        <div class="mail-row">
+          <span class="mail-label">Subject:</span>
+          <input type="text" class="mail-input" value="Collab / Quest Proposal" id="mail-subject">
+        </div>
+        <textarea class="mail-body" placeholder="Write message here..." required id="mail-text"></textarea>
+        
+        <div class="mail-actions">
+          <button type="submit" class="btn-send">Send Mail ✉</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- 3. BOTTOM TASKBAR & START MENU -->
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <button class="btn-start" id="start-btn" onclick="toggleStartMenu(event)">
+        <!-- Pixel style start logo -->
+        <svg class="btn-start-logo" viewBox="0 0 16 16">
+          <rect x="0" y="0" width="7" height="7" fill="#ff5555"/>
+          <rect x="8" y="0" width="7" height="7" fill="#55ff55"/>
+          <rect x="0" y="8" width="7" height="7" fill="#5555ff"/>
+          <rect x="8" y="8" width="7" height="7" fill="#ffff55"/>
         </svg>
+        Start
+      </button>
+      
+      <!-- Active Taskbar tab triggers -->
+      <div class="task-tabs-container" id="taskbar-tabs"></div>
+    </div>
+    
+    <div class="system-tray">
+      <!-- Network indicator -->
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.07 19.66 10.48 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+      </svg>
+      <span id="system-clock">00:00 PM</span>
+    </div>
+  </div>
 
-        <h3>Let's Build Something</h3>
-        <span class="magical-words">Magical Together</span>
-
-        <p>
-          I am always open to exploring summer internships, collaborating on open-source builds, or simply discussing frontend designs and AI applications.
-        </p>
-
-        <div class="collab-tags">
-          <span class="collab-tag">✦ Internships</span>
-          <span class="collab-tag">✿ React Projects</span>
-          <span class="collab-tag">✦ Automation Pipelines</span>
-          <span class="collab-tag">✿ Creative UI/UX</span>
+  <!-- Start Menu popup -->
+  <div class="start-menu" id="start-menu-panel">
+    <div class="start-menu-container">
+      <div class="start-menu-banner">
+        KritikaOS
+      </div>
+      <div class="start-menu-items">
+        <div class="start-menu-item" onclick="openWindow('win-bio')">
+          📝 Bio.txt
         </div>
-
-        <a href="mailto:kritikakhatri45@gmail.com" class="wax-sealed-btn">
-          <!-- Wax seal envelope icon -->
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <path d="M22 6l-10 7L2 6" />
-          </svg>
-          send a letter
+        <div class="start-menu-item" onclick="openWindow('win-skills')">
+          🛠️ Toolkit.exe
+        </div>
+        <div class="start-menu-item" onclick="openWindow('win-projects')">
+          📂 Adventures
+        </div>
+        <div class="start-menu-item" onclick="openWindow('win-experience')">
+          📈 Quest_Log.log
+        </div>
+        <div class="start-menu-item" onclick="openWindow('win-contact')">
+          ✉ Mail_Me.exe
+        </div>
+        
+        <div class="start-menu-divider"></div>
+        
+        <a href="https://github.com/kritikhatri" target="_blank" class="start-menu-item" style="text-decoration: none;">
+          🌐 GitHub World
         </a>
-
-        <div class="contact-socials-bottom">
-          <a href="https://github.com/kritikhatri" target="_blank">github ✦</a>
-          <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank">linkedin ✿</a>
-          <a href="mailto:kritikakhatri45@gmail.com">email ✦</a>
+        <a href="https://linkedin.com/in/kritika-khatri-a931a331a" target="_blank" class="start-menu-item" style="text-decoration: none;">
+          🌐 LinkedIn World
+        </a>
+        
+        <div class="start-menu-divider"></div>
+        
+        <div class="start-menu-item" onclick="shutdownMessage()">
+          💻 Shut Down...
         </div>
-
-        <!-- SVG Girl walking away with lantern -->
-        <svg class="closing-girl-illustration" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Horizon line -->
-          <line x1="10" y1="85" x2="130" y2="85" stroke="var(--ink)" stroke-dasharray="3,3" />
-          <!-- Mist circles -->
-          <circle cx="70" cy="85" r="30" fill="var(--mist)" opacity="0.6" filter="blur(4px)" />
-          <!-- Girl walking away -->
-          <!-- Head -->
-          <circle cx="70" cy="45" r="9" fill="var(--blush)" stroke="var(--ink)" stroke-width="1.2" />
-          <circle cx="70" cy="38" r="5" fill="var(--ink)" />
-          <!-- Torso -->
-          <path d="M63 54c0-4 5-7 7-7s7 3 7 7l-1 18h-12z" fill="var(--lilac)" stroke="var(--ink)" stroke-width="1.2" />
-          <!-- Feet walking -->
-          <line x1="66" y1="72" x2="64" y2="82" stroke="var(--ink)" stroke-width="1.5" />
-          <line x1="74" y1="72" x2="76" y2="80" stroke="var(--ink)" stroke-width="1.5" />
-          <!-- Swinging lantern held in hand -->
-          <path d="M75 58 Q85 58 84 66" stroke="var(--ink)" stroke-width="1.2" fill="none" />
-          <rect x="81" y="66" width="6" height="10" rx="1.5" fill="var(--butter)" stroke="var(--ink)" stroke-width="1" />
-          <circle cx="84" cy="71" r="2" fill="var(--gold)" />
-        </svg>
       </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      · the end · crafted with storybook charm by kritika khatri · pune, india · 2025 ·
-    </div>
-  </footer>
+  </div>
 
   <script>
-    // Project filtering script
-    function filterProjects(category) {
-      // Toggle active states on tabs
-      const tabs = document.querySelectorAll('.filter-tab');
-      tabs.forEach(tab => {
-        if (tab.textContent.trim().toLowerCase() === category.toLowerCase()) {
-          tab.classList.add('active');
-        } else if (category === 'ai' && tab.textContent.trim().toLowerCase().includes('ai')) {
-          tab.classList.add('active');
-        } else {
-          tab.classList.remove('active');
+    // WINDOW STATE MANAGEMENT
+    const windows = ['win-bio', 'win-skills', 'win-projects', 'win-experience', 'win-contact'];
+    const windowTitles = {
+      'win-bio': 'Bio.txt',
+      'win-skills': 'Toolkit.exe',
+      'win-projects': 'Adventures',
+      'win-experience': 'Quest_Log.log',
+      'win-contact': 'Mail_Me.exe'
+    };
+    
+    let activeFocusWindow = null;
+
+    // Open a window and bring to front
+    function openWindow(id) {
+      const win = document.getElementById(id);
+      if (!win) return;
+      
+      win.style.display = 'flex';
+      win.classList.remove('minimized');
+      bringToFront(win);
+      renderTaskbarTabs();
+    }
+
+    // Close a window
+    function closeWindow(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.style.display = 'none';
+        if (activeFocusWindow === win) {
+          activeFocusWindow = null;
+        }
+        renderTaskbarTabs();
+      }
+    }
+
+    // Minimize a window
+    function minimizeWindow(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.add('minimized');
+        renderTaskbarTabs();
+      }
+    }
+
+    // Maximize window toggle
+    function maximizeWindow(id) {
+      const win = document.getElementById(id);
+      if (win) {
+        win.classList.toggle('maximized');
+      }
+    }
+
+    // Bring a window to foreground focus
+    function bringToFront(winEl) {
+      windows.forEach(id => {
+        const w = document.getElementById(id);
+        if (w) {
+          w.classList.remove('active-focus');
         }
       });
+      winEl.classList.add('active-focus');
+      activeFocusWindow = winEl;
+      renderTaskbarTabs();
+    }
+
+    // Initialize drag drop mechanics on windows
+    function initDraggables() {
+      windows.forEach(id => {
+        const win = document.getElementById(id);
+        if (!win) return;
+        
+        const titlebar = win.querySelector('.window-titlebar');
+        if (!titlebar) return;
+        
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        
+        win.addEventListener('mousedown', () => {
+          bringToFront(win);
+        });
+
+        titlebar.addEventListener('mousedown', (e) => {
+          if (e.target.closest('.window-btn')) return;
+          isDragging = true;
+          win.classList.remove('maximized');
+          startX = e.clientX - win.offsetLeft;
+          startY = e.clientY - win.offsetTop;
+          bringToFront(win);
+        });
+        
+        window.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          win.style.left = `${e.clientX - startX}px`;
+          win.style.top = `${e.clientY - startY}px`;
+        });
+        
+        window.addEventListener('mouseup', () => {
+          isDragging = false;
+        });
+
+        // Touch support
+        titlebar.addEventListener('touchstart', (e) => {
+          if (e.target.closest('.window-btn')) return;
+          isDragging = true;
+          win.classList.remove('maximized');
+          const touch = e.touches[0];
+          startX = touch.clientX - win.offsetLeft;
+          startY = touch.clientY - win.offsetTop;
+          bringToFront(win);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          const touch = e.touches[0];
+          win.style.left = `${touch.clientX - startX}px`;
+          win.style.top = `${touch.clientY - startY}px`;
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+          isDragging = false;
+        });
+      });
+    }
+
+    // Tab-switching inside properties page
+    function switchTab(tabId, btnEl) {
+      const container = btnEl.closest('.sys-tab-container');
       
-      const cards = document.querySelectorAll('.adventure-scroll');
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
+      // Update button classes
+      container.querySelectorAll('.sys-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      btnEl.classList.add('active');
+
+      // Update panes visibility
+      container.querySelectorAll('.sys-tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // Projects explorer path filter logic
+    function filterExplorer(category) {
+      const items = document.querySelectorAll('#explorer-items .folder-item');
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category');
         if (category === 'all' || cat.includes(category)) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, 50);
+          item.style.display = 'flex';
         } else {
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 200);
+          item.style.display = 'none';
         }
       });
     }
 
-    // Scroll reveal observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
+    // Explorer projects selection detail display
+    function showProjectDetail(title, desc, tags, link, element) {
+      // Highlight selected
+      document.querySelectorAll('#explorer-items .folder-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      if (element) {
+        element.classList.add('selected');
+      }
+
+      const pane = document.getElementById('project-detail-pane');
+      pane.innerHTML = `
+        <div class="project-detail-header">
+          <span>${title}</span>
+          <a href="${link}" target="_blank" class="btn-run">Run Program ➔</a>
+        </div>
+        <p style="margin-bottom: 8px;">${desc}</p>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+          ${tags.map(t => `<span style="background: #e0e0e0; border: 1px solid #808080; padding: 1px 6px; font-size: 0.75rem;">${t}</span>`).join('')}
+        </div>
+      `;
+    }
+
+    // Log viewer detailed description update
+    function showEventDetails(title, date, role, desc) {
+      // Highlight selected row
+      document.querySelectorAll('.event-rows .event-row').forEach(row => {
+        row.classList.remove('selected');
+      });
+      const target = event.currentTarget;
+      if (target) {
+        target.classList.add('selected');
+      }
+
+      const pane = document.getElementById('event-desc-pane');
+      pane.innerHTML = `
+        <strong>Event: ${title}</strong><br>
+        Date: ${date} &middot; Role: ${role}<br><br>
+        Description: ${desc}
+      `;
+    }
+
+    // Dynamic Taskbar Open Windows Tab render
+    function renderTaskbarTabs() {
+      const container = document.getElementById('taskbar-tabs');
+      container.innerHTML = '';
+
+      windows.forEach(id => {
+        const win = document.getElementById(id);
+        if (win && win.style.display === 'flex') {
+          const tab = document.createElement('div');
+          tab.className = 'task-tab';
+          if (activeFocusWindow === win && !win.classList.contains('minimized')) {
+            tab.classList.add('active');
+          }
+          tab.innerHTML = `<span>📂 ${windowTitles[id]}</span>`;
+          tab.onclick = () => {
+            if (win.classList.contains('minimized')) {
+              win.classList.remove('minimized');
+              bringToFront(win);
+            } else if (activeFocusWindow === win) {
+              win.classList.add('minimized');
+              activeFocusWindow = null;
+            } else {
+              bringToFront(win);
+            }
+            renderTaskbarTabs();
+          };
+          container.appendChild(tab);
         }
       });
-    }, { threshold: 0.1 });
+    }
 
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-      observer.observe(el);
+    // Toggle start menu panel
+    function toggleStartMenu(event) {
+      if (event) {
+        event.stopPropagation();
+      }
+      const menu = document.getElementById('start-menu-panel');
+      const btn = document.getElementById('start-btn');
+      
+      const isOpen = menu.style.display === 'flex';
+      menu.style.display = isOpen ? 'none' : 'flex';
+      btn.classList.toggle('active', !isOpen);
+    }
+
+    // Hide Start Menu when clicking desktop
+    document.addEventListener('click', () => {
+      const menu = document.getElementById('start-menu-panel');
+      const btn = document.getElementById('start-btn');
+      if (menu) {
+        menu.style.display = 'none';
+      }
+      if (btn) {
+        btn.classList.remove('active');
+      }
     });
 
-    // Sticky navigation scroll state
-    const topNav = document.querySelector('.top-nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        topNav.classList.add('scrolled');
-      } else {
-        topNav.classList.remove('scrolled');
-      }
-    }, { passive: true });
-
-    // Magical sparkles mouse trail particle effect
-    function initMouseTrail() {
-      const heroSection = document.getElementById('hero');
-      if (!heroSection) return;
+    // Real-time system tray clock ticking
+    function tickClock() {
+      const clock = document.getElementById('system-clock');
+      if (!clock) return;
       
-      let lastSpawn = 0;
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
       
-      heroSection.addEventListener('mousemove', (e) => {
-        const now = Date.now();
-        if (now - lastSpawn < 70) return; // spawn every 70ms max
-        lastSpawn = now;
-        
-        const rect = heroSection.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        createSparkle(x, y);
-      });
-      
-      function createSparkle(x, y) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'flower-petal-trail';
-        
-        const colors = ['#fce4ec', '#f8bbd0', '#e1d5f0', '#fff9e6'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        const sparkles = ['✦', '✨', '✿', '🌸'];
-        const randomSymbol = sparkles[Math.floor(Math.random() * sparkles.length)];
-        
-        sparkle.textContent = randomSymbol;
-        sparkle.style.left = `${x}px`;
-        sparkle.style.top = `${y}px`;
-        sparkle.style.color = randomColor;
-        sparkle.style.fontSize = `${12 + Math.random() * 12}px`;
-        
-        const driftX = (Math.random() - 0.5) * 60;
-        const rotate = (Math.random() - 0.5) * 360;
-        
-        sparkle.style.setProperty('--drift-x', `${driftX}px`);
-        sparkle.style.setProperty('--rotate-deg', `${rotate}deg`);
-        
-        heroSection.appendChild(sparkle);
-        
-        setTimeout(() => {
-          sparkle.remove();
-        }, 1500);
-      }
+      clock.textContent = `${hours}:${minutes} ${ampm}`;
     }
 
-    initMouseTrail();
+    // Mock Mail send
+    function sendFakeMail(e) {
+      e.preventDefault();
+      const email = document.getElementById('sender-email').value;
+      const subject = document.getElementById('mail-subject').value;
+      const text = document.getElementById('mail-text').value;
+
+      alert(`Mail Sent Successfully!\n\nFrom: ${email}\nSubject: ${subject}\nMessage: ${text.substring(0, 40)}...`);
+      closeWindow('win-contact');
+    }
+
+    // Shutdown screen alert
+    function shutdownMessage() {
+      alert("It is now safe to turn off your computer.\n(Just kidding! Refresh the page to boot up again.)");
+    }
+
+    // INIT INITIAL ENVIRONMENT
+    document.getElementById('start-menu-panel').addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    initDraggables();
+    setInterval(tickClock, 1000);
+    tickClock();
+
+    // Default open window
+    openWindow('win-bio');
   </script>
 </body>
 </html>
